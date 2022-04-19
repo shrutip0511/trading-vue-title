@@ -273,7 +273,7 @@ function GridMaker(id, params, master_grid = null) {
 
             let m0 = Utils.get_month(t0)*/
 
-            /*for (var i = 0; i < sub.length; i++) {
+            for (var i = 0; i < sub.length; i++) {
                 let p = sub[i]
                 let prev = sub[i-1] || []
                 let prev_xs = self.xs[self.xs.length - 1] || [0,[]]
@@ -296,7 +296,7 @@ function GridMaker(id, params, master_grid = null) {
                         self.xs.splice(self.xs.length - 2, 1)
                     }
                 }
-            }*/
+            }
 
             // TODO: fix grid extension for bigger timeframes
             if (interval < WEEK && r > 0) {

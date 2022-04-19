@@ -333,12 +333,12 @@ export default class Grid {
         this.ctx.beginPath()
 
         const ymax = this.layout.height
-        for (var [x, p] of this.layout.xs) {
-
-            this.ctx.moveTo(x - 0.5, 0)
-            this.ctx.lineTo(x - 0.5, ymax)
-
-        }
+        // for (var [x, p] of this.layout.xs) {
+        //
+        //     this.ctx.moveTo(x - 0.5, 0)
+        //     this.ctx.lineTo(x - 0.5, ymax)
+        //
+        // }
 
         for (var [y, y$] of this.layout.ys) {
 
