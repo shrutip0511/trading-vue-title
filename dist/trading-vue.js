@@ -1,5 +1,5 @@
 /*!
- * TradingVue.JS - v1.0.2 - Tue Apr 12 2022
+ * TradingVue.JS - v1.0.2 - Tue Apr 19 2022
  *     https://github.com/tvjsx/trading-vue-js
  *     Copyright (c) 2019 C451 Code's All Right;
  *     Licensed under the MIT license
@@ -6697,26 +6697,27 @@ function GridMaker(id, params, master_grid) {
       for (var t0 = year_0; t0 < range[0]; t0 += self.t_step) {}
         let m0 = Utils.get_month(t0)*/
 
-      /*for (var i = 0; i < sub.length; i++) {
-          let p = sub[i]
-          let prev = sub[i-1] || []
-          let prev_xs = self.xs[self.xs.length - 1] || [0,[]]
-          let x = Math.floor((p[0] - range[0]) * r)
-            insert_line(prev, p, x)
-            // Filtering lines that are too near
-          let xs = self.xs[self.xs.length - 1] || [0, []]
-            if (prev_xs === xs) continue
-            if (xs[1][0] - prev_xs[1][0] < self.t_step * 0.8) {
-                // prev_xs is a higher "rank" label
-              if (xs[2] <= prev_xs[2]) {
-                  self.xs.pop()
-              } else {
-                  // Otherwise
-                  self.xs.splice(self.xs.length - 2, 1)
-              }
+      for (var i = 0; i < sub.length; i++) {
+        var p = sub[i];
+        var prev = sub[i - 1] || [];
+        var prev_xs = self.xs[self.xs.length - 1] || [0, []];
+        var x = Math.floor((p[0] - range[0]) * r);
+        insert_line(prev, p, x); // Filtering lines that are too near
+
+        var xs = self.xs[self.xs.length - 1] || [0, []];
+        if (prev_xs === xs) continue;
+
+        if (xs[1][0] - prev_xs[1][0] < self.t_step * 0.8) {
+          // prev_xs is a higher "rank" label
+          if (xs[2] <= prev_xs[2]) {
+            self.xs.pop();
+          } else {
+            // Otherwise
+            self.xs.splice(self.xs.length - 2, 1);
           }
-      }*/
-      // TODO: fix grid extension for bigger timeframes
+        }
+      } // TODO: fix grid extension for bigger timeframes
+
 
       if (interval < grid_maker_WEEK && r > 0) {
         extend_left(dt, r);
@@ -7845,42 +7846,29 @@ var Grid = /*#__PURE__*/function () {
     value: function grid() {
       this.ctx.strokeStyle = this.$p.colors.grid;
       this.ctx.beginPath();
-      var ymax = this.layout.height;
+      var ymax = this.layout.height; // for (var [x, p] of this.layout.xs) {
+      //
+      //     this.ctx.moveTo(x - 0.5, 0)
+      //     this.ctx.lineTo(x - 0.5, ymax)
+      //
+      // }
 
-      var _iterator2 = grid_createForOfIteratorHelper(this.layout.xs),
+      var _iterator2 = grid_createForOfIteratorHelper(this.layout.ys),
           _step2;
 
       try {
         for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
           var _step2$value = _slicedToArray(_step2.value, 2),
-              x = _step2$value[0],
-              p = _step2$value[1];
-
-          this.ctx.moveTo(x - 0.5, 0);
-          this.ctx.lineTo(x - 0.5, ymax);
-        }
-      } catch (err) {
-        _iterator2.e(err);
-      } finally {
-        _iterator2.f();
-      }
-
-      var _iterator3 = grid_createForOfIteratorHelper(this.layout.ys),
-          _step3;
-
-      try {
-        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-          var _step3$value = _slicedToArray(_step3.value, 2),
-              y = _step3$value[0],
-              y$ = _step3$value[1];
+              y = _step2$value[0],
+              y$ = _step2$value[1];
 
           this.ctx.moveTo(0, y - 0.5);
           this.ctx.lineTo(this.layout.width, y - 0.5);
         }
       } catch (err) {
-        _iterator3.e(err);
+        _iterator2.e(err);
       } finally {
-        _iterator3.f();
+        _iterator2.f();
       }
 
       this.ctx.stroke();
@@ -8035,12 +8023,12 @@ var Grid = /*#__PURE__*/function () {
   }, {
     key: "propagate",
     value: function propagate(name, event) {
-      var _iterator4 = grid_createForOfIteratorHelper(this.overlays),
-          _step4;
+      var _iterator3 = grid_createForOfIteratorHelper(this.overlays),
+          _step3;
 
       try {
-        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-          var layer = _step4.value;
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var layer = _step3.value;
 
           if (layer.renderer[name]) {
             layer.renderer[name](event);
@@ -8058,9 +8046,9 @@ var Grid = /*#__PURE__*/function () {
           }
         }
       } catch (err) {
-        _iterator4.e(err);
+        _iterator3.e(err);
       } finally {
-        _iterator4.f();
+        _iterator3.f();
       }
     }
   }, {
