@@ -458,7 +458,9 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(645);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, "\n.trading-vue-legend {\r\n    position: relative;\r\n    z-index: 100;\r\n    font-size: 1.25em;\r\n    margin-left: 10px;\r\n    pointer-events: none;\r\n    text-align: left;\r\n    user-select: none;\r\n    font-weight: 300;\n}\n@media (min-resolution: 2x) {\n.trading-vue-legend {\r\n        font-weight: 400;\n}\n}\n.trading-vue-ohlcv {\r\n    pointer-events: none;\r\n    margin-bottom: 0.5em;\n}\n.t-vue-lspan {\r\n    font-variant-numeric: tabular-nums;\r\n    font-size: 0.95em;\r\n    color: #999999; /* TODO: move => params */\r\n    margin-left: 0.1em;\r\n    margin-right: 0.2em;\n}\n.t-vue-title {\r\n    margin-right: 0.25em;\r\n    font-size: 1.45em;\n}\n.t-vue-ind {\r\n    margin-left: 0.2em;\r\n    margin-bottom: 0.5em;\r\n    font-size: 1.0em;\r\n    margin-top: 0.3em;\n}\n.t-vue-ivalue {\r\n    margin-left: 0.5em;\n}\n.t-vue-unknown {\r\n    color: #999999; /* TODO: move => params */\n}\n.tvjs-appear-enter-active,\r\n.tvjs-appear-leave-active\r\n{\r\n    transition: all .25s ease;\n}\n.tvjs-appear-enter, .tvjs-appear-leave-to\r\n{\r\n    opacity: 0;\n}\r\n", ""]);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////black
+exports.push([module.id, "\n.trading-vue-legend {\r\n    position: relative;\r\n    z-index: 100;\r\n    font-size: 1.25em;\r\n    margin-left: 10px;\r\n    pointer-events: none;\r\n    text-align: left;\r\n    user-select: none;\r\n    font-weight: 300;\n}\n@media (min-resolution: 2x) {\n.trading-vue-legend {\r\n        font-weight: 400;\n}\n}\n.trading-vue-ohlcv {\r\n    pointer-events: none;\r\n    margin-bottom: 0.5em;\n}\n.t-vue-lspan {\r\n    font-variant-numeric: tabular-nums;\r\n    font-size: 0.95em;\r\n    color: #000 ; \r\n    margin-left: 0.1em;\r\n    margin-right: 0.2em;\n}\n.t-vue-ohlcv{\r\n font-weight: 600; \r\n }\n.t-vue-title {\r\n    margin-right: 0.25em;\r\n    font-size: 1.45em;\n}\n.t-vue-ind {\r\n    margin-left: 0.2em;\r\n    margin-bottom: 0.5em;\r\n    font-size: 1.0em;\r\n    margin-top: 0.3em;\n}\n.t-vue-ivalue {\r\n    margin-left: 0.5em;\n}\n.t-vue-unknown {\r\n    color: #000; \n}\n.tvjs-appear-enter-active,\r\n.tvjs-appear-leave-active\r\n{\r\n    transition: all .25s ease;\n}\n.tvjs-appear-enter, .tvjs-appear-leave-to\r\n{\r\n    opacity: 0;\n}\r\n", ""]);
+////////////////////////////////////////////////////////////////////////////////
 // Exports
 module.exports = exports;
 
@@ -7887,6 +7889,7 @@ var Grid = /*#__PURE__*/function () {
     key: "mousezoom",
     value: function mousezoom(delta, event) {
       // TODO: for mobile
+      return;
       if (this.wmode !== 'pass') {
         if (this.wmode === 'click' && !this.$p.meta.activated) {
           return;
@@ -7952,6 +7955,7 @@ var Grid = /*#__PURE__*/function () {
   }, {
     key: "mousedrag",
     value: function mousedrag(x, y) {
+        return;
       var dt = this.drug.t * (this.drug.x - x) / this.layout.width;
       var d$ = this.layout.$_hi - this.layout.$_lo;
       d$ *= (this.drug.y - y) / this.layout.height;
@@ -9592,7 +9596,7 @@ Range_component.options.__file = "src/components/overlays/Range.vue"
       return this.sett.sellColor || '#ec4662';
     },
     label_color: function label_color() {
-      return this.sett.labelColor || '#999';
+      return this.sett.labelColor || '#999';   //#000
     },
     marker_size: function marker_size() {
       return this.sett.markerSize || 5;
@@ -9661,7 +9665,7 @@ Range_component.options.__file = "src/components/overlays/Range.vue"
       return [{
         value: pos
       }, {
-        value: values[2].toFixed(4),
+        value: values[2].toFixed(3),           //(4)
         color: this.$props.colors.text
       }].concat(values[3] ? [{
         value: values[3]
@@ -10201,6 +10205,7 @@ var Price = /*#__PURE__*/function () {
   // target & overlay's contexts)
 
 
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   createClass_createClass(Price, [{
     key: "init_shader",
     value: function init_shader() {
@@ -10221,19 +10226,20 @@ var Price = /*#__PURE__*/function () {
           if (!bar) return;
           var w = ctx.canvas.width;
           var h = config.PANHEIGHT;
-          var lbl = bar.price.toFixed(layout.prec);
+          var lbl = bar.price.toFixed(3);        //(layout.prec);
           ctx.fillStyle = bar.color;
           var x = -0.5;
           var y = bar.y - h * 0.5 - 0.5;
           var a = 7;
           ctx.fillRect(x - 0.5, y, w + 1, h);
-          ctx.fillStyle = comp.$props.colors.textHL;
+          ctx.fillStyle =   comp.$props.colors.textHL;
           ctx.textAlign = 'left';
           ctx.fillText(lbl, a, y + 15);
         }
       });
       this.shader = true;
     } // Regular draw call for overaly
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   }, {
     key: "draw",
@@ -12276,7 +12282,7 @@ var Sidebar = /*#__PURE__*/function () {
 
       var _iterator = sidebar_createForOfIteratorHelper(points),
           _step;
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var p = _step.value;
@@ -12288,7 +12294,7 @@ var Sidebar = /*#__PURE__*/function () {
           var offst = side === 'left' ? -10 : 10;
           this.ctx.textAlign = side === 'left' ? 'end' : 'start';
           var d = this.layout.prec;
-          this.ctx.fillText(p[1].toFixed(d), x1 + offst, p[0] + 4);
+          this.ctx.fillText(p[1].toFixed(3), x1 + offst, p[0] + 4);  ////////////////////toFixed(4)
         }
       } catch (err) {
         _iterator.e(err);
@@ -12342,8 +12348,8 @@ var Sidebar = /*#__PURE__*/function () {
       if (this.$p.cursor.grid_id !== this.layout.id) {
         return;
       }
-
-      var lbl = this.$p.cursor.y$.toFixed(this.layout.prec);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      var lbl = this.$p.cursor.y$.toFixed(3);  //toFixed(this.layout.prec)
       this.ctx.fillStyle = this.$p.colors.panel;
       var panwidth = this.layout.sb + 1;
       var x = -0.5;
@@ -12575,9 +12581,9 @@ var Legendvue_type_template_id_34724886_render = function () {
               ),
               _vm._v(" "),
               _vm.show_values
-                ? _c("span", [
+                ? _c("span", { staticClass: "t-vue-ohlcv" }, [ 
                     _vm._v("\r\n            O"),
-                    _c("span", { staticClass: "t-vue-lspan" }, [
+                    _c("span", { staticClass: "t-vue-lspan " }, [
                       _vm._v(_vm._s(_vm.ohlcv[0])),
                     ]),
                     _vm._v("\r\n            H"),
@@ -12653,7 +12659,7 @@ var Legendvue_type_template_id_34724886_render = function () {
                           "span",
                           {
                             staticClass: "t-vue-lspan t-vue-ivalue",
-                            style: { color: v.color },
+                            style: { color: v.color },   //'red'
                           },
                           [
                             _vm._v(
@@ -13037,9 +13043,16 @@ Spinner_component.options.__file = "src/components/Spinner.vue"
           return x.value;
         });
       }
-
-      return [this.$props.values.ohlcv[1].toFixed(prec), this.$props.values.ohlcv[2].toFixed(prec), this.$props.values.ohlcv[3].toFixed(prec), this.$props.values.ohlcv[4].toFixed(prec), this.$props.values.ohlcv[5] ? this.$props.values.ohlcv[5].toFixed(2) : 'n/a'];
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      return [this.$props.values.ohlcv[1].toFixed(3), //(prec)
+      this.$props.values.ohlcv[2].toFixed(3), 
+      this.$props.values.ohlcv[3].toFixed(3), 
+      this.$props.values.ohlcv[4].toFixed(3), 
+      this.$props.values.ohlcv[5].toFixed(0) ? 
+      this.$props.values.ohlcv[5].toLocaleString('en-US') : 'n/a'];
     },
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO: add support for { grid: { id : N }}
     indicators: function indicators() {
       var _this = this;
@@ -13097,7 +13110,7 @@ Spinner_component.options.__file = "src/components/Spinner.vue"
     format: function format(id, values) {
       var meta = this.$props.meta_props[id] || {}; // Matches Overlay.data_colors with the data values
       // (see Spline.vue)
-
+       // console.log(meta)
       if (!values[id]) return this.n_a(1); // Custom formatter
 
       if (meta.legend) return meta.legend(values[id]);
@@ -13106,7 +13119,9 @@ Spinner_component.options.__file = "src/components/Spinner.vue"
 
         if (typeof x == 'number') {
           // Show 8 digits for small values
-          x = x.toFixed(Math.abs(x) > 0.001 ? 4 : 8);
+          x = x.toFixed(3)          //(Math.abs(x) > 0.001 ? 4 : 8);
+         // x = x.toFixed(Math.abs(x) > 0.0 ? 2 : 3);
+        // console.log(x)
         }
 
         return {
@@ -13559,12 +13574,12 @@ var Botbar = /*#__PURE__*/function () {
       var measure = this.ctx.measureText(lbl + '    ');
       var panwidth = Math.floor(measure.width);
       var cursor = this.$p.cursor.x;
-      var x = Math.floor(cursor - panwidth * 0.5);
+      var x = Math.floor(cursor - panwidth * 0.05);  //0.5
       var y = -0.5;
       var panheight = this.comp.config.PANHEIGHT;
       this.ctx.fillRect(x, y, panwidth, panheight + 0.5);
       this.ctx.fillStyle = this.$p.colors.textHL;
-      this.ctx.textAlign = 'center';
+      this.ctx.textAlign = 'left'           //'center';
       this.ctx.fillText(lbl, cursor, y + 16);
     }
   }, {
