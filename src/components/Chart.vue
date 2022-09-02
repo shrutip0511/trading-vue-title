@@ -15,6 +15,7 @@
             @layer-meta-props="layer_meta_props"
             @custom-event="emit_custom_event"
             @legend-button-click="legend_button_click"
+            :enableZoom="enableZoom"
             >
         </grid-section>
         <botbar v-bind="botbar_props"
@@ -49,7 +50,7 @@ export default {
     props: [
         'title_txt', 'data', 'width', 'height', 'font', 'colors',
         'overlays', 'tv_id', 'config', 'buttons', 'toolbar', 'ib',
-        'skin', 'timezone'
+        'skin', 'timezone','enableZoom'
     ],
     data() {
         return {
