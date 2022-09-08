@@ -1,5 +1,5 @@
 /*!
- * TradingVue.JS - v1.0.2 - Tue Sep 06 2022
+ * TradingVue.JS - v1.0.2 - Thu Sep 08 2022
  *     https://github.com/tvjsx/trading-vue-js
  *     Copyright (c) 2019 C451 Code's All Right;
  *     Licensed under the MIT license
@@ -387,7 +387,7 @@ module.exports.isSortableArrayLike = function (o) {
 
 /***/ }),
 
-/***/ 570:
+/***/ 513:
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -555,7 +555,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 921:
+/***/ 251:
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -4155,19 +4155,19 @@ if (true) {
 
 /***/ }),
 
-/***/ 999:
+/***/ 730:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(570);
+var content = __webpack_require__(513);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(346)/* ["default"] */ .Z)
-var update = add("5575cf00", content, false, {});
+var update = add("4fdbbee4", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -4371,19 +4371,19 @@ if(false) {}
 
 /***/ }),
 
-/***/ 447:
+/***/ 13:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(921);
+var content = __webpack_require__(251);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(346)/* ["default"] */ .Z)
-var update = add("1bb2c532", content, false, {});
+var update = add("5b9fc54d", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -5146,7 +5146,7 @@ __webpack_require__.d(__webpack_exports__, {
   "primitives": () => (/* binding */ primitives)
 });
 
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=template&id=3eb56bdc&
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=template&id=766ce359&
 var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
@@ -5215,7 +5215,7 @@ var render = function render() {
 var staticRenderFns = [];
 render._withStripped = true;
 
-;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=template&id=3eb56bdc&
+;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=template&id=766ce359&
 
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
 function _arrayLikeToArray(arr, len) {
@@ -14382,8 +14382,8 @@ var Toolbar_component = normalizeComponent(
 )
 
 /* harmony default export */ const Toolbar = (Toolbar_component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Widgets.vue?vue&type=template&id=999e9c5e&
-var Widgetsvue_type_template_id_999e9c5e_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Widgets.vue?vue&type=template&id=296e303a&
+var Widgetsvue_type_template_id_296e303a_render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
@@ -14408,10 +14408,10 @@ var Widgetsvue_type_template_id_999e9c5e_render = function render() {
   }), 1);
 };
 
-var Widgetsvue_type_template_id_999e9c5e_staticRenderFns = [];
-Widgetsvue_type_template_id_999e9c5e_render._withStripped = true;
+var Widgetsvue_type_template_id_296e303a_staticRenderFns = [];
+Widgetsvue_type_template_id_296e303a_render._withStripped = true;
 
-;// CONCATENATED MODULE: ./src/components/Widgets.vue?vue&type=template&id=999e9c5e&
+;// CONCATENATED MODULE: ./src/components/Widgets.vue?vue&type=template&id=296e303a&
 
 ;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Widgets.vue?vue&type=script&lang=js&
 /* harmony default export */ const Widgetsvue_type_script_lang_js_ = ({
@@ -14419,20 +14419,15 @@ Widgetsvue_type_template_id_999e9c5e_render._withStripped = true;
   props: ['width', 'height', 'map', 'tv', 'dc'],
   methods: {
     initw: function initw(id) {
-      // console.log('this.$props.map update',this.$props.map)
-      // console.log('this.$props.map [id].ctrl',this.$props.map[id].ctrl)
-      // console.log('this.$props.map [id].data',this.$props.map[id].data)
-      var cls = this.$props.map[id].cls;
-      console.log('component class', JSON.stringify(cls));
-      return cls;
+      return this.$props.map[id].cls;
     }
   }
 });
 ;// CONCATENATED MODULE: ./src/components/Widgets.vue?vue&type=script&lang=js&
  /* harmony default export */ const components_Widgetsvue_type_script_lang_js_ = (Widgetsvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Widgets.vue?vue&type=style&index=0&id=999e9c5e&prod&lang=css&
-var Widgetsvue_type_style_index_0_id_999e9c5e_prod_lang_css_ = __webpack_require__(447);
-;// CONCATENATED MODULE: ./src/components/Widgets.vue?vue&type=style&index=0&id=999e9c5e&prod&lang=css&
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Widgets.vue?vue&type=style&index=0&id=296e303a&prod&lang=css&
+var Widgetsvue_type_style_index_0_id_296e303a_prod_lang_css_ = __webpack_require__(13);
+;// CONCATENATED MODULE: ./src/components/Widgets.vue?vue&type=style&index=0&id=296e303a&prod&lang=css&
 
 ;// CONCATENATED MODULE: ./src/components/Widgets.vue
 
@@ -14445,8 +14440,8 @@ var Widgetsvue_type_style_index_0_id_999e9c5e_prod_lang_css_ = __webpack_require
 
 var Widgets_component = normalizeComponent(
   components_Widgetsvue_type_script_lang_js_,
-  Widgetsvue_type_template_id_999e9c5e_render,
-  Widgetsvue_type_template_id_999e9c5e_staticRenderFns,
+  Widgetsvue_type_template_id_296e303a_render,
+  Widgetsvue_type_template_id_296e303a_staticRenderFns,
   false,
   null,
   null,
@@ -15024,10 +15019,7 @@ function TradingVuevue_type_script_lang_js_arrayLikeToArray(arr, len) { if (len 
       this.$refs.chart["goto"](t);
     },
     setRange: function setRange(t1, t2) {
-      console.log('this.chart_props.ib is updated', this.chart_props.ib);
-
       if (this.chart_props.ib) {
-        console.log('finding ti map', this.$refs.chart);
         var ti_map = this.$refs.chart.ti_map;
         var ohlcv = this.$refs.chart.ohlcv;
         t1 = ti_map.gt2i(t1, ohlcv);
@@ -15138,9 +15130,9 @@ function TradingVuevue_type_script_lang_js_arrayLikeToArray(arr, len) { if (len 
 });
 ;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=script&lang=js&
  /* harmony default export */ const src_TradingVuevue_type_script_lang_js_ = (TradingVuevue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=style&index=0&id=3eb56bdc&prod&lang=css&
-var TradingVuevue_type_style_index_0_id_3eb56bdc_prod_lang_css_ = __webpack_require__(999);
-;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=style&index=0&id=3eb56bdc&prod&lang=css&
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=style&index=0&id=766ce359&prod&lang=css&
+var TradingVuevue_type_style_index_0_id_766ce359_prod_lang_css_ = __webpack_require__(730);
+;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=style&index=0&id=766ce359&prod&lang=css&
 
 ;// CONCATENATED MODULE: ./src/TradingVue.vue
 
