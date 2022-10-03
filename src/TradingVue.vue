@@ -32,6 +32,9 @@
     </widgets>
     <chart
     :enableZoom="enableZoom"
+    :ignoreNegativeIndex="ignoreNegativeIndex"
+    :ignore_chart_type="ignore_chart_type"
+    :legendTxtConfig="legendTxtConfig"
       :key="reset"
       ref="chart"
       v-bind="chart_props"
@@ -212,6 +215,22 @@ export default {
       type: Boolean,
       default: false,
     },
+    ignoreNegativeIndex: {
+      type: Boolean,
+      default: false,
+    },
+      ignore_chart_type: {
+      type: Array[Object],
+      default: function () {
+        return [];
+      },
+    },
+    legendTxtConfig: {
+      type: Array[Object],
+      default: function () {
+        return [];
+      },
+    },
   },
   data() {
     return { reset: 0, tip: null };
@@ -306,6 +325,10 @@ export default {
         const ohlcv = this.$refs.chart.ohlcv;
         t1 = ti_map.gt2i(t1, ohlcv);
         t2 = ti_map.gt2i(t2, ohlcv);
+        // console.log('this.ignoreNegativeIndex and t1',t1, t2,this.ignoreNegativeIndex)
+        if(t1 < 0 && this.ignoreNegativeIndex){
+          t1 = 0
+        }
       }
       this.$refs.chart.setRange(t1, t2);
     },
@@ -313,6 +336,7 @@ export default {
       if (this.chart_props.ib) {
         const ti_map = this.$refs.chart.ti_map;
         // Time range => index range
+        // console.log('this.$refs.chart',this.$refs.chart)
         return this.$refs.chart.range.map((x) => ti_map.i2t(x));
       }
       return this.$refs.chart.range;
@@ -327,6 +351,24 @@ export default {
         return copy;
       }
       return cursor;
+    },
+    getTimeIndex(t) {
+      // let cursor = this.$refs.chart.cursor;
+      if (this.chart_props.ib) {
+        const ti_map = this.$refs.chart.ti_map;
+        // let copy = Object.assign({}, cursor);
+        // copy.i = copy.t;
+        // copy.t = ti_map.i2t(copy.t);
+        return ti_map.t2i(t);
+      }
+      return null;
+    },
+    updateTxt(config){
+      // console.log('this.$refs.chart.legendTxtConfig',this.$refs.chart.legendTxtConfig)
+      this.$refs.chart.legendTxtConfig = config
+      // console.log('config',config)
+      // this.$refs.chart.legendTxtConfig
+      // this.chart; legendTxtConfig
     },
     showTheTip(text, color = "orange") {
       this.tip = { text, color };
@@ -352,13 +394,14 @@ export default {
       }
       if (ctrl) this.post_dc(d);
     },
-    range_changed(r) {
+    range_changed(r,r2) {
       if (this.chart_props.ib) {
         const ti_map = this.$refs.chart.ti_map;
         r = r.map((x) => ti_map.i2t(x));
       }
-      this.$emit("range-changed", r);
-      this.custom_event({ event: "range-changed", args: [r] });
+      // console.log('range_changes_working 1',r,r2)
+      this.$emit("range-changed", r,r2);
+      this.custom_event({ event: "range-changed", args: [r,r2] });
       if (this.onrange) this.onrange(r);
     },
     set_loader(dc) {

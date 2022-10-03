@@ -16,6 +16,8 @@
             @custom-event="emit_custom_event"
             @legend-button-click="legend_button_click"
             :enableZoom="enableZoom"
+            :ignore_chart_type="ignore_chart_type"
+            :legendTxtConfig="legendTxtConfig"
             >
         </grid-section>
         <botbar v-bind="botbar_props"
@@ -50,7 +52,7 @@ export default {
     props: [
         'title_txt', 'data', 'width', 'height', 'font', 'colors',
         'overlays', 'tv_id', 'config', 'buttons', 'toolbar', 'ib',
-        'skin', 'timezone','enableZoom'
+        'skin', 'timezone','enableZoom','ignore_chart_type','ignoreNegativeIndex'
     ],
     data() {
         return {
@@ -89,8 +91,8 @@ export default {
             last_candle: [],
             last_values: {},
             sub_start: undefined,
-            activated: false
-
+            activated: false,
+            legendTxtConfig:[]
         }
     },
     computed: {
@@ -240,11 +242,22 @@ export default {
             // Quick fix for IB mode (switch 2 next lines)
             // TODO: wtf?
             var sub = this.subset(r)
+          // console.log('this.range before update',this.range)
             Utils.overwrite(this.range, r)
             Utils.overwrite(this.sub, sub)
             this.update_layout()
-            this.$emit('range-changed', r)
+          // console.log('this.range after update',this.sub.length,r,this.range)
+          // console.log('range_changes_working',this.ignoreNegativeIndex)
+            if(this.ignoreNegativeIndex){
+              // let r2 = this.ti_map.t2i(r[0])
+              this.$emit('range-changed', r,this.range)
+            }else{
+              this.$emit('range-changed', r)  
+            }
+            
             if (this.$props.ib) this.save_data_t()
+          
+          // console.log('this.ti_map.t2i(r[0])',this.ti_map.t2i(r[0]))
         },
         goto(t) {
             const dt = this.range[1] - this.range[0]
@@ -430,6 +443,9 @@ export default {
         hooks(...list) {
             list.forEach(x => this[`_hook_${x}`] = true)
         }
+    },
+    mounted() {
+      console.log(this._layout)
     }
 }
 

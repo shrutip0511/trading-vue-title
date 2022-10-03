@@ -7,6 +7,8 @@
     :color-back="colors.colorBack"
     :color-grid="colors.colorGrid"
     :color-text="colors.colorText"
+    :legend-buttons="buttons"
+    :ignore_chart_type="['Spline']"
   >
   </trading-vue>
 </template>
@@ -14,6 +16,8 @@
 <script>
 import TradingVue from "./TradingVue.vue";
 import Data from "../data/data.json";
+import Data2 from "../test/data/data_buttons.json";
+import CodeIcon from "../test/tests/LegendButtons/code3.json";
 import DataCube from "../src/helpers/datacube.js";
 
 export default {
@@ -23,6 +27,7 @@ export default {
   },
   data() {
     return {
+      buttons:['display', 'settings', 'remove'],
       enableZoom: true,
       chart: new DataCube(Data),
       width: window.innerWidth,
@@ -37,6 +42,8 @@ export default {
   mounted() {
     window.addEventListener("resize", this.onResize);
     window.dc = this.chart;
+    this.chart.data.chart.type='Spline'
+    // console.log('Data2',this.chart.data.chart)
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.onResize);

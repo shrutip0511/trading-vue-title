@@ -9,6 +9,7 @@ if (MOB_DEBUG) {
     console.warn = debug
 }
 
+
 new Vue({
   el: '#app',
   render: h => h(App)

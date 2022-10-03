@@ -6,6 +6,9 @@
       :values="section_values"
       :grid_id="grid_id"
       :common="legend_props"
+      :main_chart_type="main_chart_type"
+      :ignore_chart_type="ignore_chart_type"
+      :legendTxtConfig="legendTxtConfig"
       :meta_props="get_meta_props"
       @legend-button-click="button_click"
     >
@@ -51,7 +54,7 @@ export default {
     ChartLegend,
   },
   mixins: [Shaders],
-  props: ["common", "grid_id", "enableZoom"],
+  props: ["common", "grid_id", "enableZoom","ignore_chart_type",'legendTxtConfig'],
   data() {
     return {
       meta_props: {},
@@ -111,6 +114,18 @@ export default {
     get_meta_props() {
       return this.meta_props;
     },
+    main_chart_type() {
+      const id = this.$props.grid_id;
+      let p = Object.assign({}, this.$props.common);
+      if(id === 0){
+        let rangeParams = this.$props.common.range;
+        let mainData = p.data.find(d => d.main)
+        let mainType = mainData.type ? mainData.type : "";
+        // console.log('this.$props.range',mainType,JSON.stringify(rangeParams))
+        return mainType
+      }
+      return "";
+    },
     grid_shaders() {
       return this.shaders.filter((x) => x.target === "grid");
     },
@@ -137,6 +152,7 @@ export default {
   },
   mounted() {
     this.init_shaders(this.$props.common.skin);
+    // console.log('common.data',this.$props.common.data)
   },
   methods: {
     range_changed(r) {

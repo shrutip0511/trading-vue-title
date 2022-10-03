@@ -1,14 +1,16 @@
 <template>
 <div class="trading-vue-legend"
-     :style="calc_style">
+     :style="calc_style" :class="main_chart_type">
     <div v-if="grid_id === 0"
          class="trading-vue-ohlcv"
         :style = "{ 'max-width': common.width + 'px' }">
         <span class="t-vue-title"
+              v-if="legendTxtConfig.length === 0"
              :style="{ color: common.colors.title }">
               {{common.title_txt}}
         </span>
-        <span v-if="show_values">
+        <span v-for="(n,i) in legendTxtConfig" :key="i" :style="n.style">{{n.name}}&nbsp;</span>
+        <span v-if="show_values && ignore_ohlcv">
             O<span class="t-vue-lspan" >{{ohlcv[0]}}</span>
             H<span class="t-vue-lspan" >{{ohlcv[1]}}</span>
             L<span class="t-vue-lspan" >{{ohlcv[2]}}</span>
@@ -59,7 +61,7 @@ export default {
     name: 'ChartLegend',
     components: { ButtonGroup, Spinner },
     props: [
-        'common', 'values', 'grid_id', 'meta_props'
+        'common', 'values', 'grid_id', 'meta_props','main_chart_type','ignore_chart_type','legendTxtConfig'
     ],
     computed: {
         ohlcv() {
@@ -133,6 +135,9 @@ export default {
         },
         show_values() {
             return this.common.cursor.mode !== 'explore'
+        },
+        ignore_ohlcv() {
+            return !this.$props.ignore_chart_type.includes(this.$props.main_chart_type)
         }
     },
     methods: {
