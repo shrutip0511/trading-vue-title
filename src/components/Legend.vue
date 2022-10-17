@@ -15,7 +15,7 @@
             H<span class="t-vue-lspan" >{{ohlcv[1]}}</span>
             L<span class="t-vue-lspan" >{{ohlcv[2]}}</span>
             C<span class="t-vue-lspan" >{{ohlcv[3]}}</span>
-            V<span class="t-vue-lspan" >{{ohlcv[4].toLocaleString()}}</span>
+            V<span class="t-vue-lspan" >{{ohlcv[4]}}</span>
         </span>
         <span v-if="!show_values" class="t-vue-lspan"
             :style="{color: common.colors.text}">
@@ -94,7 +94,7 @@ export default {
                 this.$props.values.ohlcv[3].toFixed(prec),
                 this.$props.values.ohlcv[4].toFixed(prec),
                 this.$props.values.ohlcv[5] ?
-                    this.$props.values.ohlcv[5].toFixed(2):
+                    Number(this.$props.values.ohlcv[5].toFixed(0)).toLocaleString('en-AU'):
                     'n/a'
             ]
         },
