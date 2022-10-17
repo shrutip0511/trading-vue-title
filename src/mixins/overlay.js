@@ -103,6 +103,7 @@ export default {
             // TODO(2): this prevents call overflow, but
             // the root of evil is in (1)
             if (event === 'custom-event') return
+            // console.log('custom-event',{event, args})
             this._$emit('custom-event', {event, args})
         },
         // TODO: the event is not firing when the same
@@ -119,6 +120,7 @@ export default {
     watch: {
         settings: {
             handler: function(n, p) {
+                // console.log('watch_uuid',this.watch_uuid,n)
                 if (this.watch_uuid) this.watch_uuid(n, p)
                 this._$emit('show-grid-layer', {
                     id: this.$props.id,

@@ -8,7 +8,7 @@
     :color-grid="colors.colorGrid"
     :color-text="colors.colorText"
     :legend-buttons="buttons"
-    :ignore_chart_type="['Spline']"
+    :ignore_OHLC="['Spline']"
   >
   </trading-vue>
 </template>
@@ -50,8 +50,8 @@ export default {
   },
   methods: {
     onResize() {
-      this.width = window.innerWidth;
-      this.height = window.innerHeight;
+      this.width = window.innerWidth * .9;
+      this.height = window.innerHeight * .9;
     },
   },
 };

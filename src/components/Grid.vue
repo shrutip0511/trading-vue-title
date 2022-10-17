@@ -176,7 +176,7 @@ export default {
     if (this.renderer) this.renderer.destroy();
   },
   mounted() {
-     console.log("props:",this.enableZoom);
+     // console.log("props:",this.enableZoom);
     const el = this.$refs["canvas"];
     this.renderer = new Grid(el, this);
     this.setup();

@@ -7,8 +7,7 @@
       :grid_id="grid_id"
       :common="legend_props"
       :main_chart_type="main_chart_type"
-      :ignore_chart_type="ignore_chart_type"
-      :legendTxtConfig="legendTxtConfig"
+      :ignore_OHLC="ignore_OHLC"      
       :meta_props="get_meta_props"
       @legend-button-click="button_click"
     >
@@ -54,7 +53,7 @@ export default {
     ChartLegend,
   },
   mixins: [Shaders],
-  props: ["common", "grid_id", "enableZoom","ignore_chart_type",'legendTxtConfig'],
+  props: ["common", "grid_id", "enableZoom","ignore_OHLC"],
   data() {
     return {
       meta_props: {},

@@ -24,7 +24,8 @@ export default class Price {
 
                 let w = ctx.canvas.width
                 let h = config.PANHEIGHT
-                let lbl = bar.price.toFixed(layout.prec)
+                //let lbl = bar.price.toFixed(layout.prec)
+                let lbl = bar.price.toFixed(2)
                 ctx.fillStyle = bar.color
 
                 let x = - 0.5

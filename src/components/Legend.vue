@@ -5,17 +5,17 @@
          class="trading-vue-ohlcv"
         :style = "{ 'max-width': common.width + 'px' }">
         <span class="t-vue-title"
-              v-if="legendTxtConfig.length === 0"
+              v-if="!show_CustomProps"
              :style="{ color: common.colors.title }">
               {{common.title_txt}}
         </span>
-        <span v-for="(n,i) in legendTxtConfig" :key="i" :style="n.style">{{n.name}}&nbsp;</span>
-        <span v-if="show_values && ignore_ohlcv">
+        <template v-if="show_CustomProps"><span v-for="(n,i) in legendTxtConfig" :key="i" :style="n.style">{{n.name}}&nbsp;</span></template>
+        <span v-if="show_values && !show_CustomProps">
             O<span class="t-vue-lspan" >{{ohlcv[0]}}</span>
             H<span class="t-vue-lspan" >{{ohlcv[1]}}</span>
             L<span class="t-vue-lspan" >{{ohlcv[2]}}</span>
             C<span class="t-vue-lspan" >{{ohlcv[3]}}</span>
-            V<span class="t-vue-lspan" >{{ohlcv[4]}}</span>
+            V<span class="t-vue-lspan" >{{ohlcv[4].toLocaleString()}}</span>
         </span>
         <span v-if="!show_values" class="t-vue-lspan"
             :style="{color: common.colors.text}">
@@ -61,14 +61,25 @@ export default {
     name: 'ChartLegend',
     components: { ButtonGroup, Spinner },
     props: [
-        'common', 'values', 'grid_id', 'meta_props','main_chart_type','ignore_chart_type','legendTxtConfig'
+        'common', 'values', 'grid_id', 'meta_props','main_chart_type','ignore_OHLC',
     ],
     computed: {
+      legendTxtConfig(){
+        let res = [];
+        let legendTxtConfig = localStorage.getItem('legendTxtConfig')
+        // console.log('legendTxtConfig',legendTxtConfig)
+        if(this.ignore_OHLC && legendTxtConfig){
+          res = JSON.parse(legendTxtConfig)
+          console.log('parse response ',res)
+        }
+        return res
+      },
         ohlcv() {
             if (!this.$props.values || !this.$props.values.ohlcv) {
                 return Array(6).fill('n/a')
             }
-            const prec = this.layout.prec
+            // const prec = this.layout.prec
+            const prec = 2
 
             // TODO: main the main legend more customizable
             let id = this.main_type + '_0'
@@ -136,8 +147,9 @@ export default {
         show_values() {
             return this.common.cursor.mode !== 'explore'
         },
-        ignore_ohlcv() {
-            return !this.$props.ignore_chart_type.includes(this.$props.main_chart_type)
+        show_CustomProps() {
+          // console.log('ignoreOHLC',ignoreOHLC)
+          return this.$props.ignore_OHLC.includes(this.$props.main_chart_type)
         }
     },
     methods: {

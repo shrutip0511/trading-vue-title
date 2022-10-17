@@ -155,7 +155,8 @@ export default class Sidebar {
             var offst = side === 'left' ? - 10 : 10
             this.ctx.textAlign = side === 'left' ? 'end' : 'start'
             let d = this.layout.prec
-            this.ctx.fillText(p[1].toFixed(d), x1 + offst, p[0] + 4)
+            //this.ctx.fillText(p[1].toFixed(d), x1 + offst, p[0] + 4)
+            this.ctx.fillText(p[1].toFixed(2), x1 + offst, p[0] + 4)
         }
 
         this.ctx.stroke()
@@ -196,7 +197,8 @@ export default class Sidebar {
             return
         }
 
-        let lbl = this.$p.cursor.y$.toFixed(this.layout.prec)
+        //let lbl = this.$p.cursor.y$.toFixed(this.layout.prec)
+        let lbl = this.$p.cursor.y$.toFixed(2)
         this.ctx.fillStyle = this.$p.colors.panel
 
         let panwidth = this.layout.sb + 1

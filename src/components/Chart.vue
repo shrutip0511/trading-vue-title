@@ -16,8 +16,8 @@
             @custom-event="emit_custom_event"
             @legend-button-click="legend_button_click"
             :enableZoom="enableZoom"
-            :ignore_chart_type="ignore_chart_type"
-            :legendTxtConfig="legendTxtConfig"
+            :ignore_OHLC="ignore_OHLC"
+            
             >
         </grid-section>
         <botbar v-bind="botbar_props"
@@ -52,7 +52,7 @@ export default {
     props: [
         'title_txt', 'data', 'width', 'height', 'font', 'colors',
         'overlays', 'tv_id', 'config', 'buttons', 'toolbar', 'ib',
-        'skin', 'timezone','enableZoom','ignore_chart_type','ignoreNegativeIndex'
+        'skin', 'timezone','enableZoom','ignore_OHLC','ignoreNegativeIndex'
     ],
     data() {
         return {
@@ -92,7 +92,7 @@ export default {
             last_values: {},
             sub_start: undefined,
             activated: false,
-            legendTxtConfig:[]
+            legendTxtConfig:undefined
         }
     },
     computed: {
@@ -215,6 +215,10 @@ export default {
                 this.update_last_values()
                 // TODO: update legend values for overalys
                 this.rerender++
+                let findMain = this.main_section.data.find(d => d.main)
+              // this
+              //   this.$emit('custom-event', {})
+              //   console.log('this.rerender',findMain,this.sub.length)
             },
             deep: true
         }
@@ -400,6 +404,7 @@ export default {
         },
         emit_custom_event(d) {
             this.on_shader_event(d, 'botbar')
+            // console.log('emit_custom_event',d)
             this.$emit('custom-event', d)
             if (d.event === 'remove-layer-meta') {
                 this.remove_meta_props(...d.args)

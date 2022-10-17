@@ -33,8 +33,7 @@
     <chart
     :enableZoom="enableZoom"
     :ignoreNegativeIndex="ignoreNegativeIndex"
-    :ignore_chart_type="ignore_chart_type"
-    :legendTxtConfig="legendTxtConfig"
+    :ignore_OHLC="ignore_OHLC"    
       :key="reset"
       ref="chart"
       v-bind="chart_props"
@@ -219,13 +218,7 @@ export default {
       type: Boolean,
       default: false,
     },
-      ignore_chart_type: {
-      type: Array[Object],
-      default: function () {
-        return [];
-      },
-    },
-    legendTxtConfig: {
+    ignore_OHLC: {
       type: Array[Object],
       default: function () {
         return [];
@@ -362,13 +355,6 @@ export default {
         return ti_map.t2i(t);
       }
       return null;
-    },
-    updateTxt(config){
-      // console.log('this.$refs.chart.legendTxtConfig',this.$refs.chart.legendTxtConfig)
-      this.$refs.chart.legendTxtConfig = config
-      // console.log('config',config)
-      // this.$refs.chart.legendTxtConfig
-      // this.chart; legendTxtConfig
     },
     showTheTip(text, color = "orange") {
       this.tip = { text, color };
