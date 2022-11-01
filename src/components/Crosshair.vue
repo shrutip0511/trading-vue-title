@@ -5,7 +5,7 @@ import Utils from '../stuff/utils.js'
 
 export default {
     name: 'Crosshair',
-    props: [ 'cursor', 'colors', 'layout', 'sub' ],
+    props: [ 'cursor', 'colors', 'layout', 'sub','enableCrosshair'],
     watch: {
         cursor: {
             handler: function() {

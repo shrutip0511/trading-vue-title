@@ -1,6 +1,11 @@
 <template>
-  <trading-vue
+  <div>
+    <!-- <div>
+      <button @click="handleCrosshair">{{enableCrosshair ? 'Disable Crosshair' : 'Enable Crosshair' }}</button>
+    </div> -->
+    <trading-vue
     :enableZoom="enableZoom"
+    :enableCrosshair="enableCrosshair"
     :data="chart"
     :width="this.width"
     :height="this.height"
@@ -9,8 +14,9 @@
     :color-text="colors.colorText"
     :legend-buttons="buttons"
     :ignore_OHLC="['Spline']"
-  >
+    >
   </trading-vue>
+</div>
 </template>
 
 <script>
@@ -29,6 +35,7 @@ export default {
     return {
       buttons:['display', 'settings', 'remove'],
       enableZoom: true,
+      enableCrosshair:true,
       chart: new DataCube(Data),
       width: window.innerWidth,
       height: window.innerHeight,
@@ -53,6 +60,11 @@ export default {
       this.width = window.innerWidth * .9;
       this.height = window.innerHeight * .9;
     },
+
+    handleCrosshair(){
+      console.log(this.enableCrosshair)
+      this.enableCrosshair = !this.enableCrosshair
+    }
   },
 };
 </script>

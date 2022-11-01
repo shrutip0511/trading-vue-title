@@ -16,6 +16,7 @@
             @custom-event="emit_custom_event"
             @legend-button-click="legend_button_click"
             :enableZoom="enableZoom"
+            :enableCrosshair="enableCrosshair"
             :ignore_OHLC="ignore_OHLC"
             
             >
@@ -52,7 +53,7 @@ export default {
     props: [
         'title_txt', 'data', 'width', 'height', 'font', 'colors',
         'overlays', 'tv_id', 'config', 'buttons', 'toolbar', 'ib',
-        'skin', 'timezone','enableZoom','ignore_OHLC','ignoreNegativeIndex'
+        'skin', 'timezone','enableZoom','enableCrosshair','ignore_OHLC','ignoreNegativeIndex'
     ],
     data() {
         return {

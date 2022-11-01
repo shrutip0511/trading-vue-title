@@ -17,6 +17,7 @@
       ref="grid"
       :grid_id="grid_id"
       :enableZoom="enableZoom"
+      :enableCrosshair="enableCrosshair"
       @register-kb-listener="register_kb"
       @remove-kb-listener="remove_kb"
       @range-changed="range_changed"
@@ -53,7 +54,7 @@ export default {
     ChartLegend,
   },
   mixins: [Shaders],
-  props: ["common", "grid_id", "enableZoom","ignore_OHLC"],
+  props: ["common", "grid_id", "enableZoom","ignore_OHLC","enableCrosshair"],
   data() {
     return {
       meta_props: {},

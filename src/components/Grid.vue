@@ -43,6 +43,7 @@ export default {
     "meta",
     "shaders",
     "enableZoom",
+    "enableCrosshair"
   ],
   data() {
     return {
@@ -91,6 +92,9 @@ export default {
     enableZoom() {
       console.log("props:",enableZoom);
     },
+    // enableCrosshair() {
+    //   console.log("props:",enableCrosshair);
+    // },
     range: {
       handler: function () {
         // TODO: Left-side render lag fix:
@@ -245,6 +249,8 @@ export default {
     common_props() {
       return {
         cursor: this.$props.cursor,
+        enableZoom: this.$props.enableZoom,
+        enableCrosshair:this.$props.enableCrosshair,
         colors: this.$props.colors,
         layout: this.$props.layout.grids[this.$props.grid_id],
         interval: this.$props.interval,

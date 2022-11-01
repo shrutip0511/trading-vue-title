@@ -10,6 +10,7 @@ export default class Crosshair {
         this._visible = false
         this.locked = false
         this.layout = this.$p.layout
+        this.enableCrosshair = this.$p.enableCrosshair
 
     }
 
@@ -18,6 +19,7 @@ export default class Crosshair {
         this.layout = this.$p.layout
 
         const cursor = this.comp.$props.cursor
+        console.log(this.vis)
         if (!this.visible && cursor.mode === 'explore') return
 
         this.x = this.$p.cursor.x
@@ -37,7 +39,11 @@ export default class Crosshair {
         // V
         ctx.moveTo(this.x, 0)
         ctx.lineTo(this.x, this.layout.height)
-        ctx.stroke()
+
+        if(this.enableCrosshair){
+            ctx.stroke()
+        }
+        
         ctx.restore()
 
     }

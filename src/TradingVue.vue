@@ -32,6 +32,7 @@
     </widgets>
     <chart
     :enableZoom="enableZoom"
+    :enableCrosshair="enableCrosshair"
     :ignoreNegativeIndex="ignoreNegativeIndex"
     :ignore_OHLC="ignore_OHLC"    
       :key="reset"
@@ -211,6 +212,10 @@ export default {
       default: 0,
     },
     enableZoom: {
+      type: Boolean,
+      default: false,
+    },
+    enableCrosshair: {
       type: Boolean,
       default: false,
     },
