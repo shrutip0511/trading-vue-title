@@ -12,6 +12,7 @@
       @legend-button-click="button_click"
     >
     </chart-legend>
+
     <grid
       v-bind="grid_props"
       ref="grid"
