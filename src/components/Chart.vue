@@ -356,7 +356,8 @@ export default {
                 config: this.$props.config,
                 buttons: this.$props.buttons,
                 meta: this.meta,
-                skin: this.$props.skin
+                skin: this.$props.skin,
+               noidea:true
             }
         },
         overlay_subset(source, side) {
@@ -377,6 +378,7 @@ export default {
                     tf: Utils.parse_tf(d.tf),
                     i0: res[1],
                     loading: d.loading,
+                  some:1,
                     last: (this.last_values[side] || [])[i]
                 }
 

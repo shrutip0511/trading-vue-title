@@ -19,7 +19,7 @@ export default class Crosshair {
         this.layout = this.$p.layout
 
         const cursor = this.comp.$props.cursor
-        console.log(this.vis)
+        // console.log(this.vis)
         if (!this.visible && cursor.mode === 'explore') return
 
         this.x = this.$p.cursor.x

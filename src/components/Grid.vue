@@ -92,7 +92,7 @@ export default {
   },
   watch: {
     enableZoom() {
-      console.log("props:",enableZoom);
+      // console.log("props:",enableZoom);
     },
     // enableCrosshair() {
     //   console.log("props:",enableCrosshair);
@@ -191,6 +191,7 @@ export default {
   },
   methods: {
     new_layer(layer) {
+      // console.log("new_layer",layer)
       this.$nextTick(() => this.renderer.new_layer(layer));
     },
     del_layer(layer) {
@@ -231,22 +232,25 @@ export default {
           count[d.type] = 0;
         }
       }
-      return comp_list.map((x, i) =>
-        h(x.cls, {
-          on: this.layer_events,
-          attrs: Object.assign(this.common_props(), {
-            id: `${x.type}_${count[x.type]++}`,
-            type: x.type,
-            data: x.data,
-            settings: x.settings,
-            i0: x.i0,
-            tf: x.tf,
-            num: i,
-            grid_id: this.$props.grid_id,
-            meta: this.$props.meta,
-            last: x.last,
-          }),
-        })
+      return comp_list.map((x, i) => {
+        // console.log("x.settings",x.type,x.settings)
+           return h(x.cls, {
+              on: this.layer_events,
+              attrs: Object.assign(this.common_props(), {
+                id: `${x.type}_${count[x.type]++}`,
+                type: x.type,
+                data: x.data,
+                settings: x.settings,
+                i0: x.i0,
+                tf: x.tf,
+                num: i,
+                data_234: 12,
+                grid_id: this.$props.grid_id,
+                meta: this.$props.meta,
+                last: x.last,
+              }),
+            })
+          }
       );
     },
     common_props() {
@@ -315,6 +319,7 @@ export default {
             uxs: this.uxs,
             colors: this.$props.colors,
             config: this.$props.config,
+            domData:1,
             updater: Math.random(),
           },
           on: {

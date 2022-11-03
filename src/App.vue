@@ -1,9 +1,13 @@
 <template>
   <div>
-    <!-- <label for="start">Start date:</label>
+     <label for="start">Start date:</label>
 
-    <input v-model="date" type="date" id="start" name="trip-start" />
-    <button @click="handleDate">Go to date</button> -->
+    <input type="checkbox" id="start" @change="changeType" name="trip-start" />
+<!--    <select v-model="chartType" @change="changeType">
+      <option value="Candle">Candle</option>
+      <option value="Splines">Splines</option>
+    </select>-->
+<!--    <button @click="handleDate">Go to date</button> -->
 
     <trading-vue
       :enableZoom="enableZoom"
@@ -41,6 +45,7 @@ export default {
       buttons: ["display", "settings", "remove"],
       enableZoom: true,
       decimalPlace:2,
+      chartType:"Candle",
       priceLine:true,
       applyShaders:true,
       enableCrosshair:false,
@@ -58,7 +63,7 @@ export default {
   mounted() {
     window.addEventListener("resize", this.onResize);
     window.dc = this.chart;
-    // this.chart.data.chart.type = "Chart";
+    // this.chart.data.chart.type = "Splines";
     // console.log("chart", this.chart.tv);
     // this.chart.tv.goto(1543626000000);
     // console.log('Data2',this.chart.data.chart)
@@ -67,6 +72,15 @@ export default {
     window.removeEventListener("resize", this.onResize);
   },
   methods: {
+    changeType(){
+      let data = this.chart.get_one('chart.settings.priceLine')
+      console.log("priceLine",data.priceLine)
+      this.chart.merge("chart.settings",{
+        priceLine:!data.priceLine
+      })
+      // console.log("this.chart.data.chart",candles)
+      // this.chart.data.chart.type = this.chartType;
+    },
     handleDate() {
       let convertedDate= new Date(this.date)
       console.log("date",convertedDate.getTime())
