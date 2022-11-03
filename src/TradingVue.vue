@@ -32,6 +32,9 @@
     </widgets>
     <chart
     :enableZoom="enableZoom"
+    :applyShaders="applyShaders"
+    :priceLine="priceLine"
+    :decimalPlace="decimalPlace"
     :ignoreNegativeIndex="ignoreNegativeIndex"
     :ignore_OHLC="ignore_OHLC"    
       :key="reset"
@@ -213,6 +216,18 @@ export default {
     enableZoom: {
       type: Boolean,
       default: false,
+    },
+    priceLine: {
+      type: Boolean,
+      default: true,
+    },
+    decimalPlace: {
+      type: Number,
+      default: 2,
+    },
+    applyShaders: {
+      type: Boolean,
+      default: true,
     },
     ignoreNegativeIndex: {
       type: Boolean,

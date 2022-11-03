@@ -16,6 +16,9 @@
             @custom-event="emit_custom_event"
             @legend-button-click="legend_button_click"
             :enableZoom="enableZoom"
+            :decimalPlace="decimalPlace"
+            :applyShaders="applyShaders"
+            :priceLine="priceLine"
             :ignore_OHLC="ignore_OHLC"
             
             >
@@ -51,8 +54,8 @@ export default {
     mixins: [Shaders, DataTrack],
     props: [
         'title_txt', 'data', 'width', 'height', 'font', 'colors',
-        'overlays', 'tv_id', 'config', 'buttons', 'toolbar', 'ib',
-        'skin', 'timezone','enableZoom','ignore_OHLC','ignoreNegativeIndex'
+        'overlays', 'tv_id', 'config', 'buttons', 'toolbar', 'ib','applyShaders',
+        'skin', 'timezone','enableZoom','decimalPlace','ignore_OHLC','priceLine','ignoreNegativeIndex'
     ],
     data() {
         return {

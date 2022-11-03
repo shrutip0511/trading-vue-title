@@ -4,6 +4,7 @@
     <chart-legend
       ref="legend"
       :values="section_values"
+      :decimalPlace="decimalPlace"
       :grid_id="grid_id"
       :common="legend_props"
       :main_chart_type="main_chart_type"
@@ -17,6 +18,8 @@
       ref="grid"
       :grid_id="grid_id"
       :enableZoom="enableZoom"
+      :decimalPlace="decimalPlace"
+      :priceLine="priceLine"
       @register-kb-listener="register_kb"
       @remove-kb-listener="remove_kb"
       @range-changed="range_changed"
@@ -34,6 +37,8 @@
       :grid_id="grid_id"
       :rerender="rerender"
       @sidebar-transform="sidebar_transform"
+      :decimalPlace="decimalPlace"
+      :applyShaders="applyShaders"
     >
     </sidebar>
   </div>
@@ -53,7 +58,7 @@ export default {
     ChartLegend,
   },
   mixins: [Shaders],
-  props: ["common", "grid_id", "enableZoom","ignore_OHLC"],
+  props: ["common", "grid_id", "enableZoom","decimalPlace","priceLine","applyShaders","ignore_OHLC"],
   data() {
     return {
       meta_props: {},

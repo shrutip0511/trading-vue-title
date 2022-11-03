@@ -1,16 +1,26 @@
 <template>
-  <trading-vue
-    :enableZoom="enableZoom"
-    :data="chart"
-    :width="this.width"
-    :height="this.height"
-    :color-back="colors.colorBack"
-    :color-grid="colors.colorGrid"
-    :color-text="colors.colorText"
-    :legend-buttons="buttons"
-    :ignore_OHLC="['Spline']"
-  >
-  </trading-vue>
+  <div>
+    <!-- <label for="start">Start date:</label>
+
+    <input v-model="date" type="date" id="start" name="trip-start" />
+    <button @click="handleDate">Go to date</button> -->
+
+    <trading-vue
+      :enableZoom="enableZoom"
+      :priceLine="priceLine"
+      :decimalPlace="decimalPlace"
+      :applyShaders="applyShaders"
+      :data="chart"
+      :width="this.width"
+      :height="this.height"
+      :color-back="colors.colorBack"
+      :color-grid="colors.colorGrid"
+      :color-text="colors.colorText"
+      :legend-buttons="buttons"
+      :ignore_OHLC="['Spline']"
+    >
+    </trading-vue>
+  </div>
 </template>
 
 <script>
@@ -27,11 +37,18 @@ export default {
   },
   data() {
     return {
-      buttons:['display', 'settings', 'remove'],
+      buttons: ["display", "settings", "remove"],
+      
       enableZoom: true,
+      decimalPlace:2,
+      priceLine:true,
+      applyShaders:true,
+
+
       chart: new DataCube(Data),
       width: window.innerWidth,
       height: window.innerHeight,
+      date: "",
       colors: {
         colorBack: "#fff",
         colorGrid: "#eee",
@@ -42,18 +59,28 @@ export default {
   mounted() {
     window.addEventListener("resize", this.onResize);
     window.dc = this.chart;
-    this.chart.data.chart.type='Spline'
+    // this.chart.data.chart.type = "Chart";
+    // console.log("chart", this.chart.tv);
+    // this.chart.tv.goto(1543626000000);
     // console.log('Data2',this.chart.data.chart)
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.onResize);
   },
   methods: {
+    handleDate() {
+      let convertedDate= new Date(this.date)
+      console.log("date",convertedDate.getTime())
+      this.chart.tv.goto(convertedDate.getTime);
+    },
     onResize() {
-      this.width = window.innerWidth * .9;
-      this.height = window.innerHeight * .9;
+      this.width = window.innerWidth * 0.9;
+      this.height = window.innerHeight * 0.9;
     },
   },
+  //   mounted(){
+  //   this.goto(1543572000000)
+  // }
 };
 </script>
 

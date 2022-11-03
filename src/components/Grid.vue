@@ -43,6 +43,8 @@ export default {
     "meta",
     "shaders",
     "enableZoom",
+    "priceLine",
+    "decimalPlace",
   ],
   data() {
     return {
@@ -137,6 +139,7 @@ export default {
   },
   created() {
     // List of all possible overlays (builtin + custom)
+    console.log("this.$props",this.$props)
     this._list = [
       Spline,
       Splines,
@@ -176,7 +179,7 @@ export default {
     if (this.renderer) this.renderer.destroy();
   },
   mounted() {
-     // console.log("props:",this.enableZoom);
+    //  console.log("props:",this.priceLine);
     const el = this.$refs["canvas"];
     this.renderer = new Grid(el, this);
     this.setup();
@@ -251,6 +254,7 @@ export default {
         sub: this.$props.sub,
         font: this.$props.font,
         config: this.$props.config,
+        priceLine: this.$props.priceLine
       };
     },
     emit_ux_event(e) {

@@ -61,7 +61,7 @@ export default {
     name: 'ChartLegend',
     components: { ButtonGroup, Spinner },
     props: [
-        'common', 'values', 'grid_id', 'meta_props','main_chart_type','ignore_OHLC',
+        'common', 'values','decimalPlace','grid_id', 'meta_props','main_chart_type','ignore_OHLC',
     ],
     computed: {
       legendTxtConfig(){
@@ -79,7 +79,8 @@ export default {
                 return Array(6).fill('n/a')
             }
             // const prec = this.layout.prec
-            const prec = 2
+            const prec = this.decimalPlace
+            // const prec = 3
 
             // TODO: main the main legend more customizable
             let id = this.main_type + '_0'
