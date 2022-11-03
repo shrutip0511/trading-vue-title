@@ -310,6 +310,7 @@ export default {
     this.ctrl_destroy();
   },
   methods: {
+    updateRefData(){},
     // TODO: reset extensions?
     resetChart(resetRange = true) {
       this.reset++;

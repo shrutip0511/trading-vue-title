@@ -74,7 +74,7 @@ export default {
   methods: {
     changeType(){
       let data = this.chart.get_one('chart.settings.priceLine')
-      console.log("priceLine",data.priceLine)
+      // console.log("priceLine",data.priceLine)
       this.chart.merge("chart.settings",{
         priceLine:!data.priceLine
       })
