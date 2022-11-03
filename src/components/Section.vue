@@ -13,6 +13,7 @@
       @legend-button-click="button_click"
     >
     </chart-legend>
+
     <grid
       v-bind="grid_props"
       ref="grid"
@@ -20,6 +21,7 @@
       :enableZoom="enableZoom"
       :decimalPlace="decimalPlace"
       :priceLine="priceLine"
+      :enableCrosshair="enableCrosshair"
       @register-kb-listener="register_kb"
       @remove-kb-listener="remove_kb"
       @range-changed="range_changed"
@@ -58,7 +60,7 @@ export default {
     ChartLegend,
   },
   mixins: [Shaders],
-  props: ["common", "grid_id", "enableZoom","decimalPlace","priceLine","applyShaders","ignore_OHLC"],
+  props: ["common", "grid_id", "enableZoom","decimalPlace","priceLine","enableCrosshair","applyShaders","ignore_OHLC"],
   data() {
     return {
       meta_props: {},

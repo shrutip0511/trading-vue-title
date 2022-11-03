@@ -35,6 +35,7 @@
     :applyShaders="applyShaders"
     :priceLine="priceLine"
     :decimalPlace="decimalPlace"
+    :enableCrosshair="enableCrosshair"
     :ignoreNegativeIndex="ignoreNegativeIndex"
     :ignore_OHLC="ignore_OHLC"    
       :key="reset"
@@ -228,6 +229,10 @@ export default {
     applyShaders: {
       type: Boolean,
       default: true,
+    },
+    enableCrosshair: {
+      type: Boolean,
+      default: false,
     },
     ignoreNegativeIndex: {
       type: Boolean,

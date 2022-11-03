@@ -10,6 +10,7 @@
       :priceLine="priceLine"
       :decimalPlace="decimalPlace"
       :applyShaders="applyShaders"
+      :enableCrosshair="enableCrosshair"
       :data="chart"
       :width="this.width"
       :height="this.height"
@@ -45,6 +46,7 @@ export default {
       applyShaders:true,
 
 
+      enableCrosshair:false,
       chart: new DataCube(Data),
       width: window.innerWidth,
       height: window.innerHeight,
@@ -77,6 +79,11 @@ export default {
       this.width = window.innerWidth * 0.9;
       this.height = window.innerHeight * 0.9;
     },
+
+    handleCrosshair(){
+      console.log(this.enableCrosshair)
+      this.enableCrosshair = !this.enableCrosshair
+    }
   },
   //   mounted(){
   //   this.goto(1543572000000)
@@ -91,5 +98,23 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+}
+.container{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.backclass{
+  clip-path: polygon(40% 20%, 100% 20%, 100% 80%, 40% 80%, 39% 81%, 0% 50%);
+  background-color: #399bf7;
+  width: 60px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: white;
+  font-size: 16px;
 }
 </style>
