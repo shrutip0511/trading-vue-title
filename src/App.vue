@@ -39,13 +39,10 @@ export default {
   data() {
     return {
       buttons: ["display", "settings", "remove"],
-      
       enableZoom: true,
       decimalPlace:2,
       priceLine:true,
       applyShaders:true,
-
-
       enableCrosshair:false,
       chart: new DataCube(Data),
       width: window.innerWidth,
