@@ -1,5 +1,5 @@
 /*!
- * TradingVue.JS - v1.0.3 - Thu Nov 03 2022
+ * TradingVue.JS - v1.0.3 - Sat Nov 05 2022
  *     https://github.com/tvjsx/trading-vue-js
  *     Copyright (c) 2019 C451 Code's All Right;
  *     Licensed under the MIT license
@@ -387,7 +387,7 @@ module.exports.isSortableArrayLike = function (o) {
 
 /***/ }),
 
-/***/ 374:
+/***/ 426:
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -4155,19 +4155,19 @@ if (true) {
 
 /***/ }),
 
-/***/ 50:
+/***/ 846:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(374);
+var content = __webpack_require__(426);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(346)/* ["default"] */ .Z)
-var update = add("876f2572", content, false, {});
+var update = add("9eaace90", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -5106,7 +5106,7 @@ __webpack_require__.d(__webpack_exports__, {
   "primitives": () => (/* binding */ primitives)
 });
 
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=template&id=2316c6fd&
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=template&id=5c28b699&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -5179,7 +5179,7 @@ var render = function render() {
 var staticRenderFns = [];
 render._withStripped = true;
 
-;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=template&id=2316c6fd&
+;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=template&id=5c28b699&
 
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
 function _arrayLikeToArray(arr, len) {
@@ -7710,6 +7710,11 @@ var Crosshair = /*#__PURE__*/function () {
         this.ch.visible = !explore;
       },
       deep: true
+    },
+    enableCrosshair: {
+      handler: function handler(n) {
+        this.create();
+      }
     }
   },
   methods: {
@@ -9415,6 +9420,7 @@ var Price = /*#__PURE__*/function () {
       var last_bar = function last_bar() {
         return _this.last_bar();
       };
+      console.log("init_shader comp", comp === null || comp === void 0 ? void 0 : comp.isArrow);
       this.comp.$emit('new-shader', {
         target: 'sidebar',
         draw: function draw(ctx) {
@@ -9423,15 +9429,56 @@ var Price = /*#__PURE__*/function () {
           var w = ctx.canvas.width;
           var h = config.PANHEIGHT;
           //let lbl = bar.price.toFixed(layout.prec)
-          var lbl = bar.price.toFixed(2);
+          var lbl = bar.price.toFixed(comp.decimalPlace);
           ctx.fillStyle = bar.color;
           var x = -0.5;
-          var y = bar.y - h * 0.5 - 0.5;
           var a = 7;
-          ctx.fillRect(x - 0.5, y, w + 1, h);
-          ctx.fillStyle = comp.$props.colors.textHL;
-          ctx.textAlign = 'left';
-          ctx.fillText(lbl, a, y + 15);
+          // let isArrow = comp.$props.settings
+
+          if (comp !== null && comp !== void 0 && comp.isArrow) {
+            //y according to arrow
+            var y = bar.y - h * 0 - 0.5;
+
+            //map client arrow work
+            ctx.miterLimit = 4;
+            ctx.font = "15px''";
+            ctx.fillStyle = bar.color;
+            ctx.font = "15px''";
+            ctx.save();
+            ctx.fillStyle = bar.color;
+            ctx.font = "15px''";
+            ctx.beginPath();
+            //1. ctx.moveTo(0,16);
+            ctx.moveTo(x - 0.5, y);
+            //2. ctx.lineTo(19,0);
+            ctx.lineTo(x - 0.5 + 19, y - 16);
+            //3. ctx.lineTo(66.5,0);
+            ctx.lineTo(x - 0.5 + 19 + 66.5, y - 16);
+            //4. ctx.lineTo(66.5,35);
+            ctx.lineTo(x - 0.5 + 19 + 66.5, y + 32 - 16);
+            //5. ctx.lineTo(19,35);
+            ctx.lineTo(x - 0.5 + 19, y + 32 - 16);
+            //6. ctx.lineTo(0,16);
+            ctx.lineTo(x - 0.5, y);
+            ctx.closePath();
+            ctx.fill();
+            // ctx.stroke();
+            ctx.restore();
+            ctx.restore();
+            ctx.fillStyle = comp.$props.colors.textHL;
+            ctx.textAlign = 'left';
+
+            //for arrow work
+            ctx.fillText(lbl, a + 10, y + 5);
+          } else {
+            var _x = -0.5;
+            var _y = bar.y - h * 0.5 - 0.5;
+            var _a = 7;
+            ctx.fillRect(_x - 0.5, _y, w + 1, h);
+            ctx.fillStyle = comp.$props.colors.textHL;
+            ctx.textAlign = 'left';
+            ctx.fillText(lbl, _a, _y + 15);
+          }
         }
       });
       this.shader = true;
@@ -9486,6 +9533,62 @@ var Price = /*#__PURE__*/function () {
     value: function red() {
       return this.comp.colorCandleDw;
     }
+  }, {
+    key: "drawArrow",
+    value: function drawArrow(ctx, fromx, fromy, tox, toy, arrowWidth, color) {
+      //variables to be used when creating the arrow
+      ctx.strokeStyle = "rgba(0,0,0,0)";
+      ctx.miterLimit = 4;
+      ctx.font = "15px ''";
+      ctx.fillStyle = "rgba(0,0,0,0)";
+      ctx.font = "   15px ''";
+      ctx.save();
+      ctx.fillStyle = "#E65C5C";
+      ctx.font = "   15px ''";
+      ctx.beginPath();
+      ctx.moveTo(0, 16);
+      ctx.lineTo(19, 0);
+      ctx.lineTo(66.5, 0);
+      ctx.lineTo(66.5, 35);
+      ctx.lineTo(19, 35);
+      ctx.lineTo(0, 16);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+      ctx.restore();
+      return;
+      var headlen = 15;
+      var angle = Math.atan2(toy - fromy, tox - fromx);
+      ctx.save();
+      ctx.strokeStyle = color;
+
+      //starting path of the arrow from the start square to the end square
+      //and drawing the stroke
+      ctx.beginPath();
+      ctx.moveTo(fromx, fromy);
+      ctx.lineTo(tox, toy);
+      ctx.lineWidth = arrowWidth;
+      ctx.stroke();
+
+      //starting a new path from the head of the arrow to one of the sides of
+      //the point
+      ctx.beginPath();
+      ctx.moveTo(tox, toy);
+      ctx.lineTo(tox - headlen * Math.cos(angle - Math.PI / 4), toy - headlen * Math.sin(angle - Math.PI / 4));
+
+      //path from the side point of the arrow, to the other side point
+      ctx.lineTo(tox - headlen * Math.cos(angle + Math.PI / 4), toy - headlen * Math.sin(angle + Math.PI / 4));
+
+      //path from the side point back to the tip of the arrow, and then
+      //again to the opposite side point
+      ctx.lineTo(tox, toy);
+      ctx.lineTo(tox - headlen * Math.cos(angle - Math.PI / 4), toy - headlen * Math.sin(angle - Math.PI / 4));
+
+      //draws the paths created above
+      ctx.stroke();
+      ctx.restore();
+    }
   }]);
   return Price;
 }();
@@ -9538,6 +9641,13 @@ var Price = /*#__PURE__*/function () {
     },
     colorVolDw: function colorVolDw() {
       return this.sett.colorVolDw || this.$props.colors.volDw;
+    },
+    isArrow: function isArrow() {
+      return "isArrow" in this.sett ? this.sett.isArrow : false;
+    },
+    decimalPlace: function decimalPlace() {
+      // return this.sett?.decimalPlace || 2;
+      return "decimalPlace" in this.sett ? this.sett.decimalPlace : 2;
     }
   },
   methods: {
@@ -9587,6 +9697,14 @@ var Price = /*#__PURE__*/function () {
         if (x[3] < lo) lo = x[3];
       }
       return [hi, lo];
+    }
+  },
+  watch: {
+    isArrow: {
+      handler: function handler(value) {
+        console.log("candles isArrows", value, this.price);
+        this.price = new Price(this);
+      }
     }
   },
   mounted: function mounted() {
@@ -14425,6 +14543,10 @@ function TradingVuevue_type_script_lang_js_arrayLikeToArray(arr, len) { if (len 
       type: Boolean,
       "default": false
     },
+    enableArrow: {
+      type: Boolean,
+      "default": false
+    },
     ignoreNegativeIndex: {
       type: Boolean,
       "default": false
@@ -14656,13 +14778,37 @@ function TradingVuevue_type_script_lang_js_arrayLikeToArray(arr, len) { if (len 
     mouseleave: function mouseleave() {
       this.$refs.chart.activated = false;
     }
+  },
+  watch: {
+    decimalPlace: function decimalPlace(n) {
+      var base = this.$props.data;
+      // console.log("props:",base);
+      base.merge('chart.settings', {
+        decimalPlace: n
+      });
+    },
+    enableArrow: function enableArrow(n) {
+      var base = this.$props.data;
+      // console.log("props:",base);
+      base.merge('chart.settings', {
+        isArrow: n
+      });
+    }
+  },
+  mounted: function mounted() {
+    var base = this.$props.data;
+    // console.log("props:",this.$props.enableArrow);
+    base.merge('chart.settings', {
+      isArrow: this.$props.enableArrow,
+      decimalPlace: this.$props.decimalPlace
+    });
   }
 });
 ;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=script&lang=js&
  /* harmony default export */ const src_TradingVuevue_type_script_lang_js_ = (TradingVuevue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=style&index=0&id=2316c6fd&prod&lang=css&
-var TradingVuevue_type_style_index_0_id_2316c6fd_prod_lang_css_ = __webpack_require__(50);
-;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=style&index=0&id=2316c6fd&prod&lang=css&
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=style&index=0&id=5c28b699&prod&lang=css&
+var TradingVuevue_type_style_index_0_id_5c28b699_prod_lang_css_ = __webpack_require__(846);
+;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=style&index=0&id=5c28b699&prod&lang=css&
 
 ;// CONCATENATED MODULE: ./src/TradingVue.vue
 
