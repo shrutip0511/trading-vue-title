@@ -216,6 +216,7 @@ export default {
     font-size: 1.45em;
 }
 .t-vue-ind {
+  display: flex;
     margin-left: 0.2em;
     margin-bottom: 0.5em;
     font-size: 1.0em;

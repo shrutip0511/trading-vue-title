@@ -1,9 +1,10 @@
 <template>
+<!--              margin: config.L_BTN_MARGIN
+-->
     <img :id="uuid" class="t-vue-lbtn"
         :src="base64" :style="{
             width: config.L_BTN_SIZE + 'px',
-            height: config.L_BTN_SIZE + 'px',
-            margin: config.L_BTN_MARGIN
+            height: config.L_BTN_SIZE + 'px'
         }"
         @click="onclick">
 </template>

@@ -415,14 +415,14 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 60:
+/***/ 790:
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(645);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, "\n.t-vue-lbtn-grp {\r\n    margin-left: 0.5em;\n}\r\n", ""]);
+exports.push([module.id, "\n.t-vue-lbtn-grp {\r\n    margin-left: 0.5em;\r\n    display: flex;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -443,21 +443,21 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 213:
+/***/ 991:
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(645);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, "\n.trading-vue-legend {\r\n    position: relative;\r\n    z-index: 100;\r\n    font-size: 1.25em;\r\n    margin-left: 10px;\r\n    pointer-events: none;\r\n    text-align: left;\r\n    user-select: none;\r\n    font-weight: 300;\n}\n@media (min-resolution: 2x) {\n.trading-vue-legend {\r\n        font-weight: 400;\n}\n}\n.trading-vue-ohlcv {\r\n    pointer-events: none;\r\n    margin-bottom: 0.5em;\n}\n.t-vue-lspan {\r\n    font-variant-numeric: tabular-nums;\r\n    font-size: 0.95em;\r\n    color: #999999; /* TODO: move => params */\r\n    margin-left: 0.1em;\r\n    margin-right: 0.2em;\n}\n.t-vue-title {\r\n    margin-right: 0.25em;\r\n    font-size: 1.45em;\n}\n.t-vue-ind {\r\n    margin-left: 0.2em;\r\n    margin-bottom: 0.5em;\r\n    font-size: 1.0em;\r\n    margin-top: 0.3em;\n}\n.t-vue-ivalue {\r\n    margin-left: 0.5em;\n}\n.t-vue-unknown {\r\n    color: #999999; /* TODO: move => params */\n}\n.tvjs-appear-enter-active,\r\n.tvjs-appear-leave-active\r\n{\r\n    transition: all .25s ease;\n}\n.tvjs-appear-enter, .tvjs-appear-leave-to\r\n{\r\n    opacity: 0;\n}\r\n", ""]);
+exports.push([module.id, "\n.trading-vue-legend {\r\n    position: relative;\r\n    z-index: 100;\r\n    font-size: 1.25em;\r\n    margin-left: 10px;\r\n    pointer-events: none;\r\n    text-align: left;\r\n    user-select: none;\r\n    font-weight: 300;\n}\n@media (min-resolution: 2x) {\n.trading-vue-legend {\r\n        font-weight: 400;\n}\n}\n.trading-vue-ohlcv {\r\n    pointer-events: none;\r\n    margin-bottom: 0.5em;\n}\n.t-vue-lspan {\r\n    font-variant-numeric: tabular-nums;\r\n    font-size: 0.95em;\r\n    color: #999999; /* TODO: move => params */\r\n    margin-left: 0.1em;\r\n    margin-right: 0.2em;\n}\n.t-vue-title {\r\n    margin-right: 0.25em;\r\n    font-size: 1.45em;\n}\n.t-vue-ind {\r\n  display: flex;\r\n    margin-left: 0.2em;\r\n    margin-bottom: 0.5em;\r\n    font-size: 1.0em;\r\n    margin-top: 0.3em;\n}\n.t-vue-ivalue {\r\n    margin-left: 0.5em;\n}\n.t-vue-unknown {\r\n    color: #999999; /* TODO: move => params */\n}\n.tvjs-appear-enter-active,\r\n.tvjs-appear-leave-active\r\n{\r\n    transition: all .25s ease;\n}\n.tvjs-appear-enter, .tvjs-appear-leave-to\r\n{\r\n    opacity: 0;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
 
 /***/ }),
 
-/***/ 377:
+/***/ 264:
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -4191,19 +4191,19 @@ if(false) {}
 
 /***/ }),
 
-/***/ 598:
+/***/ 246:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(60);
+var content = __webpack_require__(790);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(346)/* ["default"] */ .Z)
-var update = add("36870e60", content, false, {});
+var update = add("3cef57c8", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -4227,37 +4227,37 @@ if(false) {}
 
 /***/ }),
 
-/***/ 518:
+/***/ 974:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(213);
+var content = __webpack_require__(991);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(346)/* ["default"] */ .Z)
-var update = add("5b4cfd62", content, false, {});
+var update = add("077a9c44", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
 /***/ }),
 
-/***/ 862:
+/***/ 719:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(377);
+var content = __webpack_require__(264);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(346)/* ["default"] */ .Z)
-var update = add("cf6e4216", content, false, {});
+var update = add("cb2c20a2", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -11723,8 +11723,8 @@ var Sidebar_component = normalizeComponent(
 )
 
 /* harmony default export */ const components_Sidebar = (Sidebar_component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Legend.vue?vue&type=template&id=5324e993&
-var Legendvue_type_template_id_5324e993_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Legend.vue?vue&type=template&id=e9225dc2&
+var Legendvue_type_template_id_e9225dc2_render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
@@ -11801,13 +11801,13 @@ var Legendvue_type_template_id_5324e993_render = function render() {
     }) : _vm._e()], 1)], 1);
   })], 2);
 };
-var Legendvue_type_template_id_5324e993_staticRenderFns = [];
-Legendvue_type_template_id_5324e993_render._withStripped = true;
+var Legendvue_type_template_id_e9225dc2_staticRenderFns = [];
+Legendvue_type_template_id_e9225dc2_render._withStripped = true;
 
-;// CONCATENATED MODULE: ./src/components/Legend.vue?vue&type=template&id=5324e993&
+;// CONCATENATED MODULE: ./src/components/Legend.vue?vue&type=template&id=e9225dc2&
 
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/ButtonGroup.vue?vue&type=template&id=c35cceb6&
-var ButtonGroupvue_type_template_id_c35cceb6_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/ButtonGroup.vue?vue&type=template&id=72b6dd45&
+var ButtonGroupvue_type_template_id_72b6dd45_render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("span", {
@@ -11831,21 +11831,20 @@ var ButtonGroupvue_type_template_id_c35cceb6_render = function render() {
     });
   }), 1);
 };
-var ButtonGroupvue_type_template_id_c35cceb6_staticRenderFns = [];
-ButtonGroupvue_type_template_id_c35cceb6_render._withStripped = true;
+var ButtonGroupvue_type_template_id_72b6dd45_staticRenderFns = [];
+ButtonGroupvue_type_template_id_72b6dd45_render._withStripped = true;
 
-;// CONCATENATED MODULE: ./src/components/ButtonGroup.vue?vue&type=template&id=c35cceb6&
+;// CONCATENATED MODULE: ./src/components/ButtonGroup.vue?vue&type=template&id=72b6dd45&
 
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/LegendButton.vue?vue&type=template&id=b1c1a2a2&
-var LegendButtonvue_type_template_id_b1c1a2a2_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/LegendButton.vue?vue&type=template&id=7cd34a30&
+var LegendButtonvue_type_template_id_7cd34a30_render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("img", {
     staticClass: "t-vue-lbtn",
     style: {
       width: _vm.config.L_BTN_SIZE + "px",
-      height: _vm.config.L_BTN_SIZE + "px",
-      margin: _vm.config.L_BTN_MARGIN
+      height: _vm.config.L_BTN_SIZE + "px"
     },
     attrs: {
       id: _vm.uuid,
@@ -11856,10 +11855,10 @@ var LegendButtonvue_type_template_id_b1c1a2a2_render = function render() {
     }
   });
 };
-var LegendButtonvue_type_template_id_b1c1a2a2_staticRenderFns = [];
-LegendButtonvue_type_template_id_b1c1a2a2_render._withStripped = true;
+var LegendButtonvue_type_template_id_7cd34a30_staticRenderFns = [];
+LegendButtonvue_type_template_id_7cd34a30_render._withStripped = true;
 
-;// CONCATENATED MODULE: ./src/components/LegendButton.vue?vue&type=template&id=b1c1a2a2&
+;// CONCATENATED MODULE: ./src/components/LegendButton.vue?vue&type=template&id=7cd34a30&
 
 ;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/LegendButton.vue?vue&type=script&lang=js&
 
@@ -11905,9 +11904,9 @@ LegendButtonvue_type_template_id_b1c1a2a2_render._withStripped = true;
 });
 ;// CONCATENATED MODULE: ./src/components/LegendButton.vue?vue&type=script&lang=js&
  /* harmony default export */ const components_LegendButtonvue_type_script_lang_js_ = (LegendButtonvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/LegendButton.vue?vue&type=style&index=0&id=b1c1a2a2&prod&lang=css&
-var LegendButtonvue_type_style_index_0_id_b1c1a2a2_prod_lang_css_ = __webpack_require__(862);
-;// CONCATENATED MODULE: ./src/components/LegendButton.vue?vue&type=style&index=0&id=b1c1a2a2&prod&lang=css&
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/LegendButton.vue?vue&type=style&index=0&id=7cd34a30&prod&lang=css&
+var LegendButtonvue_type_style_index_0_id_7cd34a30_prod_lang_css_ = __webpack_require__(719);
+;// CONCATENATED MODULE: ./src/components/LegendButton.vue?vue&type=style&index=0&id=7cd34a30&prod&lang=css&
 
 ;// CONCATENATED MODULE: ./src/components/LegendButton.vue
 
@@ -11920,8 +11919,8 @@ var LegendButtonvue_type_style_index_0_id_b1c1a2a2_prod_lang_css_ = __webpack_re
 
 var LegendButton_component = normalizeComponent(
   components_LegendButtonvue_type_script_lang_js_,
-  LegendButtonvue_type_template_id_b1c1a2a2_render,
-  LegendButtonvue_type_template_id_b1c1a2a2_staticRenderFns,
+  LegendButtonvue_type_template_id_7cd34a30_render,
+  LegendButtonvue_type_template_id_7cd34a30_staticRenderFns,
   false,
   null,
   null,
@@ -11946,9 +11945,9 @@ var LegendButton_component = normalizeComponent(
 });
 ;// CONCATENATED MODULE: ./src/components/ButtonGroup.vue?vue&type=script&lang=js&
  /* harmony default export */ const components_ButtonGroupvue_type_script_lang_js_ = (ButtonGroupvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/ButtonGroup.vue?vue&type=style&index=0&id=c35cceb6&prod&lang=css&
-var ButtonGroupvue_type_style_index_0_id_c35cceb6_prod_lang_css_ = __webpack_require__(598);
-;// CONCATENATED MODULE: ./src/components/ButtonGroup.vue?vue&type=style&index=0&id=c35cceb6&prod&lang=css&
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/ButtonGroup.vue?vue&type=style&index=0&id=72b6dd45&prod&lang=css&
+var ButtonGroupvue_type_style_index_0_id_72b6dd45_prod_lang_css_ = __webpack_require__(246);
+;// CONCATENATED MODULE: ./src/components/ButtonGroup.vue?vue&type=style&index=0&id=72b6dd45&prod&lang=css&
 
 ;// CONCATENATED MODULE: ./src/components/ButtonGroup.vue
 
@@ -11961,8 +11960,8 @@ var ButtonGroupvue_type_style_index_0_id_c35cceb6_prod_lang_css_ = __webpack_req
 
 var ButtonGroup_component = normalizeComponent(
   components_ButtonGroupvue_type_script_lang_js_,
-  ButtonGroupvue_type_template_id_c35cceb6_render,
-  ButtonGroupvue_type_template_id_c35cceb6_staticRenderFns,
+  ButtonGroupvue_type_template_id_72b6dd45_render,
+  ButtonGroupvue_type_template_id_72b6dd45_staticRenderFns,
   false,
   null,
   null,
@@ -12151,9 +12150,9 @@ var Spinner_component = normalizeComponent(
 });
 ;// CONCATENATED MODULE: ./src/components/Legend.vue?vue&type=script&lang=js&
  /* harmony default export */ const components_Legendvue_type_script_lang_js_ = (Legendvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Legend.vue?vue&type=style&index=0&id=5324e993&prod&lang=css&
-var Legendvue_type_style_index_0_id_5324e993_prod_lang_css_ = __webpack_require__(518);
-;// CONCATENATED MODULE: ./src/components/Legend.vue?vue&type=style&index=0&id=5324e993&prod&lang=css&
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Legend.vue?vue&type=style&index=0&id=e9225dc2&prod&lang=css&
+var Legendvue_type_style_index_0_id_e9225dc2_prod_lang_css_ = __webpack_require__(974);
+;// CONCATENATED MODULE: ./src/components/Legend.vue?vue&type=style&index=0&id=e9225dc2&prod&lang=css&
 
 ;// CONCATENATED MODULE: ./src/components/Legend.vue
 
@@ -12166,8 +12165,8 @@ var Legendvue_type_style_index_0_id_5324e993_prod_lang_css_ = __webpack_require_
 
 var Legend_component = normalizeComponent(
   components_Legendvue_type_script_lang_js_,
-  Legendvue_type_template_id_5324e993_render,
-  Legendvue_type_template_id_5324e993_staticRenderFns,
+  Legendvue_type_template_id_e9225dc2_render,
+  Legendvue_type_template_id_e9225dc2_staticRenderFns,
   false,
   null,
   null,

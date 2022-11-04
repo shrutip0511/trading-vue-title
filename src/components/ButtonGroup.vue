@@ -38,5 +38,6 @@ export default {
 <style>
 .t-vue-lbtn-grp {
     margin-left: 0.5em;
+    display: flex;
 }
 </style>
