@@ -2,7 +2,8 @@
   <div>
      <label for="start">Start date:</label>
 
-    <input type="checkbox" id="start" @change="changeType" name="trip-start" />
+    <input type="number" id="decimalPlace" @change="changeNumber($event.target.value)" name="decimalPlace" />
+    <input type="checkbox" id="start" @change="changeType($event.target.checked)" name="trip-start" />
 <!--    <select v-model="chartType" @change="changeType">
       <option value="Candle">Candle</option>
       <option value="Splines">Splines</option>
@@ -15,6 +16,7 @@
       :decimalPlace="decimalPlace"
       :applyShaders="applyShaders"
       :enableCrosshair="enableCrosshair"
+      :enableArrow="enableArrow"
       :data="chart"
       :width="this.width"
       :height="this.height"
@@ -44,11 +46,12 @@ export default {
     return {
       buttons: ["display", "settings", "remove"],
       enableZoom: true,
-      decimalPlace:2,
+      decimalPlace:3,
       chartType:"Candle",
       priceLine:true,
       applyShaders:true,
       enableCrosshair:true,
+      enableArrow:false,
       chart: new DataCube(Data),
       width: window.innerWidth,
       height: window.innerHeight,
@@ -72,14 +75,19 @@ export default {
     window.removeEventListener("resize", this.onResize);
   },
   methods: {
-    changeType(){
-      let data = this.chart.get_one('chart.settings.priceLine')
-      // console.log("priceLine",data.priceLine)
-      this.chart.merge("chart.settings",{
-        priceLine:!data.priceLine
-      })
+    changeType(val){
+      // let data = this.chart.get_one('chart.settings.priceLine')
+      // console.log("priceLine",data.isArrow)
+      // this.chart.merge("chart.settings",{
+      //   isArrow:val
+      // })
       // console.log("this.chart.data.chart",candles)
       // this.chart.data.chart.type = this.chartType;
+      this.enableArrow = val
+    },
+    changeNumber(val){
+      console.log(val)
+      this.decimalPlace = Number(val)
     },
     handleDate() {
       let convertedDate= new Date(this.date)

@@ -234,6 +234,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    enableArrow: {
+      type: Boolean,
+      default: false,
+    },
     ignoreNegativeIndex: {
       type: Boolean,
       default: false,
@@ -435,6 +439,25 @@ export default {
       this.$refs.chart.activated = false;
     },
   },
+  watch:{
+    decimalPlace(n) {
+      const base = this.$props.data;
+      // console.log("props:",base);
+      base.merge('chart.settings', {decimalPlace: n})
+    },
+    enableArrow(n) {
+      const base = this.$props.data;
+      // console.log("props:",base);
+      base.merge('chart.settings', {isArrow: n})
+    },
+  },
+  mounted() {
+    const base = this.$props.data;
+    // console.log("props:",this.$props.enableArrow);
+    base.merge(
+        'chart.settings', {isArrow: this.$props.enableArrow, decimalPlace: this.$props.decimalPlace,}
+    )
+  }
 };
 </script>
 <style>

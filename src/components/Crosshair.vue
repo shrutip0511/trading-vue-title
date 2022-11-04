@@ -24,7 +24,13 @@ export default {
                 this.ch.visible = !explore
             },
             deep: true
+        },
+      enableCrosshair:{
+        handler: function(n) {
+          this.create()
         }
+          
+      }
     },
     methods: {
         create() {

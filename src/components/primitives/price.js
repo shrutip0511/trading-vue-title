@@ -15,7 +15,7 @@ export default class Price {
         let config = this.comp.$props.config
         let comp = this.comp
         let last_bar = () => this.last_bar()
-
+        console.log("init_shader comp",comp?.isArrow)
         this.comp.$emit('new-shader', {
             target: 'sidebar', draw: ctx => {
 
@@ -25,7 +25,7 @@ export default class Price {
                 let w = ctx.canvas.width
                 let h = config.PANHEIGHT
                 //let lbl = bar.price.toFixed(layout.prec)
-                let lbl = bar.price.toFixed(3)
+                let lbl = bar.price.toFixed(comp.decimalPlace)
              
               
 
@@ -33,55 +33,57 @@ export default class Price {
                 
                 let x = - 0.5
 
-                //previous y
-                // let y = bar.y - h * 0.5 - 0.5
-                
-                //y according to arrow
-                let y = bar.y - h * 0 - 0.5
-
+               
+             
                 let a = 7
+                // let isArrow = comp.$props.settings
+                
+                if(comp?.isArrow){
+                    //y according to arrow
+                    let y = bar.y - h * 0 - 0.5
 
-              //map client arrow work
-                ctx.miterLimit=4;
-                ctx.font="15px''";
-                ctx.fillStyle=bar.color;
-                ctx.font="15px''";
-                ctx.save();
-                ctx.fillStyle=bar.color;
-                ctx.font="15px''";
-                ctx.beginPath();
-                //1. ctx.moveTo(0,16);
-                ctx.moveTo(x - 0.5,y);
-                //2. ctx.lineTo(19,0);
-                ctx.lineTo(x - 0.5 + 19,y-16);
-                //3. ctx.lineTo(66.5,0);
-                ctx.lineTo(x - 0.5 + 19 + 66.5,y-16);
-                //4. ctx.lineTo(66.5,35);
-                ctx.lineTo(x - 0.5 + 19 + 66.5,y+32-16);
-                //5. ctx.lineTo(19,35);
-                ctx.lineTo(x - 0.5 + 19,y+32-16);
-                //6. ctx.lineTo(0,16);
-                ctx.lineTo(x - 0.5,y);
-                ctx.closePath();
-                ctx.fill();
-                // ctx.stroke();
-                ctx.restore();
-                ctx.restore();
+                    //map client arrow work
+                    ctx.miterLimit=4;
+                    ctx.font="15px''";
+                    ctx.fillStyle=bar.color;
+                    ctx.font="15px''";
+                    ctx.save();
+                    ctx.fillStyle=bar.color;
+                    ctx.font="15px''";
+                    ctx.beginPath();
+                    //1. ctx.moveTo(0,16);
+                    ctx.moveTo(x - 0.5,y);
+                    //2. ctx.lineTo(19,0);
+                    ctx.lineTo(x - 0.5 + 19,y-16);
+                    //3. ctx.lineTo(66.5,0);
+                    ctx.lineTo(x - 0.5 + 19 + 66.5,y-16);
+                    //4. ctx.lineTo(66.5,35);
+                    ctx.lineTo(x - 0.5 + 19 + 66.5,y+32-16);
+                    //5. ctx.lineTo(19,35);
+                    ctx.lineTo(x - 0.5 + 19,y+32-16);
+                    //6. ctx.lineTo(0,16);
+                    ctx.lineTo(x - 0.5,y);
+                    ctx.closePath();
+                    ctx.fill();
+                    // ctx.stroke();
+                    ctx.restore();
+                    ctx.restore();
 
-             //end here   
-                        
+                    ctx.fillStyle = comp.$props.colors.textHL
+                    ctx.textAlign = 'left'
+
+                    //for arrow work
+                    ctx.fillText(lbl, a+10, y + 5)
+                }else{
+                    let x = - 0.5
+                    let y = bar.y - h * 0.5 - 0.5
+                    let a = 7
+                    ctx.fillRect(x - 0.5, y, w + 1, h)
+                    ctx.fillStyle = comp.$props.colors.textHL
+                    ctx.textAlign = 'left'
+                    ctx.fillText(lbl, a, y + 15)
+                }
             
-                //previous red box
-                // ctx.fillRect(x - 0.5, y, w + 1, h)
-
-                ctx.fillStyle = comp.$props.colors.textHL
-                ctx.textAlign = 'left'
-                
-                //for arrow work
-                ctx.fillText(lbl, a+10, y + 5)
-                
-                //previous work
-                // ctx.fillText(lbl, a, y + 5)
 
               
 

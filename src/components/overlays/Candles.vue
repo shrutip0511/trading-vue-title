@@ -47,6 +47,13 @@ export default {
     colorVolDw() {
       return this.sett.colorVolDw || this.$props.colors.volDw;
     },
+    isArrow() {
+      return "isArrow" in this.sett ? this.sett.isArrow : false;
+    },
+    decimalPlace() {
+      // return this.sett?.decimalPlace || 2;
+      return "decimalPlace" in this.sett ? this.sett.decimalPlace : 2;
+    },
   },
   methods: {
     meta_info() {
@@ -98,7 +105,14 @@ export default {
       return [hi, lo];
     },
   },
-
+  watch:{
+    isArrow:{
+      handler:function(value){
+        console.log("candles isArrows",value,this.price)
+        this.price = new Price(this);
+      }
+    }
+  },
   mounted() {
     console.log("candles mounted", this.$props);
   },
