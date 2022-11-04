@@ -48,7 +48,7 @@ export default {
       chartType:"Candle",
       priceLine:true,
       applyShaders:true,
-      enableCrosshair:false,
+      enableCrosshair:true,
       chart: new DataCube(Data),
       width: window.innerWidth,
       height: window.innerHeight,

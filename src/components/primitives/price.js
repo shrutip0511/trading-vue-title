@@ -25,16 +25,65 @@ export default class Price {
                 let w = ctx.canvas.width
                 let h = config.PANHEIGHT
                 //let lbl = bar.price.toFixed(layout.prec)
-                let lbl = bar.price.toFixed(2)
-                ctx.fillStyle = bar.color
+                let lbl = bar.price.toFixed(3)
+             
+              
 
+                ctx.fillStyle = bar.color
+                
                 let x = - 0.5
-                let y = bar.y - h * 0.5 - 0.5
+
+                //previous y
+                // let y = bar.y - h * 0.5 - 0.5
+                
+                //y according to arrow
+                let y = bar.y - h * 0 - 0.5
+
                 let a = 7
-                ctx.fillRect(x - 0.5, y, w + 1, h)
+
+              //map client arrow work
+                ctx.miterLimit=4;
+                ctx.font="15px''";
+                ctx.fillStyle=bar.color;
+                ctx.font="15px''";
+                ctx.save();
+                ctx.fillStyle=bar.color;
+                ctx.font="15px''";
+                ctx.beginPath();
+                //1. ctx.moveTo(0,16);
+                ctx.moveTo(x - 0.5,y);
+                //2. ctx.lineTo(19,0);
+                ctx.lineTo(x - 0.5 + 19,y-16);
+                //3. ctx.lineTo(66.5,0);
+                ctx.lineTo(x - 0.5 + 19 + 66.5,y-16);
+                //4. ctx.lineTo(66.5,35);
+                ctx.lineTo(x - 0.5 + 19 + 66.5,y+32-16);
+                //5. ctx.lineTo(19,35);
+                ctx.lineTo(x - 0.5 + 19,y+32-16);
+                //6. ctx.lineTo(0,16);
+                ctx.lineTo(x - 0.5,y);
+                ctx.closePath();
+                ctx.fill();
+                // ctx.stroke();
+                ctx.restore();
+                ctx.restore();
+
+             //end here   
+                        
+            
+                //previous red box
+                // ctx.fillRect(x - 0.5, y, w + 1, h)
+
                 ctx.fillStyle = comp.$props.colors.textHL
                 ctx.textAlign = 'left'
-                ctx.fillText(lbl, a, y + 15)
+                
+                //for arrow work
+                ctx.fillText(lbl, a+10, y + 5)
+                
+                //previous work
+                // ctx.fillText(lbl, a, y + 5)
+
+              
 
             }
         })
@@ -87,6 +136,67 @@ export default class Price {
 
     red() {
         return this.comp.colorCandleDw
+    }
+
+    drawArrow(ctx, fromx, fromy, tox, toy, arrowWidth, color){
+        //variables to be used when creating the arrow
+        ctx.strokeStyle="rgba(0,0,0,0)";
+        ctx.miterLimit=4;
+        ctx.font="15px ''";
+        ctx.fillStyle="rgba(0,0,0,0)";
+        ctx.font="   15px ''";
+        ctx.save();
+        ctx.fillStyle="#E65C5C";
+        ctx.font="   15px ''";
+        ctx.beginPath();
+        ctx.moveTo(0,16);
+        ctx.lineTo(19,0);
+        ctx.lineTo(66.5,0);
+        ctx.lineTo(66.5,35);
+        ctx.lineTo(19,35);
+        ctx.lineTo(0,16);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+        ctx.restore();
+
+        return;
+
+        var headlen = 15;
+        var angle = Math.atan2(toy-fromy,tox-fromx);
+     
+        ctx.save();
+        ctx.strokeStyle = color;
+     
+        //starting path of the arrow from the start square to the end square
+        //and drawing the stroke
+        ctx.beginPath();
+        ctx.moveTo(fromx, fromy);
+        ctx.lineTo(tox, toy);
+        ctx.lineWidth = arrowWidth;
+        ctx.stroke();
+     
+        //starting a new path from the head of the arrow to one of the sides of
+        //the point
+        ctx.beginPath();
+        ctx.moveTo(tox, toy);
+        ctx.lineTo(tox-headlen*Math.cos(angle-Math.PI/4),
+                   toy-headlen*Math.sin(angle-Math.PI/4));
+     
+        //path from the side point of the arrow, to the other side point
+        ctx.lineTo(tox-headlen*Math.cos(angle+Math.PI/4),
+                   toy-headlen*Math.sin(angle+Math.PI/4));
+     
+        //path from the side point back to the tip of the arrow, and then
+        //again to the opposite side point
+        ctx.lineTo(tox, toy);
+        ctx.lineTo(tox-headlen*Math.cos(angle-Math.PI/4),
+                   toy-headlen*Math.sin(angle-Math.PI/4));
+     
+        //draws the paths created above
+        ctx.stroke();
+        ctx.restore();
     }
 
 }
