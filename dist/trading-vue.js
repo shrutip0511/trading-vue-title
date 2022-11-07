@@ -8474,6 +8474,9 @@ var Mouse = /*#__PURE__*/function () {
     line_width: function line_width() {
       return this.sett.lineWidth || 0.75;
     },
+    line_type: function line_type() {
+      return "lineType" in this.sett ? this.sett.lineType : "solid";
+    },
     color: function color() {
       var n = this.$props.num % 5;
       return this.sett.color || this.COLORS[n];
@@ -8484,6 +8487,9 @@ var Mouse = /*#__PURE__*/function () {
     // Don't connect separate parts if true
     skip_nan: function skip_nan() {
       return this.sett.skipNaN;
+    },
+    noidea: function noidea() {
+      return 12;
     }
   },
   methods: {
@@ -8513,8 +8519,16 @@ var Mouse = /*#__PURE__*/function () {
     // Finally, let's make the canvas dirty!
     draw: function draw(ctx) {
       ctx.lineWidth = this.line_width;
+      console.log("this.line_type", this.line_type);
       ctx.strokeStyle = this.color;
       ctx.beginPath();
+
+      //--- line style
+      if (this.line_type === 'dashed') {
+        ctx.setLineDash([5, 10]);
+      } else if (this.line_type === 'dotted') {
+        ctx.setLineDash([3, 4]);
+      }
       var layout = this.$props.layout;
       var i = this.data_index;
       var data = this.$props.data;
@@ -8559,7 +8573,7 @@ var Mouse = /*#__PURE__*/function () {
     }
   },
   mounted: function mounted() {
-    console.log("Spline Mounted From Base");
+    console.log("Spline Mounted");
   }
 });
 ;// CONCATENATED MODULE: ./src/components/overlays/Spline.vue?vue&type=script&lang=js&
