@@ -106,7 +106,10 @@ export default {
         // Colors for the legend, should have the
         // same dimention as a data point (excl. timestamp)
         data_colors() { return [this.color] }
-    }
+    },
+  mounted() {
+    console.log("Spline Mounted From Base")
+  }
 
 }
 </script>

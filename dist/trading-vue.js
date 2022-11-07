@@ -1,5 +1,5 @@
 /*!
- * TradingVue.JS - v1.0.3 - Sat Nov 05 2022
+ * TradingVue.JS - v1.0.3 - Mon Nov 07 2022
  *     https://github.com/tvjsx/trading-vue-js
  *     Copyright (c) 2019 C451 Code's All Right;
  *     Licensed under the MIT license
@@ -8557,6 +8557,9 @@ var Mouse = /*#__PURE__*/function () {
     data_colors: function data_colors() {
       return [this.color];
     }
+  },
+  mounted: function mounted() {
+    console.log("Spline Mounted From Base");
   }
 });
 ;// CONCATENATED MODULE: ./src/components/overlays/Spline.vue?vue&type=script&lang=js&
