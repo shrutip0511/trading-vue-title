@@ -32,6 +32,7 @@
     </widgets>
     <chart
     :enableZoom="enableZoom"
+    :enableSideBarBoxValue="enableSideBarBoxValue"
     :applyShaders="applyShaders"
     :priceLine="priceLine"
     :decimalPlace="decimalPlace"
@@ -169,6 +170,10 @@ export default {
     data: {
       type: Object,
       required: true,
+    },
+    enableSideBarBoxValue: {
+      type: Boolean,
+      default:false,
     },
     // Your overlay classes here
     overlays: {

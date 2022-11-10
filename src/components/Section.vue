@@ -41,6 +41,7 @@
       @sidebar-transform="sidebar_transform"
       :decimalPlace="decimalPlace"
       :applyShaders="applyShaders"
+      :enableSideBarBoxValue="enableSideBarBoxValue"
     >
     </sidebar>
   </div>
@@ -60,7 +61,7 @@ export default {
     ChartLegend,
   },
   mixins: [Shaders],
-  props: ["common", "grid_id", "enableZoom","decimalPlace","priceLine","enableCrosshair","applyShaders","ignore_OHLC"],
+  props: ["common", "grid_id",'enableSideBarBoxValue', "enableZoom","decimalPlace","priceLine","enableCrosshair","applyShaders","ignore_OHLC"],
   data() {
     return {
       meta_props: {},

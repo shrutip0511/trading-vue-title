@@ -16,6 +16,7 @@
             @custom-event="emit_custom_event"
             @legend-button-click="legend_button_click"
             :enableZoom="enableZoom"
+            :enableSideBarBoxValue="enableSideBarBoxValue"
             :decimalPlace="decimalPlace"
             :applyShaders="applyShaders"
             :priceLine="priceLine"
@@ -56,7 +57,7 @@ export default {
     props: [
         'title_txt', 'data', 'width', 'height', 'font', 'colors',
         'overlays', 'tv_id', 'config', 'buttons', 'toolbar', 'ib','applyShaders',
-        'skin', 'timezone','enableZoom','decimalPlace','ignore_OHLC','priceLine','ignoreNegativeIndex','enableCrosshair'
+        'skin', 'timezone','enableZoom','enableSideBarBoxValue','decimalPlace','ignore_OHLC','priceLine','ignoreNegativeIndex','enableCrosshair'
     ],
     data() {
         return {

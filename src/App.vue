@@ -1,9 +1,9 @@
 <template>
   <div>
-     <label for="start">Start date:</label>
+     <!-- <label for="start">Start date:</label>
 
     <input type="number" id="decimalPlace" @change="changeNumber($event.target.value)" name="decimalPlace" />
-    <input type="checkbox" id="start" @change="changeType($event.target.checked)" name="trip-start" />
+    <input type="checkbox" id="start" @change="changeType($event.target.checked)" name="trip-start" /> -->
 <!--    <select v-model="chartType" @change="changeType">
       <option value="Candle">Candle</option>
       <option value="Splines">Splines</option>
@@ -16,6 +16,8 @@
       :decimalPlace="decimalPlace"
       :applyShaders="applyShaders"
       :enableCrosshair="enableCrosshair"
+      :enableSideBarBoxValue="enableSideBarBoxValue"
+      
       :enableArrow="enableArrow"
       :data="chart"
       :width="this.width"
@@ -49,6 +51,7 @@ export default {
       decimalPlace:3,
       chartType:"Candle",
       priceLine:true,
+      enableSideBarBoxValue:false,
       applyShaders:true,
       enableCrosshair:true,
       enableArrow:false,
