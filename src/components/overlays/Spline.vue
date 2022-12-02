@@ -68,7 +68,7 @@ export default {
     // Finally, let's make the canvas dirty!
     draw(ctx) {
       ctx.lineWidth = this.line_width
-      console.log("this.line_type",this.line_type)
+      // console.log("this.line_type",this.line_type)
       ctx.strokeStyle = this.color
       ctx.beginPath()
 

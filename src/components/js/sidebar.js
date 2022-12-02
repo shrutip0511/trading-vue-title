@@ -12,6 +12,7 @@ export default class Sidebar {
     this.ctx = canvas.getContext("2d");
     this.comp = comp;
     this.$p = comp.$props;
+    this.hideBarValues = comp.$props.hideBarValues;
     this.data = this.$p.sub;
     this.range = this.$p.range;
     this.id = this.$p.grid_id;
@@ -155,11 +156,17 @@ export default class Sidebar {
       this.ctx.textAlign = side === "left" ? "end" : "start";
       let d = this.layout.prec;
       //this.ctx.fillText(p[1].toFixed(d), x1 + offst, p[0] + 4)
-      this.ctx.fillText(
-        p[1].toFixed(this.$p.decimalPlace),
-        x1 + offst,
-        p[0] + 4
-      );
+      // console.log("this.hideBarValues",this.hideBarValues)
+      if(this.hideBarValues){
+      //   Do Nothing
+      }else{
+        this.ctx.fillText(
+            p[1].toFixed(this.$p.decimalPlace),
+            x1 + offst,
+            p[0] + 4
+        );
+      }
+      
     }
 
     this.ctx.stroke();
