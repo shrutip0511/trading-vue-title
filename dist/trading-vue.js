@@ -471,7 +471,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 968:
+/***/ 541:
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -4263,19 +4263,19 @@ if(false) {}
 
 /***/ }),
 
-/***/ 188:
+/***/ 545:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(968);
+var content = __webpack_require__(541);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(346)/* ["default"] */ .Z)
-var update = add("0d7c2d9c", content, false, {});
+var update = add("7ca4294e", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -6795,8 +6795,8 @@ var CursorUpdater = /*#__PURE__*/function () {
   return CursorUpdater;
 }();
 /* harmony default export */ const updater = (CursorUpdater);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Section.vue?vue&type=template&id=37e1d857&
-var Sectionvue_type_template_id_37e1d857_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Section.vue?vue&type=template&id=cf9f5772&
+var Sectionvue_type_template_id_cf9f5772_render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
@@ -6849,10 +6849,10 @@ var Sectionvue_type_template_id_37e1d857_render = function render() {
     }
   }, "sidebar", _vm.sidebar_props, false))], 1);
 };
-var Sectionvue_type_template_id_37e1d857_staticRenderFns = [];
-Sectionvue_type_template_id_37e1d857_render._withStripped = true;
+var Sectionvue_type_template_id_cf9f5772_staticRenderFns = [];
+Sectionvue_type_template_id_cf9f5772_render._withStripped = true;
 
-;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=template&id=37e1d857&
+;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=template&id=cf9f5772&
 
 ;// CONCATENATED MODULE: ./src/stuff/frame.js
 
@@ -11370,7 +11370,6 @@ var Sidebar = /*#__PURE__*/function () {
     this.ctx = canvas.getContext("2d");
     this.comp = comp;
     this.$p = comp.$props;
-    this.hideBarValues = comp.$props.hideBarValues;
     this.data = this.$p.sub;
     this.range = this.$p.range;
     this.id = this.$p.grid_id;
@@ -11500,7 +11499,36 @@ var Sidebar = /*#__PURE__*/function () {
           var d = this.layout.prec;
           //this.ctx.fillText(p[1].toFixed(d), x1 + offst, p[0] + 4)
           // console.log("this.hideBarValues",this.hideBarValues)
-          if (this.hideBarValues) {
+          var hideBarValues = false;
+          try {
+            if (this.$p.cursor.values && Object.keys(this.$p.cursor.values).length > 0) {
+              var Data = this.$p.cursor.values[this.$p.grid_id];
+              var item = localStorage.getItem("HideVolumeBar");
+              var parsedData = JSON.parse(item);
+              var objectKeys = Object.keys(Data);
+              if (parsedData && Array.isArray(parsedData)) {
+                var _iterator2 = sidebar_createForOfIteratorHelper(parsedData),
+                  _step2;
+                try {
+                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                    var data = _step2.value;
+                    if (objectKeys.includes(data)) {
+                      hideBarValues = true;
+                      break;
+                    }
+                  }
+                } catch (err) {
+                  _iterator2.e(err);
+                } finally {
+                  _iterator2.f();
+                }
+              }
+              // console.log("objectKeys",objectKeys,parsedData)
+            }
+          } catch (e) {
+            console.log(e);
+          }
+          if (hideBarValues) {
             //   Do Nothing
           } else {
             this.ctx.fillText(p[1].toFixed(this.$p.decimalPlace), x1 + offst, p[0] + 4);
@@ -11525,19 +11553,19 @@ var Sidebar = /*#__PURE__*/function () {
           layout: layout,
           cursor: this.$p.cursor
         };
-        var _iterator2 = sidebar_createForOfIteratorHelper(this.$p.shaders),
-          _step2;
+        var _iterator3 = sidebar_createForOfIteratorHelper(this.$p.shaders),
+          _step3;
         try {
-          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-            var s = _step2.value;
+          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+            var s = _step3.value;
             this.ctx.save();
             s.draw(this.ctx, props);
             this.ctx.restore();
           }
         } catch (err) {
-          _iterator2.e(err);
+          _iterator3.e(err);
         } finally {
-          _iterator2.f();
+          _iterator3.f();
         }
       }
     }
@@ -11687,7 +11715,7 @@ var Sidebar = /*#__PURE__*/function () {
 /* harmony default export */ const Sidebarvue_type_script_lang_js_ = ({
   name: 'Sidebar',
   mixins: [canvas],
-  props: ['sub', 'layout', 'range', 'interval', 'cursor', 'colors', 'font', 'width', 'height', 'grid_id', 'enableSideBarBoxValue', 'rerender', 'y_transform', 'decimalPlace', 'applyShaders', 'tv_id', 'config', 'shaders', 'hideBarValues'],
+  props: ['sub', 'layout', 'range', 'interval', 'cursor', 'colors', 'font', 'width', 'height', 'grid_id', 'enableSideBarBoxValue', 'rerender', 'y_transform', 'decimalPlace', 'applyShaders', 'tv_id', 'config', 'shaders'],
   watch: {
     range: {
       handler: function handler() {
@@ -12314,14 +12342,12 @@ function shaders_arrayLikeToArray(arr, len) { if (len == null || len > arr.lengt
       return p;
     },
     sidebar_props: function sidebar_props() {
-      var _this$$props$common$d, _this$$props$common$d2;
       var id = this.$props.grid_id;
       var p = Object.assign({}, this.$props.common);
       p.width = p.layout.grids[id].sb;
       p.height = p.layout.grids[id].height;
       p.y_transform = p.y_ts[id];
       p.shaders = this.sb_shaders;
-      p.hideBarValues = this.$props.common.data && this.$props.common.data.length > 0 ? (_this$$props$common$d = this.$props.common.data[0]) === null || _this$$props$common$d === void 0 ? void 0 : (_this$$props$common$d2 = _this$$props$common$d.settings) === null || _this$$props$common$d2 === void 0 ? void 0 : _this$$props$common$d2.hideBarValues : false;
       return p;
     },
     section_values: function section_values() {
@@ -12445,9 +12471,9 @@ function shaders_arrayLikeToArray(arr, len) { if (len == null || len > arr.lengt
 });
 ;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=script&lang=js&
  /* harmony default export */ const components_Sectionvue_type_script_lang_js_ = (Sectionvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Section.vue?vue&type=style&index=0&id=37e1d857&prod&lang=css&
-var Sectionvue_type_style_index_0_id_37e1d857_prod_lang_css_ = __webpack_require__(188);
-;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=style&index=0&id=37e1d857&prod&lang=css&
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Section.vue?vue&type=style&index=0&id=cf9f5772&prod&lang=css&
+var Sectionvue_type_style_index_0_id_cf9f5772_prod_lang_css_ = __webpack_require__(545);
+;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=style&index=0&id=cf9f5772&prod&lang=css&
 
 ;// CONCATENATED MODULE: ./src/components/Section.vue
 
@@ -12460,8 +12486,8 @@ var Sectionvue_type_style_index_0_id_37e1d857_prod_lang_css_ = __webpack_require
 
 var Section_component = normalizeComponent(
   components_Sectionvue_type_script_lang_js_,
-  Sectionvue_type_template_id_37e1d857_render,
-  Sectionvue_type_template_id_37e1d857_staticRenderFns,
+  Sectionvue_type_template_id_cf9f5772_render,
+  Sectionvue_type_template_id_cf9f5772_staticRenderFns,
   false,
   null,
   null,

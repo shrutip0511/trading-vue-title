@@ -12,7 +12,6 @@ export default class Sidebar {
     this.ctx = canvas.getContext("2d");
     this.comp = comp;
     this.$p = comp.$props;
-    this.hideBarValues = comp.$props.hideBarValues;
     this.data = this.$p.sub;
     this.range = this.$p.range;
     this.id = this.$p.grid_id;
@@ -157,7 +156,30 @@ export default class Sidebar {
       let d = this.layout.prec;
       //this.ctx.fillText(p[1].toFixed(d), x1 + offst, p[0] + 4)
       // console.log("this.hideBarValues",this.hideBarValues)
-      if(this.hideBarValues){
+      let hideBarValues = false
+      try{
+        
+        if(this.$p.cursor.values && Object.keys(this.$p.cursor.values).length > 0){
+          let Data = this.$p.cursor.values[this.$p.grid_id]
+          let item = localStorage.getItem("HideVolumeBar");
+
+          let parsedData = JSON.parse(item);
+          let objectKeys =Object.keys(Data)
+          if(parsedData && Array.isArray(parsedData)){
+            for (const data of parsedData) {
+              if(objectKeys.includes(data)){
+                hideBarValues = true
+                break;
+              }
+            }
+          }
+          // console.log("objectKeys",objectKeys,parsedData)
+        }
+      }catch (e) {
+        console.log(e)
+      }
+      
+      if(hideBarValues){
       //   Do Nothing
       }else{
         this.ctx.fillText(

@@ -97,8 +97,6 @@ export default {
       p.height = p.layout.grids[id].height;
       p.y_transform = p.y_ts[id];
       p.shaders = this.sb_shaders;
-      p.hideBarValues = this.$props.common.data && this.$props.common.data.length > 0 ?
-          this.$props.common.data[0]?.settings?.hideBarValues : false;
      
      
       return p;
