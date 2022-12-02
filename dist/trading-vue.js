@@ -1,5 +1,5 @@
 /*!
- * TradingVue.JS - v1.0.3 - Thu Nov 10 2022
+ * TradingVue.JS - v1.0.3 - Fri Dec 02 2022
  *     https://github.com/tvjsx/trading-vue-js
  *     Copyright (c) 2019 C451 Code's All Right;
  *     Licensed under the MIT license
@@ -471,7 +471,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 589:
+/***/ 968:
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -4263,19 +4263,19 @@ if(false) {}
 
 /***/ }),
 
-/***/ 296:
+/***/ 188:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(589);
+var content = __webpack_require__(968);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(346)/* ["default"] */ .Z)
-var update = add("380fedf0", content, false, {});
+var update = add("0d7c2d9c", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -6795,8 +6795,8 @@ var CursorUpdater = /*#__PURE__*/function () {
   return CursorUpdater;
 }();
 /* harmony default export */ const updater = (CursorUpdater);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Section.vue?vue&type=template&id=8e7eb31a&
-var Sectionvue_type_template_id_8e7eb31a_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Section.vue?vue&type=template&id=37e1d857&
+var Sectionvue_type_template_id_37e1d857_render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
@@ -6849,10 +6849,10 @@ var Sectionvue_type_template_id_8e7eb31a_render = function render() {
     }
   }, "sidebar", _vm.sidebar_props, false))], 1);
 };
-var Sectionvue_type_template_id_8e7eb31a_staticRenderFns = [];
-Sectionvue_type_template_id_8e7eb31a_render._withStripped = true;
+var Sectionvue_type_template_id_37e1d857_staticRenderFns = [];
+Sectionvue_type_template_id_37e1d857_render._withStripped = true;
 
-;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=template&id=8e7eb31a&
+;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=template&id=37e1d857&
 
 ;// CONCATENATED MODULE: ./src/stuff/frame.js
 
@@ -8522,7 +8522,7 @@ var Mouse = /*#__PURE__*/function () {
     // Finally, let's make the canvas dirty!
     draw: function draw(ctx) {
       ctx.lineWidth = this.line_width;
-      console.log("this.line_type", this.line_type);
+      // console.log("this.line_type",this.line_type)
       ctx.strokeStyle = this.color;
       ctx.beginPath();
 
@@ -11370,6 +11370,7 @@ var Sidebar = /*#__PURE__*/function () {
     this.ctx = canvas.getContext("2d");
     this.comp = comp;
     this.$p = comp.$props;
+    this.hideBarValues = comp.$props.hideBarValues;
     this.data = this.$p.sub;
     this.range = this.$p.range;
     this.id = this.$p.grid_id;
@@ -11498,7 +11499,12 @@ var Sidebar = /*#__PURE__*/function () {
           this.ctx.textAlign = side === "left" ? "end" : "start";
           var d = this.layout.prec;
           //this.ctx.fillText(p[1].toFixed(d), x1 + offst, p[0] + 4)
-          this.ctx.fillText(p[1].toFixed(this.$p.decimalPlace), x1 + offst, p[0] + 4);
+          // console.log("this.hideBarValues",this.hideBarValues)
+          if (this.hideBarValues) {
+            //   Do Nothing
+          } else {
+            this.ctx.fillText(p[1].toFixed(this.$p.decimalPlace), x1 + offst, p[0] + 4);
+          }
         }
       } catch (err) {
         _iterator.e(err);
@@ -11681,7 +11687,7 @@ var Sidebar = /*#__PURE__*/function () {
 /* harmony default export */ const Sidebarvue_type_script_lang_js_ = ({
   name: 'Sidebar',
   mixins: [canvas],
-  props: ['sub', 'layout', 'range', 'interval', 'cursor', 'colors', 'font', 'width', 'height', 'grid_id', 'enableSideBarBoxValue', 'rerender', 'y_transform', 'decimalPlace', 'applyShaders', 'tv_id', 'config', 'shaders'],
+  props: ['sub', 'layout', 'range', 'interval', 'cursor', 'colors', 'font', 'width', 'height', 'grid_id', 'enableSideBarBoxValue', 'rerender', 'y_transform', 'decimalPlace', 'applyShaders', 'tv_id', 'config', 'shaders', 'hideBarValues'],
   watch: {
     range: {
       handler: function handler() {
@@ -12308,12 +12314,14 @@ function shaders_arrayLikeToArray(arr, len) { if (len == null || len > arr.lengt
       return p;
     },
     sidebar_props: function sidebar_props() {
+      var _this$$props$common$d, _this$$props$common$d2;
       var id = this.$props.grid_id;
       var p = Object.assign({}, this.$props.common);
       p.width = p.layout.grids[id].sb;
       p.height = p.layout.grids[id].height;
       p.y_transform = p.y_ts[id];
       p.shaders = this.sb_shaders;
+      p.hideBarValues = this.$props.common.data && this.$props.common.data.length > 0 ? (_this$$props$common$d = this.$props.common.data[0]) === null || _this$$props$common$d === void 0 ? void 0 : (_this$$props$common$d2 = _this$$props$common$d.settings) === null || _this$$props$common$d2 === void 0 ? void 0 : _this$$props$common$d2.hideBarValues : false;
       return p;
     },
     section_values: function section_values() {
@@ -12437,9 +12445,9 @@ function shaders_arrayLikeToArray(arr, len) { if (len == null || len > arr.lengt
 });
 ;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=script&lang=js&
  /* harmony default export */ const components_Sectionvue_type_script_lang_js_ = (Sectionvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Section.vue?vue&type=style&index=0&id=8e7eb31a&prod&lang=css&
-var Sectionvue_type_style_index_0_id_8e7eb31a_prod_lang_css_ = __webpack_require__(296);
-;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=style&index=0&id=8e7eb31a&prod&lang=css&
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Section.vue?vue&type=style&index=0&id=37e1d857&prod&lang=css&
+var Sectionvue_type_style_index_0_id_37e1d857_prod_lang_css_ = __webpack_require__(188);
+;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=style&index=0&id=37e1d857&prod&lang=css&
 
 ;// CONCATENATED MODULE: ./src/components/Section.vue
 
@@ -12452,8 +12460,8 @@ var Sectionvue_type_style_index_0_id_8e7eb31a_prod_lang_css_ = __webpack_require
 
 var Section_component = normalizeComponent(
   components_Sectionvue_type_script_lang_js_,
-  Sectionvue_type_template_id_8e7eb31a_render,
-  Sectionvue_type_template_id_8e7eb31a_staticRenderFns,
+  Sectionvue_type_template_id_37e1d857_render,
+  Sectionvue_type_template_id_37e1d857_staticRenderFns,
   false,
   null,
   null,
