@@ -121,7 +121,7 @@ export default {
     data_colors() { return [this.color] }
   },
   mounted() {
-    console.log("Spline Mounted")
+    //console.log("Spline Mounted")
   }
 
 }

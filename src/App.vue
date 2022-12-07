@@ -89,12 +89,12 @@ export default {
       this.enableArrow = val
     },
     changeNumber(val){
-      console.log(val)
+      //console.log(val)
       this.decimalPlace = Number(val)
     },
     handleDate() {
       let convertedDate= new Date(this.date)
-      console.log("date",convertedDate.getTime())
+      //console.log("date",convertedDate.getTime())
       this.chart.tv.goto(convertedDate.getTime);
     },
     onResize() {
@@ -103,7 +103,7 @@ export default {
     },
 
     handleCrosshair(){
-      console.log(this.enableCrosshair)
+      //console.log(this.enableCrosshair)
       this.enableCrosshair = !this.enableCrosshair
     }
   },

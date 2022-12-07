@@ -37,7 +37,7 @@ export default class Grid {
   }
 
   listeners() {
-    console.log(this.$p.enableZoom);
+    //console.log(this.$p.enableZoom);
     this.hm = Hamster(this.canvas);
     this.hm.wheel((event, delta) => this.mousezoom(-delta * 50, event));
 

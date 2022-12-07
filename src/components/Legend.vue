@@ -70,7 +70,7 @@ export default {
         // console.log('legendTxtConfig',legendTxtConfig)
         if(this.ignore_OHLC && legendTxtConfig){
           res = JSON.parse(legendTxtConfig)
-          console.log('parse response ',res)
+          //console.log('parse response ',res)
         }
         return res
       },

@@ -108,13 +108,13 @@ export default {
   watch:{
     isArrow:{
       handler:function(value){
-        console.log("candles isArrows",value,this.price)
+        //console.log("candles isArrows",value,this.price)
         this.price = new Price(this);
       }
     }
   },
   mounted() {
-    console.log("candles mounted", this.$props);
+    //console.log("candles mounted", this.$props);
   },
 };
 </script>

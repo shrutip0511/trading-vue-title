@@ -176,7 +176,7 @@ export default class Sidebar {
           // console.log("objectKeys",objectKeys,parsedData)
         }
       }catch (e) {
-        console.log(e)
+        console.error(e)
       }
       
       if(hideBarValues){

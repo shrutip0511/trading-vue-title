@@ -143,7 +143,7 @@ export default {
   },
   created() {
     // List of all possible overlays (builtin + custom)
-    console.log("this.$props",this.$props)
+    //console.log("this.$props",this.$props)
     this._list = [
       Spline,
       Splines,

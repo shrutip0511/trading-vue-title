@@ -202,7 +202,7 @@ class ScriptEngine {
             this.send_state()
 
         } catch(e) {
-            console.log(e)
+            console.error(e)
         }
     }
 
@@ -323,7 +323,7 @@ class ScriptEngine {
             }
 
         } catch(e) {
-            console.log(e)
+            console.error(e)
         }
 
         this.post_run_mods(sel)

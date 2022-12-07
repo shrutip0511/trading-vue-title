@@ -15,7 +15,7 @@ export default class Price {
         let config = this.comp.$props.config
         let comp = this.comp
         let last_bar = () => this.last_bar()
-        console.log("init_shader comp",comp?.isArrow)
+        //console.log("init_shader comp",comp?.isArrow)
         this.comp.$emit('new-shader', {
             target: 'sidebar', draw: ctx => {
 
