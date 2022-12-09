@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background: #cccccc">
      <!-- <label for="start">Start date:</label>
 
     <input type="number" id="decimalPlace" @change="changeNumber($event.target.value)" name="decimalPlace" />
@@ -8,9 +8,12 @@
       <option value="Candle">Candle</option>
       <option value="Splines">Splines</option>
     </select>-->
-<!--    <button @click="handleDate">Go to date</button> -->
+    <button class="ui icon button" @click="sliceD">
+      <i class="icon">3M</i>
+    </button>
 
     <trading-vue
+        v-on:range-changed="handleChartRange"
       :enableZoom="enableZoom"
       :priceLine="priceLine"
       :decimalPlace="decimalPlace"
@@ -27,6 +30,8 @@
       :color-text="colors.colorText"
       :legend-buttons="buttons"
       :ignore_OHLC="['Spline']"
+        :indexBased="true"
+        :ignoreNegativeIndex="true"
     >
     </trading-vue>
   </div>
@@ -55,6 +60,7 @@ export default {
       applyShaders:true,
       enableCrosshair:true,
       enableArrow:false,
+      ohlcv:JSON.parse(JSON.stringify(Data.ohlcv)),
       chart: new DataCube(Data),
       width: window.innerWidth,
       height: window.innerHeight,
@@ -69,6 +75,12 @@ export default {
   mounted() {
     window.addEventListener("resize", this.onResize);
     window.dc = this.chart;
+    this.chart.set("chart.type","Candles")
+    this.chart.set("chart.tf","1D")
+    this.$nextTick(() => {
+      this.width = window.innerWidth * 0.98;
+      this.height = window.innerHeight * 0.97;
+    })
     // this.chart.data.chart.type = "Splines";
     // console.log("chart", this.chart.tv);
     // this.chart.tv.goto(1543626000000);
@@ -78,6 +90,17 @@ export default {
     window.removeEventListener("resize", this.onResize);
   },
   methods: {
+    handleChartRange(timeBased,indexBased){
+      console.log("handleChartRange",timeBased,indexBased)
+    },
+    sliceD(){
+      let dataSlice = this.ohlcv.slice(this.ohlcv.length - 10,this.ohlcv.length - 1);
+      let date = new Date(dataSlice[0][0]);
+      // date.setUTCDate(Date.UTC())
+      console.log("dataSlice",dataSlice,this.ohlcv,date.toLocaleDateString())
+      this.chart.set("chart",{data: dataSlice})
+      this.chart.tv.setRange(0,dataSlice.length + 10)
+    },
     changeType(val){
       // let data = this.chart.get_one('chart.settings.priceLine')
       // console.log("priceLine",data.isArrow)
@@ -99,7 +122,7 @@ export default {
     },
     onResize() {
       this.width = window.innerWidth * 0.9;
-      this.height = window.innerHeight * 0.9;
+      this.height = window.innerHeight * 0.8;
     },
 
     handleCrosshair(){

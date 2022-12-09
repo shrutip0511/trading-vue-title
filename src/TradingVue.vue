@@ -415,9 +415,10 @@ export default {
         const ti_map = this.$refs.chart.ti_map;
         r = r.map((x) => ti_map.i2t(x));
       }
+      // update
       // console.log('range_changes_working 1',r,r2)
       this.$emit("range-changed", r,r2);
-      this.custom_event({ event: "range-changed", args: [r,r2] });
+      // this.custom_event({ event: "range-changed", args: [r,r2] });
       if (this.onrange) this.onrange(r);
     },
     set_loader(dc) {

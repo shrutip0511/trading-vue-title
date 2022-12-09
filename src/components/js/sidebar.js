@@ -153,42 +153,11 @@ export default class Sidebar {
 
       var offst = side === "left" ? -10 : 10;
       this.ctx.textAlign = side === "left" ? "end" : "start";
-      let d = this.layout.prec;
-      //this.ctx.fillText(p[1].toFixed(d), x1 + offst, p[0] + 4)
-      // console.log("this.hideBarValues",this.hideBarValues)
-      let hideBarValues = false
-      try{
-        
-        if(this.$p.cursor.values && Object.keys(this.$p.cursor.values).length > 0){
-          let Data = this.$p.cursor.values[this.$p.grid_id]
-          let item = localStorage.getItem("HideVolumeBar");
-
-          let parsedData = JSON.parse(item);
-          let objectKeys =Object.keys(Data)
-          if(parsedData && Array.isArray(parsedData)){
-            for (const data of parsedData) {
-              if(objectKeys.includes(data)){
-                hideBarValues = true
-                break;
-              }
-            }
-          }
-          // console.log("objectKeys",objectKeys,parsedData)
-        }
-      }catch (e) {
-        console.error(e)
-      }
-      
-      if(hideBarValues){
-      //   Do Nothing
-      }else{
-        this.ctx.fillText(
-            p[1].toFixed(this.$p.decimalPlace),
-            x1 + offst,
-            p[0] + 4
-        );
-      }
-      
+      this.ctx.fillText(
+          p[1].toFixed(this.$p.decimalPlace),
+          x1 + offst,
+          p[0] + 4
+      );      
     }
 
     this.ctx.stroke();

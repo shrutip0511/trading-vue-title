@@ -17,8 +17,7 @@ function GridMaker(id, params, master_grid = null) {
         sub, interval, range, ctx, $p, layers_meta, height, y_t, ti_map,
         grid, timezone
     } = params
-
-    var self = { ti_map }
+    var self = { ti_map,hideValues:grid.hideValues }
     var lm = layers_meta[id]
     var y_range_fn = null
     var ls = grid.logScale
@@ -390,6 +389,7 @@ function GridMaker(id, params, master_grid = null) {
         for (var y$ = y1; y$ <= self.$_hi; y$ += self.$_step) {
             let y = Math.floor(y$ * self.A + self.B)
             if (y > height) continue
+            if(!self.hideValues)
             self.ys.push([y, Utils.strip(y$)])
         }
 

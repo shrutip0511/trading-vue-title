@@ -88,14 +88,18 @@ export default class Botbar {
         let measure = this.ctx.measureText(lbl + '    ')
         let panwidth = Math.floor(measure.width)
         let cursor = this.$p.cursor.x
-        let x = Math.floor(cursor - panwidth * 0.5)
+        // let x = Math.floor(cursor - panwidth * 0.5)
+        let x = Math.floor(cursor)
+        // console.log(x,cursor,panwidth)
         let y = - 0.5
         let panheight = this.comp.config.PANHEIGHT
         this.ctx.fillRect(x, y, panwidth, panheight + 0.5)
 
         this.ctx.fillStyle = this.$p.colors.textHL
-        this.ctx.textAlign = 'center'
-        this.ctx.fillText(lbl, cursor, y + 16)
+        // this.ctx.textAlign = 'center'
+        // this.ctx.fillText(lbl, cursor, y + 16)
+        this.ctx.textAlign = 'left'
+        this.ctx.fillText(lbl, cursor+4, y + 16)
 
     }
 
