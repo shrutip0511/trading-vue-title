@@ -1,6 +1,6 @@
 <template>
 <div class="trading-vue-legend"
-     :style="calc_style" :class="main_chart_type">
+     :style="calc_style">
     <div v-if="grid_id === 0"
          class="trading-vue-ohlcv"
         :style = "{ 'max-width': common.width + 'px' }">
@@ -61,18 +61,14 @@ export default {
     name: 'ChartLegend',
     components: { ButtonGroup, Spinner },
     props: [
-        'common', 'values','decimalPlace','grid_id', 'meta_props','main_chart_type','ignore_OHLC',
+        'common', 'values','decimalPlace','grid_id', 'meta_props',
     ],
     computed: {
+      show_CustomProps(){
+        return this.common?.show_CustomProps || false;
+      },
       legendTxtConfig(){
-        let res = [];
-        let legendTxtConfig = localStorage.getItem('legendTxtConfig')
-        // console.log('legendTxtConfig',legendTxtConfig)
-        if(this.ignore_OHLC && legendTxtConfig){
-          res = JSON.parse(legendTxtConfig)
-          //console.log('parse response ',res)
-        }
-        return res
+        return this.common?.legendTxtConfig;
       },
         ohlcv() {
             if (!this.$props.values || !this.$props.values.ohlcv) {
@@ -81,7 +77,6 @@ export default {
             // const prec = this.layout.prec
             const prec = this.decimalPlace
             // const prec = 3
-
             // TODO: main the main legend more customizable
             let id = this.main_type + '_0'
             let meta = this.$props.meta_props[id] || {}
@@ -147,10 +142,6 @@ export default {
         },
         show_values() {
             return this.common.cursor.mode !== 'explore'
-        },
-        show_CustomProps() {
-          // console.log('ignoreOHLC',ignoreOHLC)
-          return this.$props.ignore_OHLC.includes(this.$props.main_chart_type)
         }
     },
     methods: {

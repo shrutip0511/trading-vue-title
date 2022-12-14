@@ -7,8 +7,6 @@
       :decimalPlace="decimalPlace"
       :grid_id="grid_id"
       :common="legend_props"
-      :main_chart_type="main_chart_type"
-      :ignore_OHLC="ignore_OHLC"      
       :meta_props="get_meta_props"
       @legend-button-click="button_click"
     >
@@ -117,6 +115,20 @@ export default {
         p.offchart = all;
         p.data = [p.data[id - 1]];
         p.data.push(...all.filter((x) => x.grid && x.grid.id === id));
+      }else{
+        let res = [];
+        let legendTxtConfig = localStorage.getItem('legendTxtConfig')
+        // console.log('legendTxtConfig',legendTxtConfig)
+        if(this.$props.ignore_OHLC && legendTxtConfig){
+          res = JSON.parse(legendTxtConfig)
+          //console.log('parse response ',res)
+        }
+        let mainData = p.data.find(d => d.main)
+        let mainType = mainData.type ? mainData.type : "";
+        let show_CustomProps = this.$props.ignore_OHLC.includes(mainType)
+        p.legendTxtConfig = res
+        p.show_CustomProps = show_CustomProps
+        // console.log(JSON.stringify({a:p.show_CustomProps,b:p.legendTxtConfig,mainType}))
       }
       return p;
     },
