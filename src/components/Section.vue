@@ -5,6 +5,7 @@
       ref="legend"
       :values="section_values"
       :decimalPlace="decimalPlace"
+      :legendDecimal="legendDecimal"
       :grid_id="grid_id"
       :common="legend_props"
       :meta_props="get_meta_props"
@@ -59,7 +60,7 @@ export default {
     ChartLegend,
   },
   mixins: [Shaders],
-  props: ["common", "grid_id",'enableSideBarBoxValue', "enableZoom","decimalPlace","priceLine","enableCrosshair","applyShaders","ignore_OHLC"],
+  props: ["common", "grid_id",'enableSideBarBoxValue', "enableZoom","decimalPlace","priceLine","enableCrosshair","applyShaders","ignore_OHLC","legendDecimal"],
   data() {
     return {
       meta_props: {},

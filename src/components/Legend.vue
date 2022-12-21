@@ -61,7 +61,7 @@ export default {
     name: 'ChartLegend',
     components: { ButtonGroup, Spinner },
     props: [
-        'common', 'values','decimalPlace','grid_id', 'meta_props',
+        'common', 'values','decimalPlace','grid_id', 'meta_props','legendDecimal'
     ],
     computed: {
       show_CustomProps(){
@@ -84,16 +84,28 @@ export default {
                 return (meta.legend() || []).map(x => x.value)
             }
 
+            if(this.$props.legendDecimal){       
+                return [
+                this.$props.values.ohlcv[1].toFixed(this.$props.values.ohlcv[1] < 1 ? 3 : 2),
+                this.$props.values.ohlcv[2].toFixed(this.$props.values.ohlcv[2] < 1 ? 3 : 2),
+                this.$props.values.ohlcv[3].toFixed(this.$props.values.ohlcv[3] < 1 ? 3 : 2),
+                this.$props.values.ohlcv[4].toFixed(this.$props.values.ohlcv[4] < 1 ? 3 : 2),
+                this.$props.values.ohlcv[5] ?
+                Number(this.$props.values.ohlcv[5].toFixed(0)).toLocaleString('en-AU'):
+                'n/a'
+            ]
+        }else{
             return [
                 this.$props.values.ohlcv[1].toFixed(prec),
                 this.$props.values.ohlcv[2].toFixed(prec),
                 this.$props.values.ohlcv[3].toFixed(prec),
                 this.$props.values.ohlcv[4].toFixed(prec),
                 this.$props.values.ohlcv[5] ?
-                    Number(this.$props.values.ohlcv[5].toFixed(0)).toLocaleString('en-AU'):
-                    'n/a'
-            ]
-        },
+                Number(this.$props.values.ohlcv[5].toFixed(0)).toLocaleString('en-AU'):
+                'n/a'
+            ]   
+        }
+    },
         // TODO: add support for { grid: { id : N }}
         indicators() {
             const values = this.$props.values

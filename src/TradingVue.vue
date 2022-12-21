@@ -36,6 +36,7 @@
     :applyShaders="applyShaders"
     :priceLine="priceLine"
     :decimalPlace="decimalPlace"
+    :legendDecimal="legendDecimal"
     :enableCrosshair="enableCrosshair"
     :ignoreNegativeIndex="ignoreNegativeIndex"
     :ignore_OHLC="ignore_OHLC"    
@@ -195,6 +196,10 @@ export default {
       default: function () {
         return [];
       },
+    },
+    legendDecimal:{
+      type:Boolean,
+      default:false
     },
     indexBased: {
       type: Boolean,

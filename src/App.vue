@@ -20,7 +20,7 @@
       :applyShaders="applyShaders"
       :enableCrosshair="enableCrosshair"
       :enableSideBarBoxValue="enableSideBarBoxValue"
-      
+      :legendDecimal="legendDecimal"
       :enableArrow="enableArrow"
       :data="chart"
       :width="this.width"
@@ -54,6 +54,7 @@ export default {
       buttons: ["display", "settings", "remove"],
       enableZoom: true,
       decimalPlace:3,
+      legendDecimal:false,
       chartType:"Candle",
       priceLine:true,
       enableSideBarBoxValue:false,

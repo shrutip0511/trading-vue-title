@@ -18,6 +18,7 @@
             :enableZoom="enableZoom"
             :enableSideBarBoxValue="enableSideBarBoxValue"
             :decimalPlace="decimalPlace"
+            :legendDecimal="legendDecimal"
             :applyShaders="applyShaders"
             :priceLine="priceLine"
             :enableCrosshair="enableCrosshair"
@@ -57,7 +58,7 @@ export default {
     props: [
         'title_txt', 'data', 'width', 'height', 'font', 'colors',
         'overlays', 'tv_id', 'config', 'buttons', 'toolbar', 'ib','applyShaders',
-        'skin', 'timezone','enableZoom','enableSideBarBoxValue','decimalPlace','ignore_OHLC','priceLine','ignoreNegativeIndex','enableCrosshair'
+        'skin', 'timezone','enableZoom','enableSideBarBoxValue','decimalPlace','ignore_OHLC','priceLine','ignoreNegativeIndex','enableCrosshair','legendDecimal'
     ],
     data() {
         return {
