@@ -58,7 +58,8 @@ export default {
     props: [
         'title_txt', 'data', 'width', 'height', 'font', 'colors',
         'overlays', 'tv_id', 'config', 'buttons', 'toolbar', 'ib','applyShaders',
-        'skin', 'timezone','enableZoom','enableSideBarBoxValue','decimalPlace','ignore_OHLC','priceLine','ignoreNegativeIndex','enableCrosshair','legendDecimal'
+        'skin', 'timezone','enableZoom','enableSideBarBoxValue','decimalPlace','ignore_OHLC','priceLine','ignoreNegativeIndex','enableCrosshair','legendDecimal',
+        'showSettingsButton'
     ],
     data() {
         return {
@@ -116,6 +117,7 @@ export default {
                 last: this.last_candle
             })
             p.overlays = this.$props.overlays
+            p.showSettingsButton= this.$props.showSettingsButton
             return p
         },
         sub_section() {

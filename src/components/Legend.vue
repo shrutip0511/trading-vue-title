@@ -4,12 +4,15 @@
     <div v-if="grid_id === 0"
          class="trading-vue-ohlcv"
         :style = "{ 'max-width': common.width + 'px' }">
+      <template v-if="common?.showLegendPropsData && common.showLegendPropsData.length">
+        <b v-for="(n,i) in common.showLegendPropsData" :key="i" >{{n.k}} : {{n.v}}&nbsp;</b><br/>
+      </template>
+      <template v-if="show_CustomProps"><span v-for="(n,i) in legendTxtConfig" :key="i" :style="n.style">{{n.name}}&nbsp;</span></template>
         <span class="t-vue-title"
               v-if="!show_CustomProps"
              :style="{ color: common.colors.title }">
               {{common.title_txt}}
-        </span>
-        <template v-if="show_CustomProps"><span v-for="(n,i) in legendTxtConfig" :key="i" :style="n.style">{{n.name}}&nbsp;</span></template>
+        </span>        
         <span v-if="show_values && !show_CustomProps">
             O<span class="t-vue-lspan" >{{ohlcv[0]}}</span>
             H<span class="t-vue-lspan" >{{ohlcv[1]}}</span>
@@ -21,6 +24,19 @@
             :style="{color: common.colors.text}">
             {{(common.meta.last || [])[4]}}
         </span>
+      <legend-button
+          v-if="show_Settings"
+          key="main_chart_settings"
+          id="main_settings"
+          :tv_id="grid_id"
+          :ov_id="common.chartType"
+          :grid_id="grid_id"
+          :index="grid_id"
+          :icon="settingIcon"
+          :config="{L_BTN_SIZE:21}"
+          @legend-button-click="button_click"
+      >
+      </legend-button>
     </div>
     <div v-for="ind in this.indicators" class="t-vue-ind">
         <span class="t-vue-iname">{{ind.name}}</span>
@@ -56,16 +72,24 @@
 
 import ButtonGroup from './ButtonGroup.vue'
 import Spinner from './Spinner.vue'
-
+import LegendButton from "./LegendButton.vue";
+import Icons from '../stuff/icons.json'
+const settingPng = Icons['gear.png']
 export default {
     name: 'ChartLegend',
-    components: { ButtonGroup, Spinner },
+    components: {LegendButton, ButtonGroup, Spinner },
     props: [
         'common', 'values','decimalPlace','grid_id', 'meta_props','legendDecimal'
     ],
     computed: {
       show_CustomProps(){
         return this.common?.show_CustomProps || false;
+      },
+      show_Settings(){        
+        return this.common?.showSettingsMain || false;
+      },
+      settingIcon(){
+        return settingPng
       },
       legendTxtConfig(){
         return this.common?.legendTxtConfig;

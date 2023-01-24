@@ -199,7 +199,7 @@ export default class Sidebar {
 
     //let lbl = this.$p.cursor.y$.toFixed(this.layout.prec)
     // console.log("this.$p.cursor.y$", this.$p.enableSideBarBoxValue);
-    let lbl = this.$p.cursor.y$.toFixed(2);
+    let lbl = this.$p.cursor.y$.toFixed(3);
     if (this.$p.enableSideBarBoxValue) {
        let roundOffValue= this.$p.cursor.y$ < 1.00 ? 3 : this.$p.cursor.y$ < 0.01 ? 4 : 2
        lbl = this.$p.cursor.y$.toFixed(roundOffValue);

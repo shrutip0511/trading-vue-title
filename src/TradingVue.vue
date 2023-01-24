@@ -258,6 +258,12 @@ export default {
         return [];
       },
     },
+    showSettingsButton: {
+      type: Array[Object],
+      default: function () {
+        return [];
+      },
+    },
   },
   data() {
     return { reset: 0, tip: null };
@@ -279,6 +285,7 @@ export default {
         colors: Object.assign({}, this.$props.colors || this.colorpack),
         skin: this.skin_proto,
         timezone: this.$props.timezone,
+        showSettingsButton: this.$props.showSettingsButton,
       };
 
       this.parse_colors(chart_props.colors);

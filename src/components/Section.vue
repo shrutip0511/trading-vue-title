@@ -118,17 +118,28 @@ export default {
         p.data.push(...all.filter((x) => x.grid && x.grid.id === id));
       }else{
         let res = [];
+        let showLegendPropsData = [];
         let legendTxtConfig = localStorage.getItem('legendTxtConfig')
+        let showLegendProps = localStorage.getItem('showLegendProps')
         // console.log('legendTxtConfig',legendTxtConfig)
         if(this.$props.ignore_OHLC && legendTxtConfig){
           res = JSON.parse(legendTxtConfig)
           //console.log('parse response ',res)
         }
+        if(showLegendProps){
+          showLegendPropsData = JSON.parse(showLegendProps)
+          if(Array.isArray(showLegendPropsData) && showLegendPropsData.length > 0){
+            p.showLegendPropsData = showLegendPropsData
+          }
+        }
         let mainData = p.data.find(d => d.main)
-        let mainType = mainData.type ? mainData.type : "";
-        let show_CustomProps = this.$props.ignore_OHLC.includes(mainType)
+        let chartType = mainData.type ? mainData.type : "";
+        let show_CustomProps = this.$props.ignore_OHLC.includes(chartType)
+        let showSettingsMain = this.$props.common.showSettingsButton.includes(chartType)
         p.legendTxtConfig = res
+        p.chartType = chartType
         p.show_CustomProps = show_CustomProps
+          p.showSettingsMain = showSettingsMain
         // console.log(JSON.stringify({a:p.show_CustomProps,b:p.legendTxtConfig,mainType}))
       }
       return p;
