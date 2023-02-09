@@ -55,7 +55,7 @@ function GridMaker(id, params, master_grid = null) {
             }
             if (y_range_fn) { var [hi, lo, exp] = y_range_fn(hi, lo) }
         }
-
+        console.log("master_grid",master_grid,y_t)
         // Fixed y-range in non-auto mode
         if (y_t && !y_t.auto && y_t.range) {
             self.$_hi = y_t.range[0]

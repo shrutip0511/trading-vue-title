@@ -47,6 +47,7 @@
       :config="chart_config"
       @custom-event="custom_event"
       @range-changed="range_changed"
+      @sidebar-transform="sidebar_transform"
       @legend-button-click="legend_button"
     >
     </chart>
@@ -325,6 +326,9 @@ export default {
         ? this.skin_proto.font
         : this.font;
     },
+    auto_y_axis(){
+      return this.$refs.chart?.auto_y_axis || true
+    }
   },
   beforeDestroy() {
     this.custom_event({ event: "before-destroy" });
@@ -433,6 +437,9 @@ export default {
       // this.custom_event({ event: "range-changed", args: [r,r2] });
       if (this.onrange) this.onrange(r);
     },
+    sidebar_transform(y_transform){
+      this.$emit('sidebar-transform',y_transform)
+    },
     set_loader(dc) {
       this.onrange = (r) => {
         let pf = this.chart_props.ib ? "_ms" : "";
@@ -456,6 +463,9 @@ export default {
     mouseleave() {
       this.$refs.chart.activated = false;
     },
+    toggleSideBarYAxis(){
+      this.$refs.chart.toggleSideBarYAxis()
+    }
   },
   watch:{
     decimalPlace(n) {

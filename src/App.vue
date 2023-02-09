@@ -9,11 +9,12 @@
       <option value="Splines">Splines</option>
     </select>-->
     <button class="ui icon button" @click="sliceD">
-      <i class="icon">3M</i>
+      <i class="icon">Toggle {{auto_y_axis ? 'A' :'M'}}</i>
     </button>
 
     <trading-vue
         v-on:range-changed="handleChartRange"
+        v-on:sidebar-transform="sidebar_transform"
       :enableZoom="enableZoom"
       :priceLine="priceLine"
       :decimalPlace="decimalPlace"
@@ -32,6 +33,7 @@
       :ignore_OHLC="['Spline']"
         :indexBased="true"
         :ignoreNegativeIndex="true"
+        ref="tradeRef"
     >
     </trading-vue>
   </div>
@@ -53,6 +55,7 @@ export default {
     return {
       buttons: ["display", "settings", "remove"],
       enableZoom: true,
+      auto_y_axis: true,
       decimalPlace:3,
       legendDecimal:false,
       chartType:"Candle",
@@ -90,17 +93,27 @@ export default {
   beforeDestroy() {
     window.removeEventListener("resize", this.onResize);
   },
+  computed:{
+  },
   methods: {
+    sidebar_transform(yTransform){
+      console.log("yTransform",yTransform)
+      this.auto_y_axis = yTransform.auto
+    },
     handleChartRange(timeBased,indexBased){
-      console.log("handleChartRange",timeBased,indexBased)
+      // console.log("handleChartRange",timeBased,indexBased)
     },
     sliceD(){
-      let dataSlice = this.ohlcv.slice(this.ohlcv.length - 10,this.ohlcv.length - 1);
-      let date = new Date(dataSlice[0][0]);
-      // date.setUTCDate(Date.UTC())
-      console.log("dataSlice",dataSlice,this.ohlcv,date.toLocaleDateString())
-      this.chart.set("chart",{data: dataSlice})
-      this.chart.tv.setRange(0,dataSlice.length + 10)
+      // let dataSlice = this.ohlcv.slice(this.ohlcv.length - 10,this.ohlcv.length - 1);
+      // let date = new Date(dataSlice[0][0]);
+      // // date.setUTCDate(Date.UTC())
+      // console.log("dataSlice",dataSlice,this.ohlcv,date.toLocaleDateString())
+      // this.chart.set("chart",{data: dataSlice})
+      // this.chart.tv.setRange(0,dataSlice.length + 10)
+
+      console.log("this.$refs.tradeRef",this.$refs?.tradeRef?.toggleSideBarYAxis)
+      this.$refs?.tradeRef?.toggleSideBarYAxis()
+      
     },
     changeType(val){
       // let data = this.chart.get_one('chart.settings.priceLine')

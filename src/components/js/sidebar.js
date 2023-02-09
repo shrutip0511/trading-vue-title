@@ -18,9 +18,13 @@ export default class Sidebar {
     this.layout = this.$p.layout.grids[this.id];
 
     this.side = side;
+    this.calc_range_function = this.calc_range_by_layout;
     this.listeners();
   }
 
+  calc_range_by_layout() {
+    return [this.layout.$_hi, this.layout.$_lo]
+  }
   listeners() {
     let mc = (this.mc = new Hammer.Manager(this.canvas));
     mc.add(
