@@ -1,5 +1,5 @@
 /*!
- * TradingVue.JS - v1.0.3 - Thu Feb 09 2023
+ * TradingVue.JS - v1.0.3 - Tue Jun 13 2023
  *     https://github.com/tvjsx/trading-vue-js
  *     Copyright (c) 2019 C451 Code's All Right;
  *     Licensed under the MIT license
@@ -387,7 +387,7 @@ module.exports.isSortableArrayLike = function (o) {
 
 /***/ }),
 
-/***/ 934:
+/***/ 78:
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -471,7 +471,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 5:
+/***/ 608:
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -4155,19 +4155,19 @@ if (true) {
 
 /***/ }),
 
-/***/ 195:
+/***/ 581:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(934);
+var content = __webpack_require__(78);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(346)/* ["default"] */ .Z)
-var update = add("be419e82", content, false, {});
+var update = add("5e824312", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -4263,19 +4263,19 @@ if(false) {}
 
 /***/ }),
 
-/***/ 95:
+/***/ 755:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(5);
+var content = __webpack_require__(608);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(346)/* ["default"] */ .Z)
-var update = add("0ce8a3f2", content, false, {});
+var update = add("5efb0048", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -5106,7 +5106,7 @@ __webpack_require__.d(__webpack_exports__, {
   "primitives": () => (/* binding */ primitives)
 });
 
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=template&id=556e55aa&
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=template&id=bebb1b0c&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -5161,6 +5161,7 @@ var render = function render() {
     on: {
       "custom-event": _vm.custom_event,
       "range-changed": _vm.range_changed,
+      chart_data_changed: _vm.chart_data_changed,
       "sidebar-transform": _vm.sidebar_transform,
       "legend-button-click": _vm.legend_button
     }
@@ -5182,7 +5183,7 @@ var render = function render() {
 var staticRenderFns = [];
 render._withStripped = true;
 
-;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=template&id=556e55aa&
+;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=template&id=bebb1b0c&
 
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
 function _arrayLikeToArray(arr, len) {
@@ -5340,8 +5341,8 @@ var MAP_UNIT = {
   map_unit: MAP_UNIT,
   IB_TF_WARN: IB_TF_WARN
 });
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Chart.vue?vue&type=template&id=13a6668e&
-var Chartvue_type_template_id_13a6668e_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Chart.vue?vue&type=template&id=797b3a27&
+var Chartvue_type_template_id_797b3a27_render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
@@ -5385,10 +5386,10 @@ var Chartvue_type_template_id_13a6668e_render = function render() {
     }
   }, "botbar", _vm.botbar_props, false))], 2);
 };
-var Chartvue_type_template_id_13a6668e_staticRenderFns = [];
-Chartvue_type_template_id_13a6668e_render._withStripped = true;
+var Chartvue_type_template_id_797b3a27_staticRenderFns = [];
+Chartvue_type_template_id_797b3a27_render._withStripped = true;
 
-;// CONCATENATED MODULE: ./src/components/Chart.vue?vue&type=template&id=13a6668e&
+;// CONCATENATED MODULE: ./src/components/Chart.vue?vue&type=template&id=797b3a27&
 
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
 function _arrayWithHoles(arr) {
@@ -5734,6 +5735,68 @@ var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
     }
     return event.defaultPrevented;
   },
+  calculate_data_index_without_ti_map: function calculate_data_index_without_ti_map(array, target, tf) {
+    if (tf === void 0) {
+      tf = "D";
+    }
+    var left = 0;
+    var right = array.length - 1;
+    var found = false;
+    var interval_ms = this.detect_interval(array);
+    console.log("searchResults", interval_ms);
+    var GetValue = function GetValue(i) {
+      var _array$i;
+      return array === null || array === void 0 ? void 0 : (_array$i = array[i]) === null || _array$i === void 0 ? void 0 : _array$i[0];
+    };
+    while (left <= right) {
+      var mid = Math.floor((left + right) / 2);
+      var midTimestamp = GetValue(mid);
+      if (midTimestamp === target) {
+        return {
+          index: mid,
+          difference: 0
+        }; // Found the target
+      } else if (midTimestamp < target) {
+        left = mid + 1; // Target is in the right half
+      } else {
+        right = mid - 1; // Target is in the left half
+      }
+    }
+
+    var targetDate = new Date(target).toLocaleString();
+    // Target not found, determine which side it would be on and calculate the difference
+    var side;
+    var difference;
+    var closeInd;
+    var maxInd = Math.max(left, right);
+    var minIndex = Math.min(left, right);
+    var diffBtwCandles = GetValue(maxInd) - GetValue(minIndex);
+    if (target < GetValue(left)) {
+      side = 'left';
+      // difference = array[left] - target;
+      difference = target - GetValue(right);
+      closeInd = right;
+    } else {
+      side = 'right';
+      difference = target - GetValue(right);
+      closeInd = right;
+    }
+    var offSetValue = difference / interval_ms;
+    var offSetValueBtwCandles = diffBtwCandles / interval_ms;
+    var computedIndex = closeInd + offSetValue;
+    return {
+      targetDate: targetDate,
+      index: computedIndex,
+      difference: difference,
+      offSetValueBtwCandles: offSetValueBtwCandles,
+      offSetValue: offSetValue,
+      side: side,
+      closeInd: closeInd,
+      right: right,
+      left: left,
+      tf: tf
+    };
+  },
   // WTF with modern web development
   is_mobile: function (w) {
     return 'onorientationchange' in w && (!!navigator.maxTouchPoints || !!navigator.msMaxTouchPoints || 'ontouchstart' in w || w.DocumentTouch && document instanceof w.DocumentTouch);
@@ -6018,7 +6081,8 @@ function GridMaker(id, params, master_grid) {
           exp = _y_range_fn4[2];
       }
     }
-    console.log("master_grid", master_grid, y_t);
+    // console.log("master_grid",master_grid,y_t)
+
     // Fixed y-range in non-auto mode
     if (y_t && !y_t.auto && y_t.range) {
       self.$_hi = y_t.range[0];
@@ -6799,8 +6863,8 @@ var CursorUpdater = /*#__PURE__*/function () {
   return CursorUpdater;
 }();
 /* harmony default export */ const updater = (CursorUpdater);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Section.vue?vue&type=template&id=21ffc46a&
-var Sectionvue_type_template_id_21ffc46a_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Section.vue?vue&type=template&id=2739563c&
+var Sectionvue_type_template_id_2739563c_render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
@@ -6852,10 +6916,10 @@ var Sectionvue_type_template_id_21ffc46a_render = function render() {
     }
   }, "sidebar", _vm.sidebar_props, false))], 1);
 };
-var Sectionvue_type_template_id_21ffc46a_staticRenderFns = [];
-Sectionvue_type_template_id_21ffc46a_render._withStripped = true;
+var Sectionvue_type_template_id_2739563c_staticRenderFns = [];
+Sectionvue_type_template_id_2739563c_render._withStripped = true;
 
-;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=template&id=21ffc46a&
+;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=template&id=2739563c&
 
 ;// CONCATENATED MODULE: ./src/stuff/frame.js
 
@@ -7431,7 +7495,7 @@ var Grid = /*#__PURE__*/function () {
       // the lag. No smooth movement and it's annoying.
       // Solution: we could try to calc the layout immediatly
       // somewhere here. Still will hurt the sidebar & bottombar
-      this.comp.$emit("range-changed", range);
+      this.comp.$emit("range-changed", range, true);
     }
 
     // Propagate mouse event to overlays
@@ -8408,7 +8472,9 @@ var Mouse = /*#__PURE__*/function () {
         if (this.$props.settings.$uuid) {
           args.push(this.$props.settings.$uuid);
         }
+        // console.log("overlay custom event",event,args)
       }
+
       if (event === 'new-interface') {
         args[0].overlay = this;
         args[0].uuid = this.last_ux_id = "".concat(this.grid_id, "-").concat(this.id, "-").concat(this.uxs_count++);
@@ -9720,7 +9786,7 @@ var Price = /*#__PURE__*/function () {
         if (x[3] < lo) lo = x[3];
       }
       var yRange = [hi, lo];
-      console.log("yRange", yRange);
+      // console.log("yRange",yRange)
       return yRange;
     }
   },
@@ -10126,7 +10192,10 @@ function tool_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) 
       this.collisions = [];
     },
     remove_tool: function remove_tool() {
-      if (this.selected) this.$emit('remove-tool');
+      if (this.selected) {
+        console.log("remove_tool");
+        this.$emit('remove-tool');
+      }
     },
     start_drag: function start_drag() {
       this.$emit('scroll-lock', true);
@@ -12454,8 +12523,12 @@ function shaders_arrayLikeToArray(arr, len) { if (len == null || len > arr.lengt
   },
 
   methods: {
-    range_changed: function range_changed(r) {
-      this.$emit("range-changed", r);
+    range_changed: function range_changed(r, manualInteraction) {
+      if (manualInteraction === void 0) {
+        manualInteraction = false;
+      }
+      console.log("range_changed", r);
+      this.$emit("range-changed", r, manualInteraction);
     },
     cursor_changed: function cursor_changed(c) {
       c.grid_id = this.$props.grid_id;
@@ -12503,9 +12576,9 @@ function shaders_arrayLikeToArray(arr, len) { if (len == null || len > arr.lengt
 });
 ;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=script&lang=js&
  /* harmony default export */ const components_Sectionvue_type_script_lang_js_ = (Sectionvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Section.vue?vue&type=style&index=0&id=21ffc46a&prod&lang=css&
-var Sectionvue_type_style_index_0_id_21ffc46a_prod_lang_css_ = __webpack_require__(95);
-;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=style&index=0&id=21ffc46a&prod&lang=css&
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Section.vue?vue&type=style&index=0&id=2739563c&prod&lang=css&
+var Sectionvue_type_style_index_0_id_2739563c_prod_lang_css_ = __webpack_require__(755);
+;// CONCATENATED MODULE: ./src/components/Section.vue?vue&type=style&index=0&id=2739563c&prod&lang=css&
 
 ;// CONCATENATED MODULE: ./src/components/Section.vue
 
@@ -12518,8 +12591,8 @@ var Sectionvue_type_style_index_0_id_21ffc46a_prod_lang_css_ = __webpack_require
 
 var Section_component = normalizeComponent(
   components_Sectionvue_type_script_lang_js_,
-  Sectionvue_type_template_id_21ffc46a_render,
-  Sectionvue_type_template_id_21ffc46a_staticRenderFns,
+  Sectionvue_type_template_id_2739563c_render,
+  Sectionvue_type_template_id_2739563c_staticRenderFns,
   false,
   null,
   null,
@@ -13136,19 +13209,26 @@ var TI = /*#__PURE__*/function () {
 
       // Discrete mapping
       var res = this.ti_map[t];
+      console.log("t2i Discrete mapping", res);
       if (res !== undefined) return res;
       var t0 = this.sub[0][0];
       var tN = this.sub[this.sub.length - 1][0];
-
+      console.log("t2i value", {
+        t0: t0,
+        tN: tN
+      });
       // Linear extrapolation
       if (t < t0) {
+        console.log("t2i fall into first if");
         return this.ss - (t0 - t) / this.tf;
       } else if (t > tN) {
+        console.log("t2i fall into else if");
         var k = this.sub.length - 1;
         return this.ss + k - (tN - t) / this.tf;
       }
       try {
         // Linear Interpolation
+        console.log("t2i fall into fastest nearest ");
         var i = utils.fast_nearest(this.sub, t);
         var tk = this.sub[i[0]][0];
         var tk2 = this.sub[i[1]][0];
@@ -13362,7 +13442,7 @@ var TI = /*#__PURE__*/function () {
         utils.overwrite(this.range, this.range);
         this.interval = 1;
       }
-      var sub = this.subset();
+      var sub = this.subset(this.range, 'subset ib watch');
       utils.overwrite(this.sub, sub);
       this.update_layout();
     },
@@ -13378,8 +13458,9 @@ var TI = /*#__PURE__*/function () {
     },
     data: {
       handler: function handler(n, p) {
+        var _this = this;
         if (!this.sub.length) this.init_range();
-        var sub = this.subset();
+        var sub = this.subset(this.range, 'subset dataset');
         // Fixes Infinite loop warn, when the subset is empty
         // TODO: Consider removing 'sub' from data entirely
         if (this.sub.length || sub.length) {
@@ -13402,8 +13483,10 @@ var TI = /*#__PURE__*/function () {
         // this
         //   this.$emit('custom-event', {})
         //   console.log('this.rerender',findMain,this.sub.length)
+        setTimeout(function () {
+          _this.$emit("chart_data_changed", nw);
+        });
       },
-
       deep: true
     }
   },
@@ -13413,7 +13496,7 @@ var TI = /*#__PURE__*/function () {
 
     // Initial layout (All measurments for the chart)
     this.init_range();
-    this.sub = this.subset();
+    this.sub = this.subset(this.range, 'subset created');
     utils.overwrite(this.range, this.range); // Fix for IB mode
     this._layout = new layout(this);
 
@@ -13423,11 +13506,14 @@ var TI = /*#__PURE__*/function () {
     this.init_shaders(this.skin);
   },
   methods: {
-    range_changed: function range_changed(r) {
+    range_changed: function range_changed(r, manualInteraction) {
+      if (manualInteraction === void 0) {
+        manualInteraction = false;
+      }
       // Overwite & keep the original references
       // Quick fix for IB mode (switch 2 next lines)
       // TODO: wtf?
-      var sub = this.subset(r);
+      var sub = this.subset(r, 'subset range changed');
       // console.log('this.range before update',this.range)
       utils.overwrite(this.range, r);
       utils.overwrite(this.sub, sub);
@@ -13436,12 +13522,27 @@ var TI = /*#__PURE__*/function () {
       // console.log('range_changes_working',this.ignoreNegativeIndex)
       if (this.ignoreNegativeIndex) {
         // let r2 = this.ti_map.t2i(r[0])
-        this.$emit('range-changed', r, this.range);
+        this.$emit('range-changed', r, manualInteraction);
       } else {
-        this.$emit('range-changed', r);
+        this.$emit('range-changed', r, manualInteraction);
       }
       if (this.$props.ib) this.save_data_t();
 
+      // console.log('this.ti_map.t2i(r[0])',this.ti_map.t2i(r[0]))
+    },
+    range_changed_by_time: function range_changed_by_time(startTime, endTime) {
+      // Find Index For Start 
+      var dataChanged = this.data_changed();
+      console.log("range_changed_by_time dataChanged", dataChanged);
+      var startTimeIndex = this.ti_map.t2i(startTime);
+      var endTimeIndex = this.ti_map.t2i(endTime);
+      console.log("range_changed_by_time updatedIndex", {
+        dataChanged: dataChanged,
+        startTimeIndex: startTimeIndex,
+        endTimeIndex: endTimeIndex
+      });
+      var newRange = [startTimeIndex, endTimeIndex];
+      this.range_changed(newRange);
       // console.log('this.ti_map.t2i(r[0])',this.ti_map.t2i(r[0]))
     },
     "goto": function goto(t) {
@@ -13464,13 +13565,18 @@ var TI = /*#__PURE__*/function () {
       if (this._hook_xlocked) this.ce('?x-locked', state);
     },
     calc_interval: function calc_interval() {
-      var _this = this;
+      var _this2 = this;
       var tf = utils.parse_tf(this.forced_tf);
       if (this.ohlcv.length < 2 && !tf) return;
       this.interval_ms = tf || utils.detect_interval(this.ohlcv);
       this.interval = this.$props.ib ? 1 : this.interval_ms;
+      console.log("calc_interval", {
+        interval: this.interval,
+        interval_ms: this.interval_ms,
+        forced_tf: this.forced_tf
+      });
       utils.warn(function () {
-        return _this.$props.ib && !_this.chart.tf;
+        return _this2.$props.ib && !_this2.chart.tf;
       }, constants.IB_TF_WARN, constants.SECOND);
     },
     set_ytransform: function set_ytransform(s) {
@@ -13497,10 +13603,16 @@ var TI = /*#__PURE__*/function () {
       if (!this.$props.ib) {
         utils.overwrite(this.range, [this.ohlcv[s][0] - this.interval * d, this.ohlcv[l][0] + this.interval * ml]);
       } else {
-        utils.overwrite(this.range, [s - this.interval * d, l + this.interval * ml]);
+        var _this$chart, _this$chart2, _this$chart2$initRang, _this$chart3;
+        var newArr = [s - this.interval * d, l + this.interval * ml];
+        if ((_this$chart = this.chart) !== null && _this$chart !== void 0 && _this$chart.initRange && ((_this$chart2 = this.chart) === null || _this$chart2 === void 0 ? void 0 : (_this$chart2$initRang = _this$chart2.initRange) === null || _this$chart2$initRang === void 0 ? void 0 : _this$chart2$initRang.length) == 2) {
+          newArr = this.chart.initRange;
+        }
+        console.log("searchResults Library Data", newArr, (_this$chart3 = this.chart) === null || _this$chart3 === void 0 ? void 0 : _this$chart3.initRange);
+        utils.overwrite(this.range, newArr);
       }
     },
-    subset: function subset(range) {
+    subset: function subset(range, type) {
       if (range === void 0) {
         range = this.range;
       }
@@ -13513,6 +13625,9 @@ var TI = /*#__PURE__*/function () {
         this.sub_start = index;
         this.ti_map.init(this, res);
         if (!this.$props.ib) return res || [];
+        // console.log("subset "+type,{
+        //   range,index,res,sub_i:this.ti_map.sub_i
+        // })
         return this.ti_map.sub_i;
       }
       return [];
@@ -13537,20 +13652,20 @@ var TI = /*#__PURE__*/function () {
       };
     },
     overlay_subset: function overlay_subset(source, side) {
-      var _this2 = this;
+      var _this3 = this;
       return source.map(function (d, i) {
-        var res = utils.fast_filter(d.data, _this2.ti_map.i2t_mode(_this2.range[0] - _this2.interval, d.indexSrc), _this2.ti_map.i2t_mode(_this2.range[1], d.indexSrc));
+        var res = utils.fast_filter(d.data, _this3.ti_map.i2t_mode(_this3.range[0] - _this3.interval, d.indexSrc), _this3.ti_map.i2t_mode(_this3.range[1], d.indexSrc));
         return {
           type: d.type,
           name: utils.format_name(d),
-          data: _this2.ti_map.parse(res[0] || [], d.indexSrc || 'map'),
-          settings: d.settings || _this2.settings_ov,
+          data: _this3.ti_map.parse(res[0] || [], d.indexSrc || 'map'),
+          settings: d.settings || _this3.settings_ov,
           grid: d.grid || {},
           tf: utils.parse_tf(d.tf),
           i0: res[1],
           loading: d.loading,
           some: 1,
-          last: (_this2.last_values[side] || [])[i]
+          last: (_this3.last_values[side] || [])[i]
         };
       });
     },
@@ -13602,7 +13717,7 @@ var TI = /*#__PURE__*/function () {
       this.$refs.keyboard.remove(event);
     },
     update_last_values: function update_last_values() {
-      var _this3 = this;
+      var _this4 = this;
       this.last_candle = this.ohlcv ? this.ohlcv[this.ohlcv.length - 1] : undefined;
       this.last_values = {
         onchart: [],
@@ -13610,11 +13725,11 @@ var TI = /*#__PURE__*/function () {
       };
       this.onchart.forEach(function (x, i) {
         var d = x.data || [];
-        _this3.last_values.onchart[i] = d[d.length - 1];
+        _this4.last_values.onchart[i] = d[d.length - 1];
       });
       this.offchart.forEach(function (x, i) {
         var d = x.data || [];
-        _this3.last_values.offchart[i] = d[d.length - 1];
+        _this4.last_values.offchart[i] = d[d.length - 1];
       });
     },
     // Hook events for extensions
@@ -13629,12 +13744,12 @@ var TI = /*#__PURE__*/function () {
     },
     // Set hooks list (called from an extension)
     hooks: function hooks() {
-      var _this4 = this;
+      var _this5 = this;
       for (var _len2 = arguments.length, list = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
         list[_key2] = arguments[_key2];
       }
       list.forEach(function (x) {
-        return _this4["_hook_".concat(x)] = true;
+        return _this5["_hook_".concat(x)] = true;
       });
     },
     toggleSideBarYAxis: function toggleSideBarYAxis() {
@@ -13690,8 +13805,8 @@ var TI = /*#__PURE__*/function () {
 ;
 var Chart_component = normalizeComponent(
   components_Chartvue_type_script_lang_js_,
-  Chartvue_type_template_id_13a6668e_render,
-  Chartvue_type_template_id_13a6668e_staticRenderFns,
+  Chartvue_type_template_id_797b3a27_render,
+  Chartvue_type_template_id_797b3a27_staticRenderFns,
   false,
   null,
   null,
@@ -14515,6 +14630,7 @@ function TradingVuevue_type_script_lang_js_arrayLikeToArray(arr, len) { if (len 
 
 
 
+
 /* harmony default export */ const TradingVuevue_type_script_lang_js_ = ({
   name: "TradingVue",
   components: {
@@ -14799,7 +14915,9 @@ function TradingVuevue_type_script_lang_js_arrayLikeToArray(arr, len) { if (len 
     this.ctrl_destroy();
   },
   methods: {
-    updateRefData: function updateRefData() {},
+    chart_data_changed: function chart_data_changed(flag) {
+      this.$emit("chart_data_changed", flag);
+    },
     // TODO: reset extensions?
     resetChart: function resetChart(resetRange) {
       var _this = this;
@@ -14904,7 +15022,10 @@ function TradingVuevue_type_script_lang_js_arrayLikeToArray(arr, len) { if (len 
       }
       if (ctrl) this.post_dc(d);
     },
-    range_changed: function range_changed(r, r2) {
+    range_changed: function range_changed(r, manualInteraction) {
+      if (manualInteraction === void 0) {
+        manualInteraction = false;
+      }
       if (this.chart_props.ib) {
         var ti_map = this.$refs.chart.ti_map;
         r = r.map(function (x) {
@@ -14912,8 +15033,8 @@ function TradingVuevue_type_script_lang_js_arrayLikeToArray(arr, len) { if (len 
         });
       }
       // update
-      // console.log('range_changes_working 1',r,r2)
-      this.$emit("range-changed", r, r2);
+      this.$emit("range-changed", r, manualInteraction);
+
       // this.custom_event({ event: "range-changed", args: [r,r2] });
       if (this.onrange) this.onrange(r);
     },
@@ -14975,9 +15096,9 @@ function TradingVuevue_type_script_lang_js_arrayLikeToArray(arr, len) { if (len 
 });
 ;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=script&lang=js&
  /* harmony default export */ const src_TradingVuevue_type_script_lang_js_ = (TradingVuevue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=style&index=0&id=556e55aa&prod&lang=css&
-var TradingVuevue_type_style_index_0_id_556e55aa_prod_lang_css_ = __webpack_require__(195);
-;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=style&index=0&id=556e55aa&prod&lang=css&
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=style&index=0&id=bebb1b0c&prod&lang=css&
+var TradingVuevue_type_style_index_0_id_bebb1b0c_prod_lang_css_ = __webpack_require__(581);
+;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=style&index=0&id=bebb1b0c&prod&lang=css&
 
 ;// CONCATENATED MODULE: ./src/TradingVue.vue
 

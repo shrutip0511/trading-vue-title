@@ -103,7 +103,7 @@ export default {
         if (x[3] < lo) lo = x[3];
       }
       let yRange = [hi, lo];
-      console.log("yRange",yRange)
+      // console.log("yRange",yRange)
       return yRange;
     },
   },

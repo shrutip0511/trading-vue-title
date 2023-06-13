@@ -197,7 +197,7 @@ export default {
         Utils.overwrite(this.range, this.range)
         this.interval = 1
       }
-      let sub = this.subset()
+      let sub = this.subset(this.range,'subset ib watch')
       Utils.overwrite(this.sub, sub)
       this.update_layout()
     },
@@ -214,7 +214,7 @@ export default {
     data: {
       handler: function (n, p) {
         if (!this.sub.length) this.init_range()
-        const sub = this.subset()
+        const sub = this.subset(this.range,'subset dataset')
         // Fixes Infinite loop warn, when the subset is empty
         // TODO: Consider removing 'sub' from data entirely
         if (this.sub.length || sub.length) {
@@ -235,6 +235,9 @@ export default {
         // this
         //   this.$emit('custom-event', {})
         //   console.log('this.rerender',findMain,this.sub.length)
+        setTimeout(()=>{
+          this.$emit("chart_data_changed",nw)
+        })
       },
       deep: true
     }
@@ -246,7 +249,7 @@ export default {
 
     // Initial layout (All measurments for the chart)
     this.init_range()
-    this.sub = this.subset()
+    this.sub = this.subset(this.range,'subset created')
     Utils.overwrite(this.range, this.range) // Fix for IB mode
     this._layout = new Layout(this)
 
@@ -257,11 +260,11 @@ export default {
     this.init_shaders(this.skin)
   },
   methods: {
-    range_changed(r) {
+    range_changed(r,manualInteraction = false) {
       // Overwite & keep the original references
       // Quick fix for IB mode (switch 2 next lines)
       // TODO: wtf?
-      var sub = this.subset(r)
+      var sub = this.subset(r,'subset range changed')
       // console.log('this.range before update',this.range)
       Utils.overwrite(this.range, r)
       Utils.overwrite(this.sub, sub)
@@ -270,13 +273,26 @@ export default {
       // console.log('range_changes_working',this.ignoreNegativeIndex)
       if (this.ignoreNegativeIndex) {
         // let r2 = this.ti_map.t2i(r[0])
-        this.$emit('range-changed', r, this.range)
+        this.$emit('range-changed', r,manualInteraction)
       } else {
-        this.$emit('range-changed', r)
+        this.$emit('range-changed', r,manualInteraction)
       }
 
       if (this.$props.ib) this.save_data_t()
 
+      // console.log('this.ti_map.t2i(r[0])',this.ti_map.t2i(r[0]))
+    },
+    range_changed_by_time(startTime,endTime) {
+      // Find Index For Start 
+      let dataChanged = this.data_changed();
+      console.log("range_changed_by_time dataChanged",dataChanged)
+      let startTimeIndex = this.ti_map.t2i(startTime)
+      let endTimeIndex = this.ti_map.t2i(endTime)
+      console.log("range_changed_by_time updatedIndex",{
+        dataChanged,startTimeIndex,endTimeIndex
+      })
+      let newRange = [startTimeIndex,endTimeIndex]
+      this.range_changed(newRange)
       // console.log('this.ti_map.t2i(r[0])',this.ti_map.t2i(r[0]))
     },
     goto(t) {
@@ -299,10 +315,16 @@ export default {
       if (this._hook_xlocked) this.ce('?x-locked', state)
     },
     calc_interval() {
+      
       let tf = Utils.parse_tf(this.forced_tf)
       if (this.ohlcv.length < 2 && !tf) return
       this.interval_ms = tf || Utils.detect_interval(this.ohlcv)
       this.interval = this.$props.ib ? 1 : this.interval_ms
+      console.log("calc_interval",{
+        interval:this.interval,
+        interval_ms:this.interval_ms,
+        forced_tf:this.forced_tf,
+      })
       Utils.warn(
           () => this.$props.ib && !this.chart.tf,
           Const.IB_TF_WARN, Const.SECOND
@@ -336,13 +358,20 @@ export default {
           this.ohlcv[l][0] + this.interval * ml
         ])
       } else {
-        Utils.overwrite(this.range, [
+        let newArr = [
           s - this.interval * d,
           l + this.interval * ml
-        ])
+        ];
+
+        if(this.chart?.initRange && this.chart?.initRange?.length == 2){
+          newArr = this.chart.initRange
+        }
+        console.log("searchResults Library Data",newArr,this.chart?.initRange)
+        Utils.overwrite(this.range, newArr)
       }
     },
-    subset(range = this.range) {
+    subset(range = this.range,type) {
+      
       var [res, index] = this.filter(
           this.ohlcv,
           range[0] - this.interval,
@@ -353,6 +382,9 @@ export default {
         this.sub_start = index
         this.ti_map.init(this, res)
         if (!this.$props.ib) return res || []
+        // console.log("subset "+type,{
+        //   range,index,res,sub_i:this.ti_map.sub_i
+        // })
         return this.ti_map.sub_i
       }
       return []

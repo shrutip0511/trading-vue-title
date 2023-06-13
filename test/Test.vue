@@ -7,11 +7,15 @@
                     ⚠️ <label>EARLY TEST</label>
                 </span>
             </p>
-            <span class="night-mode">
+            <span class="night-mode2">
+                <input type="checkbox" v-model="show">
+                <label>Show</label>
+            </span>
+          <span class="night-mode">
                 <input type="checkbox" v-model="night">
                 <label>NM</label>
             </span>
-            <a href="#" class="test-btn prev-test"
+          <a href="#" class="test-btn prev-test"
                 v-on:click="prev_test">
                 Prev test
             </a>
@@ -70,7 +74,8 @@ export default {
             len: Object.values(TESTS).length,
             test_index: 0,
             current_test: '',
-            night: localStorage.getItem('tvjstest:nm') === 'true'
+            night: localStorage.getItem('tvjstest:nm') === 'true',
+            show:true
         }
     },
     methods: {
@@ -182,6 +187,10 @@ body {
 	top: 13px;
 }
 
+.prev-test2 {
+    right: 115px;
+    background-color:#4285f4;
+}
 .prev-test {
     right: 115px;
     background-color:#4285f4;
@@ -199,6 +208,16 @@ body {
 	background-color:#44c767;
 }
 
+.night-mode2 {
+    position: absolute;
+    top: 17px;
+    right: 270px;
+    color: #888;
+    font: 11px -apple-system,BlinkMacSystemFont,
+        Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,
+        Fira Sans,Droid Sans,Helvetica Neue,
+        sans-serif
+}
 .night-mode {
     position: absolute;
     top: 17px;

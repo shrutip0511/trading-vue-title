@@ -323,6 +323,49 @@ export default {
         return event.defaultPrevented
     },
 
+    calculate_data_index_without_ti_map(array, target, tf ="D") {
+        let left = 0;
+        let right = array.length - 1;
+        let found = false;
+        let interval_ms = this.detect_interval(array);
+        console.log("searchResults",interval_ms)
+        const GetValue = (i) => array?.[i]?.[0]
+        while (left <= right) {
+            const mid = Math.floor((left + right) / 2);
+            const midTimestamp = GetValue(mid);
+
+            if (midTimestamp === target) {
+                return { index: mid, difference: 0 }; // Found the target
+            } else if (midTimestamp < target) {
+                left = mid + 1; // Target is in the right half
+            } else {
+                right = mid - 1; // Target is in the left half
+            }
+        }
+        let targetDate = new Date(target).toLocaleString()
+        // Target not found, determine which side it would be on and calculate the difference
+        let side;
+        let difference;
+        let closeInd;
+        let maxInd = Math.max(left,right);
+        let minIndex = Math.min(left,right);
+        let diffBtwCandles = GetValue(maxInd) - GetValue(minIndex)
+        if (target < GetValue(left)) {
+            side = 'left';
+            // difference = array[left] - target;
+            difference = target - GetValue(right);
+            closeInd=right
+        } else {
+            side = 'right';
+            difference = target - GetValue(right);
+            closeInd = right
+        }
+
+        let offSetValue = difference / interval_ms
+        let offSetValueBtwCandles = diffBtwCandles / interval_ms
+        let computedIndex = closeInd+offSetValue;
+        return { targetDate,index: computedIndex, difference,offSetValueBtwCandles,offSetValue, side,closeInd,right,left,tf };
+    },
     // WTF with modern web development
     is_mobile: (w => 'onorientationchange' in w &&
        (!!navigator.maxTouchPoints ||

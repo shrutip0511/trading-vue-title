@@ -47,6 +47,7 @@
       :config="chart_config"
       @custom-event="custom_event"
       @range-changed="range_changed"
+      @chart_data_changed="chart_data_changed"
       @sidebar-transform="sidebar_transform"
       @legend-button-click="legend_button"
     >
@@ -64,7 +65,7 @@ import Toolbar from "./components/Toolbar.vue";
 import Widgets from "./components/Widgets.vue";
 import TheTip from "./components/TheTip.vue";
 import XControl from "./mixins/xcontrol.js";
-
+import IndexedArray from 'arrayslicer'
 export default {
   name: "TradingVue",
   components: {
@@ -335,7 +336,9 @@ export default {
     this.ctrl_destroy();
   },
   methods: {
-    updateRefData(){},
+    chart_data_changed(flag){
+      this.$emit("chart_data_changed", flag);
+    },
     // TODO: reset extensions?
     resetChart(resetRange = true) {
       this.reset++;
@@ -426,14 +429,14 @@ export default {
       }
       if (ctrl) this.post_dc(d);
     },
-    range_changed(r,r2) {
+    range_changed(r,manualInteraction = false) {
       if (this.chart_props.ib) {
         const ti_map = this.$refs.chart.ti_map;
         r = r.map((x) => ti_map.i2t(x));
       }
       // update
-      // console.log('range_changes_working 1',r,r2)
-      this.$emit("range-changed", r,r2);
+      this.$emit("range-changed", r,manualInteraction);
+      
       // this.custom_event({ event: "range-changed", args: [r,r2] });
       if (this.onrange) this.onrange(r);
     },

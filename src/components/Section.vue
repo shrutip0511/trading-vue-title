@@ -188,8 +188,9 @@ export default {
     // console.log('common.data',this.$props.common.data)
   },
   methods: {
-    range_changed(r) {
-      this.$emit("range-changed", r);
+    range_changed(r,manualInteraction = false) {
+      console.log("range_changed",r)
+      this.$emit("range-changed", r,manualInteraction);
     },
     cursor_changed(c) {
       c.grid_id = this.$props.grid_id;

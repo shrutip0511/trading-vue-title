@@ -510,7 +510,7 @@ export default class Grid {
     // the lag. No smooth movement and it's annoying.
     // Solution: we could try to calc the layout immediatly
     // somewhere here. Still will hurt the sidebar & bottombar
-    this.comp.$emit("range-changed", range);
+    this.comp.$emit("range-changed", range,true);
   }
 
   // Propagate mouse event to overlays

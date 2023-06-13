@@ -89,10 +89,12 @@ export default {
                 event === 'new-shader' ||
                 event === 'new-interface' ||
                 event === 'remove-tool') {
+                
                 args.push(this.grid_id, this.id)
                 if (this.$props.settings.$uuid) {
                     args.push(this.$props.settings.$uuid)
                 }
+                // console.log("overlay custom event",event,args)
             }
             if (event === 'new-interface') {
                 args[0].overlay = this

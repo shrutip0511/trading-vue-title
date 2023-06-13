@@ -1,6 +1,6 @@
 <template>
 <div>
-    <trading-vue :data="chart" :width="this.width" :height="this.height"
+    <trading-vue :data="chart" :width="this.width" :height="this.height" v-if="showChart"
             :toolbar="true"
             :index-based="index_based"
             :color-back="colors.colorBack"
@@ -8,6 +8,10 @@
             :color-text="colors.colorText"
             ref="tradingVue">
     </trading-vue>
+  <span class="log-scale2">
+        <input type="checkbox" v-model="showChart">
+        <label>Log Scale</label>
+    </span>
     <span class="log-scale">
         <input type="checkbox" v-model="log_scale">
         <label>Log Scale</label>
@@ -72,6 +76,7 @@ export default {
             width: window.innerWidth,
             height: window.innerHeight,
             log_scale: false,
+            showChart: true,
             index_based: false
         };
     },
@@ -88,6 +93,16 @@ export default {
 </script>
 
 <style>
+.log-scale2 {
+    position: absolute;
+    top: 105px;
+    right: 80px;
+    color: #888;
+    font: 11px -apple-system, BlinkMacSystemFont,
+        Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+        Fira Sans, Droid Sans, Helvetica Neue,
+        sans-serif
+}
 .log-scale {
     position: absolute;
     top: 60px;
