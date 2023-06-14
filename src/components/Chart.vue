@@ -68,6 +68,7 @@ export default {
 
       // Time range
       range: [],
+      initRange: [],
 
       // Candlestick interval
       interval: 0,
@@ -167,6 +168,9 @@ export default {
     forced_tf() {
       return this.chart.tf
     },
+    forced_initRange() {
+      return this.initRange.length > 0 ? this.initRange : null
+    },
     auto_y_axis(){
       let gridKeys = Object.keys(this.y_transforms);
       console.log("gridKeys",gridKeys)
@@ -265,6 +269,9 @@ export default {
       // Quick fix for IB mode (switch 2 next lines)
       // TODO: wtf?
       var sub = this.subset(r,'subset range changed')
+      Utils.overwrite(this.initRange, r)
+      if(manualInteraction){
+      }
       // console.log('this.range before update',this.range)
       Utils.overwrite(this.range, r)
       Utils.overwrite(this.sub, sub)
@@ -314,7 +321,7 @@ export default {
       this.cursor.locked = state
       if (this._hook_xlocked) this.ce('?x-locked', state)
     },
-    calc_interval() {
+    calc_interval(caller) {
       
       let tf = Utils.parse_tf(this.forced_tf)
       if (this.ohlcv.length < 2 && !tf) return
@@ -324,6 +331,7 @@ export default {
         interval:this.interval,
         interval_ms:this.interval_ms,
         forced_tf:this.forced_tf,
+        caller
       })
       Utils.warn(
           () => this.$props.ib && !this.chart.tf,
@@ -362,11 +370,16 @@ export default {
           s - this.interval * d,
           l + this.interval * ml
         ];
-
-        if(this.chart?.initRange && this.chart?.initRange?.length == 2){
-          newArr = this.chart.initRange
+        console.log("this.forced_initRange",this.forced_initRange)
+        if(this.forced_initRange){
+          newArr = this.forced_initRange
+        }else{
+          if(this.chart?.initRange && this.chart?.initRange?.length == 2){
+            newArr = this.chart.initRange
+          }  
         }
-        console.log("searchResults Library Data",newArr,this.chart?.initRange)
+        
+        console.log("searchResults Library Data",newArr,this.chart?.initRange,this.forced_initRange)
         Utils.overwrite(this.range, newArr)
       }
     },
@@ -437,7 +450,7 @@ export default {
           this.main_section : this.sub_section
     },
     init_range() {
-      this.calc_interval()
+      this.calc_interval('init_range')
       this.default_range()
     },
     layer_meta_props(d) {
@@ -465,7 +478,7 @@ export default {
       }
     },
     update_layout(clac_tf) {
-      if (clac_tf) this.calc_interval()
+      if (clac_tf) this.calc_interval('update_layout')
       const lay = new Layout(this)
       Utils.copy_layout(this._layout, lay)
       if (this._hook_update) this.ce('?chart-update', lay)

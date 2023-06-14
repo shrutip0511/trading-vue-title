@@ -1,5 +1,5 @@
 /*!
- * TradingVue.JS - v1.0.3 - Tue Jun 13 2023
+ * TradingVue.JS - v1.0.3 - Wed Jun 14 2023
  *     https://github.com/tvjsx/trading-vue-js
  *     Copyright (c) 2019 C451 Code's All Right;
  *     Licensed under the MIT license
@@ -387,7 +387,7 @@ module.exports.isSortableArrayLike = function (o) {
 
 /***/ }),
 
-/***/ 78:
+/***/ 225:
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -4155,19 +4155,19 @@ if (true) {
 
 /***/ }),
 
-/***/ 581:
+/***/ 700:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(78);
+var content = __webpack_require__(225);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(346)/* ["default"] */ .Z)
-var update = add("5e824312", content, false, {});
+var update = add("c2826f92", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -5106,7 +5106,7 @@ __webpack_require__.d(__webpack_exports__, {
   "primitives": () => (/* binding */ primitives)
 });
 
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=template&id=bebb1b0c&
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=template&id=3a20c1d1&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -5183,7 +5183,7 @@ var render = function render() {
 var staticRenderFns = [];
 render._withStripped = true;
 
-;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=template&id=bebb1b0c&
+;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=template&id=3a20c1d1&
 
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
 function _arrayLikeToArray(arr, len) {
@@ -5341,8 +5341,8 @@ var MAP_UNIT = {
   map_unit: MAP_UNIT,
   IB_TF_WARN: IB_TF_WARN
 });
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Chart.vue?vue&type=template&id=797b3a27&
-var Chartvue_type_template_id_797b3a27_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Chart.vue?vue&type=template&id=4a08985c&
+var Chartvue_type_template_id_4a08985c_render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
@@ -5386,10 +5386,10 @@ var Chartvue_type_template_id_797b3a27_render = function render() {
     }
   }, "botbar", _vm.botbar_props, false))], 2);
 };
-var Chartvue_type_template_id_797b3a27_staticRenderFns = [];
-Chartvue_type_template_id_797b3a27_render._withStripped = true;
+var Chartvue_type_template_id_4a08985c_staticRenderFns = [];
+Chartvue_type_template_id_4a08985c_render._withStripped = true;
 
-;// CONCATENATED MODULE: ./src/components/Chart.vue?vue&type=template&id=797b3a27&
+;// CONCATENATED MODULE: ./src/components/Chart.vue?vue&type=template&id=4a08985c&
 
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
 function _arrayWithHoles(arr) {
@@ -13312,6 +13312,7 @@ var TI = /*#__PURE__*/function () {
       sub: [],
       // Time range
       range: [],
+      initRange: [],
       // Candlestick interval
       interval: 0,
       // Crosshair states
@@ -13411,6 +13412,9 @@ var TI = /*#__PURE__*/function () {
     },
     forced_tf: function forced_tf() {
       return this.chart.tf;
+    },
+    forced_initRange: function forced_initRange() {
+      return this.initRange.length > 0 ? this.initRange : null;
     },
     auto_y_axis: function auto_y_axis() {
       var gridKeys = Object.keys(this.y_transforms);
@@ -13514,6 +13518,8 @@ var TI = /*#__PURE__*/function () {
       // Quick fix for IB mode (switch 2 next lines)
       // TODO: wtf?
       var sub = this.subset(r, 'subset range changed');
+      utils.overwrite(this.initRange, r);
+      if (manualInteraction) {}
       // console.log('this.range before update',this.range)
       utils.overwrite(this.range, r);
       utils.overwrite(this.sub, sub);
@@ -13564,7 +13570,7 @@ var TI = /*#__PURE__*/function () {
       this.cursor.locked = state;
       if (this._hook_xlocked) this.ce('?x-locked', state);
     },
-    calc_interval: function calc_interval() {
+    calc_interval: function calc_interval(caller) {
       var _this2 = this;
       var tf = utils.parse_tf(this.forced_tf);
       if (this.ohlcv.length < 2 && !tf) return;
@@ -13573,7 +13579,8 @@ var TI = /*#__PURE__*/function () {
       console.log("calc_interval", {
         interval: this.interval,
         interval_ms: this.interval_ms,
-        forced_tf: this.forced_tf
+        forced_tf: this.forced_tf,
+        caller: caller
       });
       utils.warn(function () {
         return _this2.$props.ib && !_this2.chart.tf;
@@ -13603,12 +13610,18 @@ var TI = /*#__PURE__*/function () {
       if (!this.$props.ib) {
         utils.overwrite(this.range, [this.ohlcv[s][0] - this.interval * d, this.ohlcv[l][0] + this.interval * ml]);
       } else {
-        var _this$chart, _this$chart2, _this$chart2$initRang, _this$chart3;
+        var _this$chart3;
         var newArr = [s - this.interval * d, l + this.interval * ml];
-        if ((_this$chart = this.chart) !== null && _this$chart !== void 0 && _this$chart.initRange && ((_this$chart2 = this.chart) === null || _this$chart2 === void 0 ? void 0 : (_this$chart2$initRang = _this$chart2.initRange) === null || _this$chart2$initRang === void 0 ? void 0 : _this$chart2$initRang.length) == 2) {
-          newArr = this.chart.initRange;
+        console.log("this.forced_initRange", this.forced_initRange);
+        if (this.forced_initRange) {
+          newArr = this.forced_initRange;
+        } else {
+          var _this$chart, _this$chart2, _this$chart2$initRang;
+          if ((_this$chart = this.chart) !== null && _this$chart !== void 0 && _this$chart.initRange && ((_this$chart2 = this.chart) === null || _this$chart2 === void 0 ? void 0 : (_this$chart2$initRang = _this$chart2.initRange) === null || _this$chart2$initRang === void 0 ? void 0 : _this$chart2$initRang.length) == 2) {
+            newArr = this.chart.initRange;
+          }
         }
-        console.log("searchResults Library Data", newArr, (_this$chart3 = this.chart) === null || _this$chart3 === void 0 ? void 0 : _this$chart3.initRange);
+        console.log("searchResults Library Data", newArr, (_this$chart3 = this.chart) === null || _this$chart3 === void 0 ? void 0 : _this$chart3.initRange, this.forced_initRange);
         utils.overwrite(this.range, newArr);
       }
     },
@@ -13673,7 +13686,7 @@ var TI = /*#__PURE__*/function () {
       return i === 0 ? this.main_section : this.sub_section;
     },
     init_range: function init_range() {
-      this.calc_interval();
+      this.calc_interval('init_range');
       this.default_range();
     },
     layer_meta_props: function layer_meta_props(d) {
@@ -13700,7 +13713,7 @@ var TI = /*#__PURE__*/function () {
       }
     },
     update_layout: function update_layout(clac_tf) {
-      if (clac_tf) this.calc_interval();
+      if (clac_tf) this.calc_interval('update_layout');
       var lay = new layout(this);
       utils.copy_layout(this._layout, lay);
       if (this._hook_update) this.ce('?chart-update', lay);
@@ -13805,8 +13818,8 @@ var TI = /*#__PURE__*/function () {
 ;
 var Chart_component = normalizeComponent(
   components_Chartvue_type_script_lang_js_,
-  Chartvue_type_template_id_797b3a27_render,
-  Chartvue_type_template_id_797b3a27_staticRenderFns,
+  Chartvue_type_template_id_4a08985c_render,
+  Chartvue_type_template_id_4a08985c_staticRenderFns,
   false,
   null,
   null,
@@ -14931,6 +14944,15 @@ function TradingVuevue_type_script_lang_js_arrayLikeToArray(arr, len) { if (len 
           return _this.setRange.apply(_this, _toConsumableArray(range));
         });
       }
+      if (resetRange) {
+        var _this$$refs, _this$$refs$chart2;
+        var initRange = (_this$$refs = this.$refs) === null || _this$$refs === void 0 ? void 0 : (_this$$refs$chart2 = _this$$refs.chart) === null || _this$$refs$chart2 === void 0 ? void 0 : _this$$refs$chart2.initRange;
+        if (initRange && initRange !== null && initRange !== void 0 && initRange[0] && initRange !== null && initRange !== void 0 && initRange[1]) {
+          this.$nextTick(function () {
+            return _this.setRange.apply(_this, _toConsumableArray(initRange));
+          });
+        }
+      }
       this.$nextTick(function () {
         return _this.custom_event({
           event: "chart-reset",
@@ -15096,9 +15118,9 @@ function TradingVuevue_type_script_lang_js_arrayLikeToArray(arr, len) { if (len 
 });
 ;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=script&lang=js&
  /* harmony default export */ const src_TradingVuevue_type_script_lang_js_ = (TradingVuevue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=style&index=0&id=bebb1b0c&prod&lang=css&
-var TradingVuevue_type_style_index_0_id_bebb1b0c_prod_lang_css_ = __webpack_require__(581);
-;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=style&index=0&id=bebb1b0c&prod&lang=css&
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=style&index=0&id=3a20c1d1&prod&lang=css&
+var TradingVuevue_type_style_index_0_id_3a20c1d1_prod_lang_css_ = __webpack_require__(700);
+;// CONCATENATED MODULE: ./src/TradingVue.vue?vue&type=style&index=0&id=3a20c1d1&prod&lang=css&
 
 ;// CONCATENATED MODULE: ./src/TradingVue.vue
 

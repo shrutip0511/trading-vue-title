@@ -341,10 +341,17 @@ export default {
     },
     // TODO: reset extensions?
     resetChart(resetRange = true) {
+      
       this.reset++;
       let range = this.getRange();
       if (!resetRange && range[0] && range[1]) {
         this.$nextTick(() => this.setRange(...range));
+      }
+      if(resetRange){
+        let initRange = this.$refs?.chart?.initRange
+        if(initRange && initRange?.[0] && initRange?.[1]){
+          this.$nextTick(() => this.setRange(...initRange));
+        }
       }
       this.$nextTick(() =>
         this.custom_event({
