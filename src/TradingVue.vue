@@ -360,6 +360,15 @@ export default {
         })
       );
     },
+    updateChart() {
+    //  console.log(" update chart was called")
+    //       this.$nextTick(() =>
+    //         this.custom_event({
+    //           event: "?chart-resize",
+    //           args:[]
+    //         })
+    //       );
+    },
     goto(t) {
       // TODO: limit goto & setRange (out of data error)
       if (this.chart_props.ib) {
@@ -475,6 +484,9 @@ export default {
     },
     toggleSideBarYAxis(){
       this.$refs.chart.toggleSideBarYAxis()
+    },
+    toggleSidebarCustomRange(verticalRange){
+      this.$refs.chart.toggleSidebarCustomRange(verticalRange)
     }
   },
   watch:{

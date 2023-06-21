@@ -515,6 +515,20 @@ export default {
     hooks(...list) {
       list.forEach(x => this[`_hook_${x}`] = true)
     },
+    toggleSidebarCustomRange(vericalRange){
+      this.y_transforms['0'] = {
+            grid_id: 0,
+            zoom: 1,
+            auto: false,
+            range: vericalRange ,
+            drugging: false,
+          }
+      this.update_layout()  
+      this.$emit('sidebar-transform', this.y_transforms['0'])
+      // const lay = new Layout(this)
+      // this.ce('?chart-update',lay)
+    },
+
     toggleSideBarYAxis() {
 
       let gridKeys = Object.keys(this.y_transforms);

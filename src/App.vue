@@ -10,6 +10,12 @@
     </select>-->
     <button class="ui icon button" @click="sliceD">
       <i class="icon">Toggle {{auto_y_axis ? 'A' :'M'}}</i>
+    </button> 
+
+    max<input type="number" id="max"  name="max" v-model.number="max" />
+    min<input type="number" id="min"  name="min" v-model.number="min" /> 
+    <button @click="handleChangeRange()">
+      range
     </button>
 
     <trading-vue
@@ -56,6 +62,8 @@ export default {
       buttons: ["display", "settings", "remove"],
       enableZoom: true,
       auto_y_axis: true,
+      max:200,
+      min:100,
       decimalPlace:3,
       legendDecimal:false,
       chartType:"Candle",
@@ -96,6 +104,9 @@ export default {
   computed:{
   },
   methods: {
+    handleChangeRange(){
+    this.$refs?.tradeRef?.toggleSidebarCustomRange([this.max,this.min])
+    },
     sidebar_transform(yTransform){
       console.log("yTransform",yTransform)
       this.auto_y_axis = yTransform.auto
