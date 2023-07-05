@@ -77,22 +77,25 @@ export default class Grid {
     });
 
     mc.on("panmove", (event) => {
-      if(this.$p.enableZoom){
       if (Utils.is_mobile) {
+        console.log("panmove event mobile")
         this.calc_offset();
         this.propagate("mousemove", this.touch2mouse(event));
       }
-      if (this.drug) {
+        if (this.drug) {
+          if(this.$p.enableZoom){
+        console.log("panmove event if block")
         this.mousedrag(this.drug.x + event.deltaX, this.drug.y + event.deltaY);
         this.comp.$emit("cursor-changed", {
           grid_id: this.id,
           x: event.center.x + this.offset_x,
           y: event.center.y + this.offset_y,
         });
+      }
       } else if (this.cursor.mode === "aim") {
         this.emit_cursor_coord(event);
       }
-    }
+    
     });
 
     mc.on("panend", (event) => {
@@ -130,7 +133,9 @@ export default class Grid {
     });
 
     mc.on("pinch", (event) => {
-      if (this.pinch) this.pinchzoom(event.scale);
+      if(this.$p.enableZoom){
+        if (this.pinch) this.pinchzoom(event.scale);
+      }
     });
 
     mc.on("press", (event) => {

@@ -7050,21 +7050,23 @@ var Grid = /*#__PURE__*/function () {
         _this.comp.$emit("cursor-locked", true);
       });
       mc.on("panmove", function (event) {
-        if (_this.$p.enableZoom) {
-          if (utils.is_mobile) {
-            _this.calc_offset();
-            _this.propagate("mousemove", _this.touch2mouse(event));
-          }
-          if (_this.drug) {
+        if (utils.is_mobile) {
+          console.log("panmove event mobile");
+          _this.calc_offset();
+          _this.propagate("mousemove", _this.touch2mouse(event));
+        }
+        if (_this.drug) {
+          if (_this.$p.enableZoom) {
+            console.log("panmove event if block");
             _this.mousedrag(_this.drug.x + event.deltaX, _this.drug.y + event.deltaY);
             _this.comp.$emit("cursor-changed", {
               grid_id: _this.id,
               x: event.center.x + _this.offset_x,
               y: event.center.y + _this.offset_y
             });
-          } else if (_this.cursor.mode === "aim") {
-            _this.emit_cursor_coord(event);
           }
+        } else if (_this.cursor.mode === "aim") {
+          _this.emit_cursor_coord(event);
         }
       });
       mc.on("panend", function (event) {
@@ -7098,7 +7100,9 @@ var Grid = /*#__PURE__*/function () {
         _this.pinch = null;
       });
       mc.on("pinch", function (event) {
-        if (_this.pinch) _this.pinchzoom(event.scale);
+        if (_this.$p.enableZoom) {
+          if (_this.pinch) _this.pinchzoom(event.scale);
+        }
       });
       mc.on("press", function (event) {
         if (!utils.is_mobile) return;
