@@ -30,16 +30,19 @@ export default class Grid {
     this.offset_y = 0;
     this.deltas = 0; // Wheel delta events
     this.wmode = this.$p.config.SCROLL_WHEEL;
-    if (this.$p.enableZoom) {
+    // if (this.$p.enableZoom) {
       this.listeners();
-    }
+    // }
     this.overlays = [];
   }
 
   listeners() {
     //console.log(this.$p.enableZoom);
     this.hm = Hamster(this.canvas);
-    this.hm.wheel((event, delta) => this.mousezoom(-delta * 50, event));
+    
+    if(!this.$p.enableZoom){
+      this.hm.wheel((event, delta) => this.mousezoom(-delta * 50, event));
+    }
 
     let mc = (this.mc = new Hammer.Manager(this.canvas));
     let T = Utils.is_mobile ? 10 : 0;
@@ -74,6 +77,7 @@ export default class Grid {
     });
 
     mc.on("panmove", (event) => {
+      if(!this.$p.enableZoom){
       if (Utils.is_mobile) {
         this.calc_offset();
         this.propagate("mousemove", this.touch2mouse(event));
@@ -88,6 +92,7 @@ export default class Grid {
       } else if (this.cursor.mode === "aim") {
         this.emit_cursor_coord(event);
       }
+    }
     });
 
     mc.on("panend", (event) => {
