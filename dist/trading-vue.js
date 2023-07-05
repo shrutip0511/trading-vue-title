@@ -7008,7 +7008,7 @@ var Grid = /*#__PURE__*/function () {
       var _this = this;
       //console.log(this.$p.enableZoom);
       this.hm = hamster_default()(this.canvas);
-      if (!this.$p.enableZoom) {
+      if (this.$p.enableZoom) {
         this.hm.wheel(function (event, delta) {
           return _this.mousezoom(-delta * 50, event);
         });
@@ -7050,7 +7050,7 @@ var Grid = /*#__PURE__*/function () {
         _this.comp.$emit("cursor-locked", true);
       });
       mc.on("panmove", function (event) {
-        if (!_this.$p.enableZoom) {
+        if (_this.$p.enableZoom) {
           if (utils.is_mobile) {
             _this.calc_offset();
             _this.propagate("mousemove", _this.touch2mouse(event));

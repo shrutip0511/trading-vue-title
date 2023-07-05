@@ -40,7 +40,7 @@ export default class Grid {
     //console.log(this.$p.enableZoom);
     this.hm = Hamster(this.canvas);
     
-    if(!this.$p.enableZoom){
+    if(this.$p.enableZoom){
       this.hm.wheel((event, delta) => this.mousezoom(-delta * 50, event));
     }
 
@@ -77,7 +77,7 @@ export default class Grid {
     });
 
     mc.on("panmove", (event) => {
-      if(!this.$p.enableZoom){
+      if(this.$p.enableZoom){
       if (Utils.is_mobile) {
         this.calc_offset();
         this.propagate("mousemove", this.touch2mouse(event));
