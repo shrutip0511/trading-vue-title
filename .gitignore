@@ -5,3 +5,9 @@ ww$$$.json
 package-lock.json
 yarn.lock
 .idea
+/test/tests/SME/ArrowData.vue
+/test/tests/SME/MACD.vue
+/test/tests/SME/SplineData.vue
+/test/tests/SME/Stoch.vue
+/test/tests/SME/Tradeline.vue
+/test/tests/eventBus.js

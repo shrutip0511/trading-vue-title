@@ -75,9 +75,12 @@ export default {
       let p = Object.assign({}, this.$props.common);
 
       // Split offchart data between offchart grids
+      
       if (id > 0) {
+        //console.log("grid.settings",id)
         let all = p.data;
-        p.data = [p.data[id - 1]];
+        // p.data = [p.data[id - 1]]
+        p.data = [p.data.filter(d => !this.hasGridId(d))[id - 1]];
         // Merge offchart overlays with custom ids with
         // the existing onse (by comparing the grid ids)
         p.data.push(...all.filter((x) => x.grid && x.grid.id === id));
@@ -102,11 +105,13 @@ export default {
     },
     section_values() {
       const id = this.$props.grid_id;
+     // console.log("section_values")
       let p = Object.assign({}, this.$props.common);
       p.width = p.layout.grids[id].width;
       return p.cursor.values[id];
     },
     legend_props() {
+      //console.log("legend_props")
       const id = this.$props.grid_id;
       let p = Object.assign({}, this.$props.common);
 
@@ -114,7 +119,8 @@ export default {
       if (id > 0) {
         let all = p.data;
         p.offchart = all;
-        p.data = [p.data[id - 1]];
+        // p.data = [p.data[id - 1]];
+        p.data = [p.data.filter(d => !this.hasGridId(d))[id - 1]];
         p.data.push(...all.filter((x) => x.grid && x.grid.id === id));
       }else{
         let res = [];
@@ -185,9 +191,17 @@ export default {
   },
   mounted() {
     this.init_shaders(this.$props.common.skin);
-    // console.log('common.data',this.$props.common.data)
+    console.log('common.data',this.meta_props)
   },
   methods: {
+    hasGridId(single){
+      if(single?.grid){
+        if(single.grid?.id > 0){
+          return true
+        }
+      }
+      return false;
+    },
     range_changed(r,manualInteraction = false) {
       console.log("range_changed",r)
       this.$emit("range-changed", r,manualInteraction);
@@ -203,6 +217,7 @@ export default {
       this.$emit("sidebar-transform", s);
     },
     emit_meta_props(d) {
+      console.log("layer-meta-props section.vue ",d)
       this.$set(this.meta_props, d.layer_id, d);
       this.$emit("layer-meta-props", d);
     },
