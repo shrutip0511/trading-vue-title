@@ -120,6 +120,7 @@ export default {
         let all = p.data;
         p.offchart = all;
         // p.data = [p.data[id - 1]];
+        // Legend Props Update here 
         p.data = [p.data.filter(d => !this.hasGridId(d))[id - 1]];
         p.data.push(...all.filter((x) => x.grid && x.grid.id === id));
       }else{
