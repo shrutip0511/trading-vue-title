@@ -222,7 +222,8 @@ export default class Sidebar {
     this.ctx.fillRect(x - 0.5, y, panwidth, PANHEIGHT);
     this.ctx.fillStyle = this.$p.colors.textHL;
     this.ctx.textAlign = "left";
-    this.ctx.fillText(lbl, a, y + 15);
+    const formattedNumber = parseFloat(lbl).toLocaleString();
+    this.ctx.fillText(formattedNumber, a, y + 15);
   }
 
   calc_zoom(event) {
