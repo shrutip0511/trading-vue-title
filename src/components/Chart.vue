@@ -23,6 +23,7 @@
                   :priceLine="priceLine"
                   :enableCrosshair="enableCrosshair"
                   :ignore_OHLC="ignore_OHLC"
+                  :tv_id="tv_id"
 
     >
     </grid-section>

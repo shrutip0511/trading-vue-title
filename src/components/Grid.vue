@@ -248,6 +248,7 @@ export default {
                 grid_id: this.$props.grid_id,
                 meta: this.$props.meta,
                 last: x.last,
+                tv_id:`${this.tv_id}`
               }),
             })
           }
