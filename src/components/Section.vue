@@ -30,6 +30,7 @@
       @custom-event="emit_custom_event"
       @sidebar-transform="sidebar_transform"
       @rezoom-range="rezoom_range"
+      :tv_id="tv_id"
     >
     </grid>
     <sidebar
@@ -60,7 +61,7 @@ export default {
     ChartLegend,
   },
   mixins: [Shaders],
-  props: ["common", "grid_id",'enableSideBarBoxValue', "enableZoom","decimalPlace","priceLine","enableCrosshair","applyShaders","ignore_OHLC","legendDecimal"],
+  props: ["common", "grid_id",'enableSideBarBoxValue', "enableZoom","decimalPlace","priceLine","enableCrosshair","applyShaders","ignore_OHLC","legendDecimal","tv_id"],
   data() {
     return {
       meta_props: {},
