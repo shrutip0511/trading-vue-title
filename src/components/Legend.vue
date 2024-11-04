@@ -214,7 +214,7 @@ export default {
 <style>
 .trading-vue-legend {
     position: relative;
-    z-index: 100;
+    z-index: 1;
     font-size: 1.25em;
     margin-left: 10px;
     pointer-events: none;
