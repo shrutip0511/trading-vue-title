@@ -32,6 +32,7 @@
     </widgets>
     <chart
     :enableZoom="enableZoom"
+    :showTitleChartLegend="showTitleChartLegend"
     :enableSideBarBoxValue="enableSideBarBoxValue"
     :applyShaders="applyShaders"
     :priceLine="priceLine"
@@ -266,6 +267,10 @@ export default {
         return [];
       },
     },
+    showTitleChartLegend:{
+      type:Boolean,
+      default:true
+    }
   },
   data() {
     return { reset: 0, tip: null };

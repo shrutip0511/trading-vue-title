@@ -1,7 +1,7 @@
 <template>
 <div class="trading-vue-legend"
      :style="calc_style">
-    <div v-if="(grid_id === 0 && !showTitleChartLegend)"
+    <div v-if="(grid_id === 0 && showTitleChartLegend)"
          class="trading-vue-ohlcv"
         :style = "{ 'max-width': common.width + 'px' }">
       <template v-if="common?.showLegendPropsData && common.showLegendPropsData.length">
@@ -24,48 +24,8 @@
             :style="{color: common.colors.text}">
             {{(common.meta.last || [])[4]}}
         </span>
-      <!-- <legend-button
-          v-if="show_Settings"
-          key="main_chart_settings"
-          id="main_settings"
-          :tv_id="grid_id"
-          :ov_id="common.chartType"
-          :grid_id="grid_id"
-          :index="grid_id"
-          :icon="settingIcon"
-          :config="{L_BTN_SIZE:21}"
-          @legend-button-click="button_click"
-      >
-      </legend-button> -->
     </div>
-    <div v-for="ind in this.indicators" class="t-vue-ind">
-        <span class="t-vue-iname">{{ind.name}}</span>
-        <button-group
-            v-if="ind.showLegendButtons"
-            :buttons="common.buttons"
-            :config="common.config"
-            :ov_id="ind.id"
-            :grid_id="grid_id"
-            :index="ind.index"
-            :tv_id="common.tv_id"
-            :display="ind.v"
-            @legend-button-click="button_click">
-        </button-group>
-        <span v-if="ind.v" class="t-vue-ivalues">
-            <span v-for="v in ind.values"
-                v-if="show_values"
-                class="t-vue-lspan t-vue-ivalue" :style="{ color: v.color }">
-                {{v.value}}
-            </span>
-        </span>
-        <span v-if="ind.unk" class="t-vue-unknown">
-            (Unknown type)
-        </span>
-        <transition name="tvjs-appear">
-            <spinner v-if="ind.loading" :colors="common.colors">
-            </spinner>
-        </transition>
-    </div>
+    
 </div>
 </template>
 <script>
@@ -76,7 +36,7 @@ import LegendButton from "./LegendButton.vue";
 import Icons from '../stuff/icons.json'
 const settingPng = Icons['gear.png']
 export default {
-    name: 'ChartLegend',
+    name: 'TitleChartLegend',
     components: {LegendButton, ButtonGroup, Spinner },
     props: [
         'common', 'values','decimalPlace','grid_id', 'meta_props','legendDecimal', 'showTitleChartLegend',
@@ -154,7 +114,7 @@ export default {
             })
         },
         calc_style() {
-            let top = this.layout.height > 150 ? 10 : 5
+            let top = this.layout.height > 150 ? 3 : 1
             let grids = this.$props.common.layout.grids
             let w = grids[0] ? grids[0].width : undefined
             return {
