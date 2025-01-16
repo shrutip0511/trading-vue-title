@@ -37,7 +37,7 @@ export default {
             this._id = id
             this._attrs = props.attrs
             return h('div', {
-                class: `trading-vue-${id}`,
+                class: `trading-vue-canvas trading-vue-${id}`,
                 style: {
                     left: props.position.x + 'px',
                     top: props.position.y + 'px',
