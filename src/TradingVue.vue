@@ -1,57 +1,22 @@
 <template>
   <!-- Main component  -->
-  <div
-    :id="id"
-    class="trading-vue"
-    :style="{
-      color: this.chart_props.colors.text,
-      font: this.font_comp,
-      width: this.width + 'px',
-      height: this.height + 'px',
-    }"
-    @mousedown="mousedown"
-    @mouseleave="mouseleave"
-  >
-    <toolbar
-      v-if="toolbar"
-      ref="toolbar"
-      v-bind="chart_props"
-      :config="chart_config"
-      @custom-event="custom_event"
-    >
+  <div :id="id" class="trading-vue" :style="{
+    color: this.chart_props.colors.text,
+    font: this.font_comp,
+    width: this.width + 'px',
+    height: this.height + 'px',
+  }" @mousedown="mousedown" @mouseleave="mouseleave">
+    <toolbar v-if="toolbar" ref="toolbar" v-bind="chart_props" :config="chart_config" @custom-event="custom_event">
     </toolbar>
-    <widgets
-      v-if="controllers.length"
-      ref="widgets"
-      :map="ws"
-      :width="width"
-      :height="height"
-      :tv="this"
-      :dc="data"
-    >
+    <widgets v-if="controllers.length" ref="widgets" :map="ws" :width="width" :height="height" :tv="this" :dc="data">
     </widgets>
-    <chart
-    :enableZoom="enableZoom"
-    :showTitleChartLegend="showTitleChartLegend"
-    :enableSideBarBoxValue="enableSideBarBoxValue"
-    :applyShaders="applyShaders"
-    :priceLine="priceLine"
-    :decimalPlace="decimalPlace"
-    :legendDecimal="legendDecimal"
-    :enableCrosshair="enableCrosshair"
-    :ignoreNegativeIndex="ignoreNegativeIndex"
-    :ignore_OHLC="ignore_OHLC"    
-      :key="reset"
-      ref="chart"
-      v-bind="chart_props"
-      :tv_id="id"
-      :config="chart_config"
-      @custom-event="custom_event"
-      @range-changed="range_changed"
-      @chart_data_changed="chart_data_changed"
-      @sidebar-transform="sidebar_transform"
-      @legend-button-click="legend_button"
-    >
+    <chart :enableZoom="enableZoom" :showTitleChartLegend="showTitleChartLegend"
+      :enableSideBarBoxValue="enableSideBarBoxValue" :applyShaders="applyShaders" :priceLine="priceLine"
+      :decimalPlace="decimalPlace" :legendDecimal="legendDecimal" :enableCrosshair="enableCrosshair"
+      :ignoreNegativeIndex="ignoreNegativeIndex" :ignore_OHLC="ignore_OHLC" :key="reset" ref="chart"
+      v-bind="chart_props" :tv_id="id" :config="chart_config" @custom-event="custom_event"
+      @range-changed="range_changed" @chart_data_changed="chart_data_changed" @sidebar-transform="sidebar_transform"
+      @legend-button-click="legend_button">
     </chart>
     <transition name="tvjs-drift">
       <the-tip v-if="tip" :data="tip" @remove-me="tip = null" />
@@ -177,7 +142,7 @@ export default {
     },
     enableSideBarBoxValue: {
       type: Boolean,
-      default:false,
+      default: false,
     },
     // Your overlay classes here
     overlays: {
@@ -200,9 +165,9 @@ export default {
         return [];
       },
     },
-    legendDecimal:{
-      type:Boolean,
-      default:false
+    legendDecimal: {
+      type: Boolean,
+      default: false
     },
     indexBased: {
       type: Boolean,
@@ -267,9 +232,9 @@ export default {
         return [];
       },
     },
-    showTitleChartLegend:{
-      type:Boolean,
-      default:true
+    showTitleChartLegend: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -332,7 +297,7 @@ export default {
         ? this.skin_proto.font
         : this.font;
     },
-    auto_y_axis(){
+    auto_y_axis() {
       return this.$refs.chart?.auto_y_axis || true
     }
   },
@@ -341,20 +306,20 @@ export default {
     this.ctrl_destroy();
   },
   methods: {
-    chart_data_changed(flag){
+    chart_data_changed(flag) {
       this.$emit("chart_data_changed", flag);
     },
     // TODO: reset extensions?
     resetChart(resetRange = true) {
-      
+
       this.reset++;
       let range = this.getRange();
       if (!resetRange && range[0] && range[1]) {
         this.$nextTick(() => this.setRange(...range));
       }
-      if(resetRange){
+      if (resetRange) {
         let initRange = this.$refs?.chart?.initRange
-        if(initRange && initRange?.[0] && initRange?.[1]){
+        if (initRange && initRange?.[0] && initRange?.[1]) {
           this.$nextTick(() => this.setRange(...initRange));
         }
       }
@@ -366,13 +331,13 @@ export default {
       );
     },
     updateChart() {
-    //  console.log(" update chart was called")
-    //       this.$nextTick(() =>
-    //         this.custom_event({
-    //           event: "?chart-resize",
-    //           args:[]
-    //         })
-    //       );
+      //  console.log(" update chart was called")
+      //       this.$nextTick(() =>
+      //         this.custom_event({
+      //           event: "?chart-resize",
+      //           args:[]
+      //         })
+      //       );
     },
     goto(t) {
       // TODO: limit goto & setRange (out of data error)
@@ -389,7 +354,7 @@ export default {
         t1 = ti_map.gt2i(t1, ohlcv);
         t2 = ti_map.gt2i(t2, ohlcv);
         // console.log('this.ignoreNegativeIndex and t1',t1, t2,this.ignoreNegativeIndex)
-        if(t1 < 0 && this.ignoreNegativeIndex){
+        if (t1 < 0 && this.ignoreNegativeIndex) {
           t1 = 0
         }
       }
@@ -450,19 +415,19 @@ export default {
       }
       if (ctrl) this.post_dc(d);
     },
-    range_changed(r,manualInteraction = false) {
+    range_changed(r, manualInteraction = false) {
       if (this.chart_props.ib) {
         const ti_map = this.$refs.chart.ti_map;
         r = r.map((x) => ti_map.i2t(x));
       }
       // update
-      this.$emit("range-changed", r,manualInteraction);
-      
+      this.$emit("range-changed", r, manualInteraction);
+
       // this.custom_event({ event: "range-changed", args: [r,r2] });
       if (this.onrange) this.onrange(r);
     },
-    sidebar_transform(y_transform){
-      this.$emit('sidebar-transform',y_transform)
+    sidebar_transform(y_transform) {
+      this.$emit('sidebar-transform', y_transform)
     },
     set_loader(dc) {
       this.onrange = (r) => {
@@ -487,30 +452,30 @@ export default {
     mouseleave() {
       this.$refs.chart.activated = false;
     },
-    toggleSideBarYAxis(){
+    toggleSideBarYAxis() {
       this.$refs.chart.toggleSideBarYAxis()
     },
-    toggleSidebarCustomRange(verticalRange){
+    toggleSidebarCustomRange(verticalRange) {
       this.$refs.chart.toggleSidebarCustomRange(verticalRange)
     }
   },
-  watch:{
+  watch: {
     decimalPlace(n) {
       const base = this.$props.data;
       // console.log("props:",base);
-      base.merge('chart.settings', {decimalPlace: n})
+      base.merge('chart.settings', { decimalPlace: n })
     },
     enableArrow(n) {
       const base = this.$props.data;
       // console.log("props:",base);
-      base.merge('chart.settings', {isArrow: n})
+      base.merge('chart.settings', { isArrow: n })
     },
   },
   mounted() {
     const base = this.$props.data;
     // console.log("props:",this.$props.enableArrow);
     base.merge(
-        'chart.settings', {isArrow: this.$props.enableArrow, decimalPlace: this.$props.decimalPlace,}
+      'chart.settings', { isArrow: this.$props.enableArrow, decimalPlace: this.$props.decimalPlace, }
     )
   }
 };
@@ -522,6 +487,7 @@ export default {
 ::before {
   box-sizing: content-box;
 }
+
 .trading-vue img {
   vertical-align: initial;
 }

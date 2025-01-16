@@ -1,5 +1,5 @@
 /*!
- * TradingVue.JS - v1.0.3 - Mon Jan 13 2025
+ * TradingVue.JS - v1.0.3 - Thu Jan 16 2025
  *     https://github.com/tvjsx/trading-vue-js
  *     Copyright (c) 2019 C451 Code's All Right;
  *     Licensed under the MIT license
@@ -387,7 +387,7 @@ module.exports.isSortableArrayLike = function (o) {
 
 /***/ }),
 
-/***/ 572:
+/***/ 472:
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -4169,19 +4169,19 @@ if (true) {
 
 /***/ }),
 
-/***/ 987:
+/***/ 307:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(572);
+var content = __webpack_require__(472);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(534)/* ["default"] */ .A)
-var update = add("3f5bcf3c", content, false, {});
+var update = add("7b9336ca", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -5127,7 +5127,7 @@ __webpack_require__.d(__webpack_exports__, {
   primitives: () => (/* binding */ primitives)
 });
 
-;// ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=template&id=4a8b644a
+;// ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=template&id=65e30029
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -5205,7 +5205,7 @@ var render = function render() {
 var staticRenderFns = [];
 render._withStripped = true;
 
-;// ./src/TradingVue.vue?vue&type=template&id=4a8b644a
+;// ./src/TradingVue.vue?vue&type=template&id=65e30029
 
 ;// ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
 function _arrayLikeToArray(r, a) {
@@ -15117,7 +15117,7 @@ function TradingVuevue_type_script_lang_js_arrayLikeToArray(r, a) { (null == a |
     },
     showTitleChartLegend: {
       type: Boolean,
-      "default": true
+      "default": false
     }
   },
   data: function data() {
@@ -15403,9 +15403,9 @@ function TradingVuevue_type_script_lang_js_arrayLikeToArray(r, a) { (null == a |
 });
 ;// ./src/TradingVue.vue?vue&type=script&lang=js
  /* harmony default export */ const src_TradingVuevue_type_script_lang_js = (TradingVuevue_type_script_lang_js); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=style&index=0&id=4a8b644a&prod&lang=css
-var TradingVuevue_type_style_index_0_id_4a8b644a_prod_lang_css = __webpack_require__(987);
-;// ./src/TradingVue.vue?vue&type=style&index=0&id=4a8b644a&prod&lang=css
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/TradingVue.vue?vue&type=style&index=0&id=65e30029&prod&lang=css
+var TradingVuevue_type_style_index_0_id_65e30029_prod_lang_css = __webpack_require__(307);
+;// ./src/TradingVue.vue?vue&type=style&index=0&id=65e30029&prod&lang=css
 
 ;// ./src/TradingVue.vue
 
