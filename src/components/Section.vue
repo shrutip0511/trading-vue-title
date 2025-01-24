@@ -24,7 +24,10 @@
       :common="legend_props"
       :meta_props="get_meta_props"
       :showTitleChartLegend="showTitleChartLegend"
+      :isOverlayCollapsed="isOverlayCollapsed"
+      :collpaseButton="collpaseButton"
       @legend-button-click="button_click"
+      @on-collapse-change="collapse_button_click"
     >
     </chart-legend>
 
@@ -79,7 +82,7 @@ export default {
     TitleChartLegend
   },
   mixins: [Shaders],
-  props: ["common", "grid_id",'enableSideBarBoxValue', "enableZoom","decimalPlace","priceLine","enableCrosshair","applyShaders","ignore_OHLC","legendDecimal","tv_id","showTitleChartLegend"],
+  props: ["common", "grid_id",'enableSideBarBoxValue', "enableZoom","decimalPlace","priceLine","enableCrosshair","applyShaders","ignore_OHLC","legendDecimal","tv_id","showTitleChartLegend","isOverlayCollapsed", "collpaseButton"],
   data() {
     return {
       meta_props: {},
@@ -247,6 +250,9 @@ export default {
     },
     button_click(event) {
       this.$emit("legend-button-click", event);
+    },
+    collapse_button_click(event) {
+      this.$emit("on-collapse-change", event);
     },
     register_kb(event) {
       this.$emit("register-kb-listener", event);
