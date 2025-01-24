@@ -11,12 +11,13 @@
     <widgets v-if="controllers.length" ref="widgets" :map="ws" :width="width" :height="height" :tv="this" :dc="data">
     </widgets>
     <chart :enableZoom="enableZoom" :showTitleChartLegend="showTitleChartLegend"
+      :isOverlayCollapsed="isOverlayCollapsed" :collpaseButton="collpaseButton"
       :enableSideBarBoxValue="enableSideBarBoxValue" :applyShaders="applyShaders" :priceLine="priceLine"
       :decimalPlace="decimalPlace" :legendDecimal="legendDecimal" :enableCrosshair="enableCrosshair"
       :ignoreNegativeIndex="ignoreNegativeIndex" :ignore_OHLC="ignore_OHLC" :key="reset" ref="chart"
       v-bind="chart_props" :tv_id="id" :config="chart_config" @custom-event="custom_event"
       @range-changed="range_changed" @chart_data_changed="chart_data_changed" @sidebar-transform="sidebar_transform"
-      @legend-button-click="legend_button">
+      @legend-button-click="legend_button" @on-collapse-change="collapse_button">
     </chart>
     <transition name="tvjs-drift">
       <the-tip v-if="tip" :data="tip" @remove-me="tip = null" />
@@ -235,7 +236,15 @@ export default {
     showTitleChartLegend: {
       type: Boolean,
       default: false
-    }
+    },
+    isOverlayCollapsed: {
+      type: Boolean,
+      default: false
+    },
+    collpaseButton: {
+      type: Boolean,
+      default: false
+    },
   },
   data() {
     return { reset: 0, tip: null };
@@ -397,6 +406,12 @@ export default {
     legend_button(event) {
       this.custom_event({
         event: "legend-button-click",
+        args: [event],
+      });
+    },
+    collapse_button(event) {
+      this.custom_event({
+        event: "on-collapse-change",
         args: [event],
       });
     },

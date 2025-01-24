@@ -1,30 +1,27 @@
 <template>
-<div class="trading-vue-legend"
-     :style="calc_style">
-    <div v-if="(grid_id === 0 && !showTitleChartLegend)"
-         class="trading-vue-ohlcv"
-        :style = "{ 'max-width': common.width + 'px' }">
-      <template v-if="common?.showLegendPropsData && common.showLegendPropsData.length">
-        <b v-for="(n,i) in common.showLegendPropsData" :key="i" >{{n.k}} : {{n.v}}&nbsp;</b><br/>
-      </template>
-      <template v-if="show_CustomProps"><span v-for="(n,i) in legendTxtConfig" :key="i" :style="n.style">{{n.name}}&nbsp;</span></template>
-        <span class="t-vue-title"
-              v-if="!show_CustomProps"
-             :style="{ color: common.colors.title }">
-              {{common.title_txt}}
-        </span>        
-        <span v-if="show_values && !show_CustomProps">
-            O<span class="t-vue-lspan" >{{ohlcv[0]}}</span>
-            H<span class="t-vue-lspan" >{{ohlcv[1]}}</span>
-            L<span class="t-vue-lspan" >{{ohlcv[2]}}</span>
-            C<span class="t-vue-lspan" >{{ohlcv[3]}}</span>
-            V<span class="t-vue-lspan" >{{ohlcv[4]}}</span>
-        </span>
-        <span v-if="!show_values" class="t-vue-lspan"
-            :style="{color: common.colors.text}">
-            {{(common.meta.last || [])[4]}}
-        </span>
-      <!-- <legend-button
+    <div class="trading-vue-legend" :style="calc_style">
+
+        <div v-if="(grid_id === 0 && !showTitleChartLegend)" class="trading-vue-ohlcv"
+            :style="{ 'max-width': common.width + 'px' }">
+            <template v-if="common?.showLegendPropsData && common.showLegendPropsData.length">
+                <b v-for="(n, i) in common.showLegendPropsData" :key="i">{{ n.k }} : {{ n.v }}&nbsp;</b><br />
+            </template>
+            <template v-if="show_CustomProps"><span v-for="(n, i) in legendTxtConfig" :key="i" :style="n.style">{{
+                n.name }}&nbsp;</span></template>
+            <span class="t-vue-title" v-if="!show_CustomProps" :style="{ color: common.colors.title }">
+                {{ common.title_txt }}
+            </span>
+            <span v-if="show_values && !show_CustomProps">
+                O<span class="t-vue-lspan">{{ ohlcv[0] }}</span>
+                H<span class="t-vue-lspan">{{ ohlcv[1] }}</span>
+                L<span class="t-vue-lspan">{{ ohlcv[2] }}</span>
+                C<span class="t-vue-lspan">{{ ohlcv[3] }}</span>
+                V<span class="t-vue-lspan">{{ ohlcv[4] }}</span>
+            </span>
+            <span v-if="!show_values" class="t-vue-lspan" :style="{ color: common.colors.text }">
+                {{ (common.meta.last || [])[4] }}
+            </span>
+            <!-- <legend-button
           v-if="show_Settings"
           key="main_chart_settings"
           id="main_settings"
@@ -37,36 +34,42 @@
           @legend-button-click="button_click"
       >
       </legend-button> -->
-    </div>
-    <div v-for="ind in this.indicators" class="t-vue-ind">
-        <span class="t-vue-iname">{{ind.name}}</span>
-        <button-group
-            v-if="ind.showLegendButtons"
-            :buttons="common.buttons"
-            :config="common.config"
-            :ov_id="ind.id"
-            :grid_id="grid_id"
-            :index="ind.index"
-            :tv_id="common.tv_id"
-            :display="ind.v"
-            @legend-button-click="button_click">
-        </button-group>
-        <span v-if="ind.v" class="t-vue-ivalues">
-            <span v-for="v in ind.values"
-                v-if="show_values"
-                class="t-vue-lspan t-vue-ivalue" :style="{ color: v.color }">
-                {{v.value}}
+        </div>
+        <button type="button" class="p-button p-component p-button-sm collapse-btn"
+            v-if="(isButtonvisible && isOverlayCollapsed)" @click="collapse_button_click(false)"
+            style="cursor: pointer;pointer-events: all;">
+
+            <span class="pi pi-angle-down p-button-icon p-button-icon-left"></span>
+            <span class="p-button-label">{{ this.indicators.length }}</span>
+        </button>
+        <div v-for="ind in this.indicators" class="t-vue-ind" v-if="isIndicatorVisible">
+            <span class="t-vue-iname">{{ ind.name }}</span>
+            <button-group v-if="ind.showLegendButtons" :buttons="common.buttons" :config="common.config" :ov_id="ind.id"
+                :grid_id="grid_id" :index="ind.index" :tv_id="common.tv_id" :display="ind.v"
+                @legend-button-click="button_click">
+            </button-group>
+            <span v-if="ind.v" class="t-vue-ivalues">
+                <span v-for="v in ind.values" v-if="show_values" class="t-vue-lspan t-vue-ivalue"
+                    :style="{ color: v.color }">
+                    {{ v.value }}
+                </span>
             </span>
-        </span>
-        <span v-if="ind.unk" class="t-vue-unknown">
-            (Unknown type)
-        </span>
-        <transition name="tvjs-appear">
-            <spinner v-if="ind.loading" :colors="common.colors">
-            </spinner>
-        </transition>
+            <span v-if="ind.unk" class="t-vue-unknown">
+                (Unknown type)
+            </span>
+            <transition name="tvjs-appear">
+                <spinner v-if="ind.loading" :colors="common.colors">
+                </spinner>
+            </transition>
+        </div>
+        <button type="button" class="p-button p-component p-button-sm collapse-btn"
+            v-if="(isButtonvisible && !isOverlayCollapsed)" @click="collapse_button_click(true)"
+            style="cursor: pointer;pointer-events: all;">
+
+            <span class="pi pi-angle-up p-button-icon"></span>
+        </button>
+
     </div>
-</div>
 </template>
 <script>
 
@@ -77,23 +80,32 @@ import Icons from '../stuff/icons.json'
 const settingPng = Icons['gear.png']
 export default {
     name: 'ChartLegend',
-    components: {LegendButton, ButtonGroup, Spinner },
+    components: { LegendButton, ButtonGroup, Spinner },
     props: [
-        'common', 'values','decimalPlace','grid_id', 'meta_props','legendDecimal', 'showTitleChartLegend',
+        'common', 'values', 'decimalPlace', 'grid_id', 'meta_props', 'legendDecimal', 'showTitleChartLegend', 'isOverlayCollapsed', 'collpaseButton'
     ],
     computed: {
-      show_CustomProps(){
-        return this.common?.show_CustomProps || false;
-      },
-      show_Settings(){        
-        return this.common?.showSettingsMain || false;
-      },
-      settingIcon(){
-        return settingPng
-      },
-      legendTxtConfig(){
-        return this.common?.legendTxtConfig;
-      },
+        isButtonvisible() {
+            return (this.grid_id == 0 && this.collpaseButton && this.indicators.length > 0)
+        },
+        isIndicatorVisible() {
+            if (this.grid_id == 0 && this.collpaseButton) {
+                return !this.isOverlayCollapsed
+            }
+            return true
+        },
+        show_CustomProps() {
+            return this.common?.show_CustomProps || false;
+        },
+        show_Settings() {
+            return this.common?.showSettingsMain || false;
+        },
+        settingIcon() {
+            return settingPng
+        },
+        legendTxtConfig() {
+            return this.common?.legendTxtConfig;
+        },
         ohlcv() {
             if (!this.$props.values || !this.$props.values.ohlcv) {
                 return Array(6).fill('n/a')
@@ -108,28 +120,28 @@ export default {
                 return (meta.legend() || []).map(x => x.value)
             }
 
-            if(this.$props.legendDecimal){       
+            if (this.$props.legendDecimal) {
                 return [
-                this.$props.values.ohlcv[1].toFixed(this.$props.values.ohlcv[1] < 1 ? 3 : 2),
-                this.$props.values.ohlcv[2].toFixed(this.$props.values.ohlcv[2] < 1 ? 3 : 2),
-                this.$props.values.ohlcv[3].toFixed(this.$props.values.ohlcv[3] < 1 ? 3 : 2),
-                this.$props.values.ohlcv[4].toFixed(this.$props.values.ohlcv[4] < 1 ? 3 : 2),
-                this.$props.values.ohlcv[5] ?
-                Number(this.$props.values.ohlcv[5].toFixed(0)).toLocaleString('en-AU'):
-                'n/a'
-            ]
-        }else{
-            return [
-                this.$props.values.ohlcv[1].toFixed(prec),
-                this.$props.values.ohlcv[2].toFixed(prec),
-                this.$props.values.ohlcv[3].toFixed(prec),
-                this.$props.values.ohlcv[4].toFixed(prec),
-                this.$props.values.ohlcv[5] ?
-                Number(this.$props.values.ohlcv[5].toFixed(0)).toLocaleString('en-AU'):
-                'n/a'
-            ]   
-        }
-    },
+                    this.$props.values.ohlcv[1].toFixed(this.$props.values.ohlcv[1] < 1 ? 3 : 2),
+                    this.$props.values.ohlcv[2].toFixed(this.$props.values.ohlcv[2] < 1 ? 3 : 2),
+                    this.$props.values.ohlcv[3].toFixed(this.$props.values.ohlcv[3] < 1 ? 3 : 2),
+                    this.$props.values.ohlcv[4].toFixed(this.$props.values.ohlcv[4] < 1 ? 3 : 2),
+                    this.$props.values.ohlcv[5] ?
+                        Number(this.$props.values.ohlcv[5].toFixed(0)).toLocaleString('en-AU') :
+                        'n/a'
+                ]
+            } else {
+                return [
+                    this.$props.values.ohlcv[1].toFixed(prec),
+                    this.$props.values.ohlcv[2].toFixed(prec),
+                    this.$props.values.ohlcv[3].toFixed(prec),
+                    this.$props.values.ohlcv[4].toFixed(prec),
+                    this.$props.values.ohlcv[5] ?
+                        Number(this.$props.values.ohlcv[5].toFixed(0)).toLocaleString('en-AU') :
+                        'n/a'
+                ]
+            }
+        },
         // TODO: add support for { grid: { id : N }}
         indicators() {
             const values = this.$props.values
@@ -159,7 +171,7 @@ export default {
             let w = grids[0] ? grids[0].width : undefined
             return {
                 top: `${this.layout.offset + top}px`,
-                width: `${w-20}px`
+                width: `${w - 20}px`
             }
         },
         layout() {
@@ -207,6 +219,9 @@ export default {
         },
         button_click(event) {
             this.$emit('legend-button-click', event)
+        },
+        collapse_button_click(value) {
+            this.$emit('on-collapse-change', value)
         }
     }
 }
@@ -222,48 +237,56 @@ export default {
     user-select: none;
     font-weight: 300;
 }
+
 @media (min-resolution: 2x) {
     .trading-vue-legend {
         font-weight: 400;
     }
 }
+
 .trading-vue-ohlcv {
     pointer-events: none;
     margin-bottom: 0.5em;
 }
+
 .t-vue-lspan {
     font-variant-numeric: tabular-nums;
     font-size: 0.95em;
-    color: #999999; /* TODO: move => params */
+    color: #999999;
+    /* TODO: move => params */
     margin-left: 0.1em;
     margin-right: 0.2em;
 }
+
 .t-vue-title {
     margin-right: 0.25em;
     font-size: 1.45em;
 }
+
 .t-vue-ind {
-  display: flex;
+    display: flex;
     margin-left: 0.2em;
     margin-bottom: 0.5em;
     font-size: 1.0em;
     margin-top: 0.3em;
 }
+
 .t-vue-ivalue {
     margin-left: 0.5em;
 }
+
 .t-vue-unknown {
-    color: #999999; /* TODO: move => params */
+    color: #999999;
+    /* TODO: move => params */
 }
 
 .tvjs-appear-enter-active,
-.tvjs-appear-leave-active
-{
+.tvjs-appear-leave-active {
     transition: all .25s ease;
 }
 
-.tvjs-appear-enter, .tvjs-appear-leave-to
-{
+.tvjs-appear-enter,
+.tvjs-appear-leave-to {
     opacity: 0;
 }
 </style>
