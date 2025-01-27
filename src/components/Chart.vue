@@ -158,7 +158,7 @@ export default {
     },
     auto_y_axis() {
       let gridKeys = Object.keys(this.y_transforms);
-      console.log("gridKeys", gridKeys)
+      // console.log("gridKeys", gridKeys)
       if (gridKeys.length > 0 && gridKeys.includes("0")) {
         return this.y_transforms['0'].auto;
       }
@@ -277,12 +277,12 @@ export default {
     range_changed_by_time(startTime, endTime) {
       // Find Index For Start 
       let dataChanged = this.data_changed();
-      console.log("range_changed_by_time dataChanged", dataChanged)
+      // console.log("range_changed_by_time dataChanged", dataChanged)
       let startTimeIndex = this.ti_map.t2i(startTime)
       let endTimeIndex = this.ti_map.t2i(endTime)
-      console.log("range_changed_by_time updatedIndex", {
-        dataChanged, startTimeIndex, endTimeIndex
-      })
+      // console.log("range_changed_by_time updatedIndex", {
+      //   dataChanged, startTimeIndex, endTimeIndex
+      // })
       let newRange = [startTimeIndex, endTimeIndex]
       this.range_changed(newRange)
       // console.log('this.ti_map.t2i(r[0])',this.ti_map.t2i(r[0]))
@@ -312,12 +312,12 @@ export default {
       if (this.ohlcv.length < 2 && !tf) return
       this.interval_ms = tf || Utils.detect_interval(this.ohlcv)
       this.interval = this.$props.ib ? 1 : this.interval_ms
-      console.log("calc_interval", {
-        interval: this.interval,
-        interval_ms: this.interval_ms,
-        forced_tf: this.forced_tf,
-        caller
-      })
+      // console.log("calc_interval", {
+      //   interval: this.interval,
+      //   interval_ms: this.interval_ms,
+      //   forced_tf: this.forced_tf,
+      //   caller
+      // })
       Utils.warn(
         () => this.$props.ib && !this.chart.tf,
         Const.IB_TF_WARN, Const.SECOND
@@ -355,7 +355,7 @@ export default {
           s - this.interval * d,
           l + this.interval * ml
         ];
-        console.log("this.forced_initRange", this.forced_initRange)
+        // console.log("this.forced_initRange", this.forced_initRange)
         if (this.forced_initRange) {
           newArr = this.forced_initRange
         } else {
@@ -364,7 +364,7 @@ export default {
           }
         }
 
-        console.log("searchResults Library Data", newArr, this.chart?.initRange, this.forced_initRange)
+        // console.log("searchResults Library Data", newArr, this.chart?.initRange, this.forced_initRange)
         Utils.overwrite(this.range, newArr)
       }
     },
@@ -536,11 +536,11 @@ export default {
 
         this.update_layout()
         this.$emit('sidebar-transform', this.y_transforms['0'])
-        console.log("noideawill", this.y_transforms['0'], gridKeys)
+        // console.log("noideawill", this.y_transforms['0'], gridKeys)
       } else {
 
 
-        console.log("mainSideBar", mainSideBar)
+        // console.log("mainSideBar", mainSideBar)
         if (mainSideBar?.renderer?.calc_range_function) {
           let currentRange = mainSideBar.renderer.calc_range_function();
           this.y_transforms['0'] = {

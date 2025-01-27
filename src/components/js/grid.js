@@ -78,13 +78,13 @@ export default class Grid {
 
     mc.on("panmove", (event) => {
       if (Utils.is_mobile) {
-        console.log("panmove event mobile")
+        // console.log("panmove event mobile")
         this.calc_offset();
         this.propagate("mousemove", this.touch2mouse(event));
       }
       if (this.drug) {
         if (this.$p.enableZoom) {
-          console.log("panmove event if block")
+          // console.log("panmove event if block")
           this.mousedrag(this.drug.x + event.deltaX, this.drug.y + event.deltaY);
           this.comp.$emit("cursor-changed", {
             grid_id: this.id,
