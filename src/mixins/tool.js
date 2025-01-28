@@ -53,7 +53,7 @@ export default {
         },
         set_state(name) {
             this.$emit('change-settings', {
-                 $state: name
+                $state: name
             })
         },
         watch_uuid(n, p) {
@@ -74,7 +74,6 @@ export default {
         },
         remove_tool() {
             if (this.selected) {
-                console.log("remove_tool")
                 this.$emit('remove-tool')
             }
         },
@@ -85,11 +84,13 @@ export default {
             this.pins.forEach(x => x.rec_position())
         },
         drag_update() {
-            let dt = this.$props.cursor.t - this.drag.t
-            let dy = this.$props.cursor.y$ - this.drag.y$
-            this.pins.forEach(x => x.update_from(
-                [x.t1 + dt, x.y$1 + dy], true
-            ))
+            if (this.selected) {
+                let dt = this.$props.cursor.t - this.drag.t
+                let dy = this.$props.cursor.y$ - this.drag.y$
+                this.pins.forEach(x => x.update_from(
+                    [x.t1 + dt, x.y$1 + dy], true
+                ))
+            }
         }
     },
     computed: {

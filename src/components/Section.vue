@@ -214,7 +214,7 @@ export default {
   },
   mounted() {
     this.init_shaders(this.$props.common.skin);
-    console.log('common.data',this.meta_props)
+    // console.log('common.data',this.meta_props)
   },
   methods: {
     hasGridId(single){
@@ -226,7 +226,7 @@ export default {
       return false;
     },
     range_changed(r,manualInteraction = false) {
-      console.log("range_changed",r)
+      // console.log("range_changed",r)
       this.$emit("range-changed", r,manualInteraction);
     },
     cursor_changed(c) {
@@ -240,7 +240,7 @@ export default {
       this.$emit("sidebar-transform", s);
     },
     emit_meta_props(d) {
-      console.log("layer-meta-props section.vue ",d)
+      // console.log("layer-meta-props section.vue ",d)
       this.$set(this.meta_props, d.layer_id, d);
       this.$emit("layer-meta-props", d);
     },
