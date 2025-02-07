@@ -1,5 +1,5 @@
 /*!
- * TradingVue.JS - v1.0.3 - Tue Jan 28 2025
+ * TradingVue.JS - v1.0.3 - Fri Feb 07 2025
  *     https://github.com/tvjsx/trading-vue-js
  *     Copyright (c) 2019 C451 Code's All Right;
  *     Licensed under the MIT license
@@ -6027,13 +6027,31 @@ var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
     };
   },
   expand: function expand(self, height) {
-    // expand log scale
-    var A = -height / (math.log(self.$_hi) - math.log(self.$_lo));
-    var B = -math.log(self.$_hi) * A;
-    var top = -height * 0.1;
-    var bot = height * 1.1;
-    self.$_hi = math.exp((top - B) / A);
-    self.$_lo = math.exp((bot - B) / A);
+    var hi = self.$_hi;
+    var lo = self.$_lo;
+
+    // Check if both high and low are negative
+    if (hi < 0 && lo < 0) {
+      // Apply log to absolute values and adjust scaling for negative domain
+      var A = -height / (math.log(Math.abs(lo)) - math.log(Math.abs(hi)));
+      var B = -math.log(Math.abs(hi)) * A;
+      var top = -height * 0.1;
+      var bot = height * 1.1;
+
+      // Shift back to the negative domain using negative exponentiation
+      self.$_hi = -math.exp((top - B) / A);
+      self.$_lo = -math.exp((bot - B) / A);
+    }
+    // Handle mixed positive and negative or all positive cases
+    else {
+      // Expand log scale normally
+      var _A = -height / (math.log(hi) - math.log(lo));
+      var _B = -math.log(hi) * _A;
+      var _top = -height * 0.1;
+      var _bot = height * 1.1;
+      self.$_hi = math.exp((_top - _B) / _A);
+      self.$_lo = math.exp((_bot - _B) / _A);
+    }
   }
 });
 ;// ./src/components/js/grid_maker.js
@@ -6460,6 +6478,27 @@ function GridMaker(id, params, master_grid) {
 
     // TODO: remove lines near to 0
   }
+  function grid_y_log_small() {
+    self.$_mult = dollar_mult();
+    self.ys = [];
+    if (!sub.length) return;
+    var safe_lo = Math.max(self.$_lo, 0.0001); // Ensure we don't get log(0)
+    var safe_hi = Math.max(self.$_hi, 0.0001);
+    var y$ = safe_hi;
+    var seenValues = new Set(); // To track unique values
+
+    while (y$ >= safe_lo) {
+      var roundedValue = parseFloat(utils.strip(y$).toFixed($p.decimalPlace)); // Round to 3 decimal places
+
+      var y = Math.floor(math.log(y$) * self.A + self.B);
+      if (!seenValues.has(roundedValue)) {
+        self.ys.push([y, roundedValue]);
+        seenValues.add(roundedValue);
+      }
+      y$ /= self.$_mult;
+      if (y > height || self.ys.length > 50) break; // Prevent excessive iterations
+    }
+  }
 
   // Search a start for the top grid so that
   // the fixed value always included
@@ -6529,7 +6568,11 @@ function GridMaker(id, params, master_grid) {
       calc_positions();
       grid_x();
       if (grid.logScale) {
-        grid_y_log();
+        if (self.$_hi < 1) {
+          grid_y_log_small();
+        } else {
+          grid_y_log();
+        }
       } else {
         grid_y();
       }
