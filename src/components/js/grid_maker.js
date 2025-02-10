@@ -17,7 +17,7 @@ function GridMaker(id, params, master_grid = null) {
         sub, interval, range, ctx, $p, layers_meta, height, y_t, ti_map,
         grid, timezone
     } = params
-    var self = { ti_map,hideValues:grid.hideValues }
+    var self = { ti_map, hideValues: grid.hideValues }
     var lm = layers_meta[id]
     var y_range_fn = null
     var ls = grid.logScale
@@ -56,7 +56,7 @@ function GridMaker(id, params, master_grid = null) {
             if (y_range_fn) { var [hi, lo, exp] = y_range_fn(hi, lo) }
         }
         // console.log("master_grid",master_grid,y_t)
-        
+
         // Fixed y-range in non-auto mode
         if (y_t && !y_t.auto && y_t.range) {
             self.$_hi = y_t.range[0]
@@ -191,7 +191,7 @@ function GridMaker(id, params, master_grid = null) {
             self.B = - self.$_hi * self.A
         } else {
             self.A = - height / (math.log(self.$_hi) -
-                       math.log(self.$_lo))
+                math.log(self.$_lo))
             self.B = - math.log(self.$_hi) * self.A
         }
 
@@ -239,7 +239,7 @@ function GridMaker(id, params, master_grid = null) {
         }
         let m = yrange * ($p.config.GRIDY / h)
         let p = parseInt(yrange.toExponential().split('e')[1])
-        return Math.pow(yratio, 1/n)
+        return Math.pow(yratio, 1 / n)
     }
 
     function dollar_mult_lo() {
@@ -255,7 +255,7 @@ function GridMaker(id, params, master_grid = null) {
         }
         let m = yrange * ($p.config.GRIDY / h)
         let p = parseInt(yrange.toExponential().split('e')[1])
-        return Math.pow(yratio, 1/n)
+        return Math.pow(yratio, 1 / n)
     }
 
     function grid_x() {
@@ -278,8 +278,8 @@ function GridMaker(id, params, master_grid = null) {
 
             for (var i = 0; i < sub.length; i++) {
                 let p = sub[i]
-                let prev = sub[i-1] || []
-                let prev_xs = self.xs[self.xs.length - 1] || [0,[]]
+                let prev = sub[i - 1] || []
+                let prev_xs = self.xs[self.xs.length - 1] || [0, []]
                 let x = Math.floor((p[0] - range[0]) * r)
 
                 insert_line(prev, p, x)
@@ -354,11 +354,11 @@ function GridMaker(id, params, master_grid = null) {
         let t = self.xs[0][1][0]
         while (true) {
             t -= self.t_step
-            let x = Math.floor((t  - range[0]) * r)
+            let x = Math.floor((t - range[0]) * r)
             if (x < 0) break
             // TODO: ==========> And insert it here somehow
             if (t % interval === 0) {
-                self.xs.unshift([x,[t], interval])
+                self.xs.unshift([x, [t], interval])
             }
         }
     }
@@ -370,10 +370,10 @@ function GridMaker(id, params, master_grid = null) {
         let t = self.xs[self.xs.length - 1][1][0]
         while (true) {
             t += self.t_step
-            let x = Math.floor((t  - range[0]) * r)
+            let x = Math.floor((t - range[0]) * r)
             if (x > self.spacex) break
             if (t % interval === 0) {
-                self.xs.push([x,[t], interval])
+                self.xs.push([x, [t], interval])
             }
         }
     }
@@ -390,8 +390,8 @@ function GridMaker(id, params, master_grid = null) {
         for (var y$ = y1; y$ <= self.$_hi; y$ += self.$_step) {
             let y = Math.floor(y$ * self.A + self.B)
             if (y > height) continue
-            if(!self.hideValues)
-            self.ys.push([y, Utils.strip(y$)])
+            if (!self.hideValues)
+                self.ys.push([y, Utils.strip(y$)])
         }
 
     }
@@ -438,6 +438,32 @@ function GridMaker(id, params, master_grid = null) {
 
         // TODO: remove lines near to 0
 
+    }
+
+    function grid_y_log_small() {
+        self.$_mult = dollar_mult();
+        self.ys = [];
+
+        if (!sub.length) return;
+        const safe_lo = Math.max(self.$_lo, 0.0001); // Ensure we don't get log(0)
+        const safe_hi = Math.max(self.$_hi, 0.0001);
+
+        let y$ = safe_hi;
+        const seenValues = new Set();  // To track unique values
+
+        while (y$ >= safe_lo) {
+            let roundedValue = parseFloat(Utils.strip(y$).toFixed($p.decimalPlace));  // Round to 3 decimal places
+
+            let y = Math.floor(math.log(y$) * self.A + self.B);
+            if (!seenValues.has(roundedValue)) {
+                self.ys.push([y, roundedValue]);
+                seenValues.add(roundedValue);
+            }
+
+            y$ /= self.$_mult;
+
+            if (y > height || self.ys.length > 50) break; // Prevent excessive iterations
+        }
     }
 
     // Search a start for the top grid so that
@@ -506,7 +532,11 @@ function GridMaker(id, params, master_grid = null) {
             calc_positions()
             grid_x()
             if (grid.logScale) {
-                grid_y_log()
+                if (self.$_hi < 1) {
+                    grid_y_log_small()
+                } else {
+                    grid_y_log()
+                }
             } else {
                 grid_y()
             }

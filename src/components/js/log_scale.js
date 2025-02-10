@@ -20,15 +20,34 @@ export default {
     },
 
     expand(self, height) {
-        // expand log scale
-        let A = - height / (math.log(self.$_hi) - math.log(self.$_lo))
-        let B = - math.log(self.$_hi) * A
+        let hi = self.$_hi;
+        let lo = self.$_lo;
 
-        let top = -height * 0.1
-        let bot = height * 1.1
+        // Check if both high and low are negative
+        if (hi < 0 && lo < 0) {
+            // Apply log to absolute values and adjust scaling for negative domain
+            let A = -height / (math.log(Math.abs(lo)) - math.log(Math.abs(hi)));
+            let B = -math.log(Math.abs(hi)) * A;
 
-        self.$_hi = math.exp((top - B) / A)
-        self.$_lo = math.exp((bot - B) / A)
+            let top = -height * 0.1;
+            let bot = height * 1.1;
+
+            // Shift back to the negative domain using negative exponentiation
+            self.$_hi = -math.exp((top - B) / A);
+            self.$_lo = -math.exp((bot - B) / A);
+        }
+        // Handle mixed positive and negative or all positive cases
+        else {
+            // Expand log scale normally
+            let A = -height / (math.log(hi) - math.log(lo));
+            let B = -math.log(hi) * A;
+
+            let top = -height * 0.1;
+            let bot = height * 1.1;
+
+            self.$_hi = math.exp((top - B) / A);
+            self.$_lo = math.exp((bot - B) / A);
+        }
     }
 
 }
