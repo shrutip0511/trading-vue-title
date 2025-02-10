@@ -1,5 +1,5 @@
 /*!
- * TradingVue.JS - v1.0.3 - Fri Feb 07 2025
+ * TradingVue.JS - v1.0.3 - Mon Feb 10 2025
  *     https://github.com/tvjsx/trading-vue-js
  *     Copyright (c) 2019 C451 Code's All Right;
  *     Licensed under the MIT license
@@ -443,7 +443,7 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ 315:
+/***/ 648:
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -4241,19 +4241,19 @@ if(false) {}
 
 /***/ }),
 
-/***/ 982:
+/***/ 465:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(315);
+var content = __webpack_require__(648);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(534)/* ["default"] */ .A)
-var update = add("adbc17a4", content, false, {});
+var update = add("ab7b9d56", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -11943,8 +11943,8 @@ var Sidebar_component = normalizeComponent(
 )
 
 /* harmony default export */ const components_Sidebar = (Sidebar_component.exports);
-;// ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Legend.vue?vue&type=template&id=7ce0ae61
-var Legendvue_type_template_id_7ce0ae61_render = function render() {
+;// ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Legend.vue?vue&type=template&id=e0e21bb6
+var Legendvue_type_template_id_e0e21bb6_render = function render() {
   var _vm$common;
   var _vm = this,
     _c = _vm._self._c;
@@ -12019,7 +12019,9 @@ var Legendvue_type_template_id_7ce0ae61_render = function render() {
     staticClass: "pi pi-angle-down p-button-icon p-button-icon-left"
   }), _vm._v(" "), _c('span', {
     staticClass: "p-button-label"
-  }, [_vm._v(_vm._s(this.indicators.length))])]) : _vm._e(), _vm._v(" "), _vm._l(this.indicators, function (ind) {
+  }, [_vm._v(_vm._s(this.indicators.length))])]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "trading-vue-legend-group"
+  }, _vm._l(this.indicators, function (ind) {
     return _vm.isIndicatorVisible ? _c('div', {
       staticClass: "t-vue-ind"
     }, [_c('span', {
@@ -12045,10 +12047,10 @@ var Legendvue_type_template_id_7ce0ae61_render = function render() {
         style: {
           color: v.color
         }
-      }, [_vm._v("\n                " + _vm._s(v.value) + "\n            ")]) : _vm._e();
+      }, [_vm._v("\n                    " + _vm._s(v.value) + "\n                ")]) : _vm._e();
     }), 0) : _vm._e(), _vm._v(" "), ind.unk ? _c('span', {
       staticClass: "t-vue-unknown"
-    }, [_vm._v("\n            (Unknown type)\n        ")]) : _vm._e(), _vm._v(" "), _c('transition', {
+    }, [_vm._v("\n                (Unknown type)\n            ")]) : _vm._e(), _vm._v(" "), _c('transition', {
       attrs: {
         "name": "tvjs-appear"
       }
@@ -12057,7 +12059,7 @@ var Legendvue_type_template_id_7ce0ae61_render = function render() {
         "colors": _vm.common.colors
       }
     }) : _vm._e()], 1)], 1) : _vm._e();
-  }), _vm._v(" "), _vm.isButtonvisible && !_vm.isOverlayCollapsed ? _c('button', {
+  }), 0), _vm._v(" "), _vm.isButtonvisible && !_vm.isOverlayCollapsed ? _c('button', {
     staticClass: "p-button p-component p-button-sm collapse-btn",
     staticStyle: {
       "cursor": "pointer",
@@ -12073,12 +12075,12 @@ var Legendvue_type_template_id_7ce0ae61_render = function render() {
     }
   }, [_c('span', {
     staticClass: "pi pi-angle-up p-button-icon"
-  })]) : _vm._e()], 2);
+  })]) : _vm._e()]);
 };
-var Legendvue_type_template_id_7ce0ae61_staticRenderFns = [];
-Legendvue_type_template_id_7ce0ae61_render._withStripped = true;
+var Legendvue_type_template_id_e0e21bb6_staticRenderFns = [];
+Legendvue_type_template_id_e0e21bb6_render._withStripped = true;
 
-;// ./src/components/Legend.vue?vue&type=template&id=7ce0ae61
+;// ./src/components/Legend.vue?vue&type=template&id=e0e21bb6
 
 ;// ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/ButtonGroup.vue?vue&type=template&id=72b6dd45
 var ButtonGroupvue_type_template_id_72b6dd45_render = function render() {
@@ -12444,9 +12446,9 @@ var settingPng = icons_namespaceObject["gear.png"];
 });
 ;// ./src/components/Legend.vue?vue&type=script&lang=js
  /* harmony default export */ const components_Legendvue_type_script_lang_js = (Legendvue_type_script_lang_js); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Legend.vue?vue&type=style&index=0&id=7ce0ae61&prod&lang=css
-var Legendvue_type_style_index_0_id_7ce0ae61_prod_lang_css = __webpack_require__(982);
-;// ./src/components/Legend.vue?vue&type=style&index=0&id=7ce0ae61&prod&lang=css
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/Legend.vue?vue&type=style&index=0&id=e0e21bb6&prod&lang=css
+var Legendvue_type_style_index_0_id_e0e21bb6_prod_lang_css = __webpack_require__(465);
+;// ./src/components/Legend.vue?vue&type=style&index=0&id=e0e21bb6&prod&lang=css
 
 ;// ./src/components/Legend.vue
 
@@ -12459,8 +12461,8 @@ var Legendvue_type_style_index_0_id_7ce0ae61_prod_lang_css = __webpack_require__
 
 var Legend_component = normalizeComponent(
   components_Legendvue_type_script_lang_js,
-  Legendvue_type_template_id_7ce0ae61_render,
-  Legendvue_type_template_id_7ce0ae61_staticRenderFns,
+  Legendvue_type_template_id_e0e21bb6_render,
+  Legendvue_type_template_id_e0e21bb6_staticRenderFns,
   false,
   null,
   null,
