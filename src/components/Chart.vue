@@ -41,7 +41,7 @@ export default {
   },
   mixins: [Shaders, DataTrack],
   props: [
-    'title_txt', 'data', 'width', 'height', 'font', 'colors',
+    'title_txt', 'exchange_txt' ,'data', 'width', 'height', 'font', 'colors',
     'overlays', 'tv_id', 'config', 'buttons', 'toolbar', 'ib', 'applyShaders',
     'skin', 'timezone', 'enableZoom', 'enableSideBarBoxValue', 'decimalPlace', 'ignore_OHLC', 'priceLine', 'ignoreNegativeIndex', 'enableCrosshair', 'legendDecimal',
     'showSettingsButton', 'showTitleChartLegend', 'isOverlayCollapsed', 'collpaseButton'
@@ -390,6 +390,7 @@ export default {
     common_props() {
       return {
         title_txt: this.chart.name || this.$props.title_txt,
+        exchange_txt: this.$props.exchange_txt,
         layout: this._layout,
         sub: this.sub,
         range: this.range,

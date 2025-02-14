@@ -47,6 +47,10 @@ export default {
       type: String,
       default: "TradingVue.js",
     },
+    exchangeTxt: {
+      type: String,
+      default: "",
+    },
     id: {
       type: String,
       default: "trading-vue-js",
@@ -255,6 +259,7 @@ export default {
       let offset = this.$props.toolbar ? this.chart_config.TOOLBAR : 0;
       let chart_props = {
         title_txt: this.$props.titleTxt,
+        exchange_txt: this.$props.exchangeTxt,
         overlays: this.$props.overlays.concat(this.mod_ovs),
         data: this.decubed,
         width: this.$props.width - offset,
