@@ -260,7 +260,9 @@ export default {
     font-size: 1.45em;
 }
 .t-vue-exchange{
-    font-size: 12px;
+    font-size: 0.9em;
+    font-weight: 600;
+    margin-right: 0.25em;
 }
 
 .t-vue-ind {
